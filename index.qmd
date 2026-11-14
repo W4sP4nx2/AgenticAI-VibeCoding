@@ -37,7 +37,7 @@ The form opens 1 hour before each class, so you cannot fill it in earlier. It cl
 
 ## Classes
 
-### Class 1: Introduction to the Vibe Paradigm
+### Session I: Introduction to the Vibe Paradigm
 
 **Presenter:** Phyo Ko Ko
 
@@ -47,7 +47,7 @@ Link for the presentation: [Presentation](materials/introduction_vibe_coding_phy
 
 Link for the GitHub: [GitHub](https://github.com/phyo57/UNDP-Vibe-coding-Introduction-volunteering){.btn .btn-primary target="_blank"}
 
-### Class 2: Architecting and configuring the AI Workspace
+### Session II: Architecting and configuring the AI Workspace
 
 **Presenter:** Ruiya Zhou
 
@@ -55,7 +55,7 @@ How can we properly configure the workspace for working with agents? Which softw
 
 Link to Drive: [Drive Folder of the Session](https://drive.google.com/drive/folders/1N5UJX2DxvKmK1E2eEwwWzkW4AotRNREJ){.btn .btn-primary target="_blank"}
 
-### Class 3: Development paradigms: Intent-Based "Vibe" Iteration, Spec-Driven, Agentic Orchestration
+### Session IV and V: Development paradigms: Intent-Based "Vibe" Iteration, Spec-Driven, Agentic Orchestration
 
 **Presenter:** Akshi Rao
 
@@ -66,11 +66,12 @@ Link for the presentation: [Slides-Presentation](materials/Development_Paradigms
 Link for the coding materials (this is a zip file to be downloaded): [Coding-materials-zip-file](materials/akshi-bhasker-rao-website.zip){.btn .btn-primary target="_blank"}
 
 
-### Class 4: Agentic Mechanics: Planning & Tool Use
+### Session VI and VII: Agentic Mechanics: Planning & Tool Use
 
-**Presenter:** Alan al-jammar · **Status:** Confirmed **Roadmap session:** S4
+**Presenter:** Alan al-jammar ·**Date: 14/11 5pm (GMT+3)**
 
-Description coming soon. The presenter's GitHub link will be added here once the class is confirmed.
+Forms given in Class: [Session 1 feedback: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true)
+
 
 ### Class 5: Managing Multi-Agent Teams
 
