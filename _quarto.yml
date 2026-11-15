@@ -12,6 +12,8 @@ project:
   resources:
     - roadmap_cards.html
     - roadmap_cards.js
+    - materials/s5-slides.html
+    - materials/s5-flashcards.html
 
 website:
   title: "Agentic AI Lessons"
