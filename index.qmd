@@ -70,6 +70,9 @@ Link for the coding materials (this is a zip file to be downloaded): [Coding-mat
 
 **Presenter:** Alan al-jammar ·**Date: 14/11 5pm (GMT+3)**
 
+What is the difference of a prompt and a agentic scheme? How can agents take their own decision? What are the ways to organize and plan the use of agents for a task driven approach? What are the most common ways to set up agents and config the environment? 
+These and more answers in our class. You can watch the Theorical Session in our recordings. 
+
 Forms given in Class: [Session 1 feedback: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true)
 
 
