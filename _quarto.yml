@@ -12,6 +12,8 @@ project:
   resources:
     - roadmap_cards.html
     - roadmap_cards.js
+    - materials/s5/managing-multi-agent-teams-slides.html
+    - materials/s5/managing-multi-agent-teams-flashcards.html
 
 website:
   title: "Agentic AI Lessons"
