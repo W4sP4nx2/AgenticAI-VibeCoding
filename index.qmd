@@ -81,9 +81,9 @@ Supervise an agent team through typed handoffs, scoped tools, independent checks
 
 [GitHub](https://github.com/W4sP4nx2/Managing-Multi-Agent-Teams/tree/main){.btn .btn-primary target="_blank"}
 
-[Slides](materials/from-tokens-to-teams.html){.btn .btn-primary target="_blank"}
+[Slides](materials/s5/managing-multi-agent-teams-slides.html){.btn .btn-primary target="_blank"}
 
-[Flashcards Study](materials/volunteer-agent-teams.html){.btn .btn-primary target="_blank"}
+[Flashcards Study](materials/s5/managing-multi-agent-teams-flashcards.html){.btn .btn-primary target="_blank"}
 
 ### Class 6: The "Safety Net": Automated Validation & Evals
 
