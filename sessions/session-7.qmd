@@ -1,0 +1,31 @@
+---
+title: "Session VII: Practical Lab, Agents Mechanisms"
+---
+
+[← All session summaries](../sessions.qmd) · [← Previous: Session VI](session-6.qmd)
+
+**Date:** November 15, 2026 at 17:00 GMT+3 · **Presenter:** Alan Al Jammoor · **Type:** Live demo and exercises (about 1 hour)
+
+## What we covered
+
+- **Five parts of a strong prompt:** Goal, context, rules, output and checks. A clear prompt needs fewer rework loops and fewer tokens.
+- **Live examples:**
+    - Cleaning 979 rows of messy café sales data into a clean CSV with a Python script.
+    - Turning the clean data into a six-slide deck and checking the numbers against the source.
+    - Making a 30-second promotional video from generated frames.
+    - Building a single-file meal planner web app from a specification.
+- **Predict the tools:** For a sales report, the agent reads the file, runs Python to analyse it, then looks at the rendered result to check it.
+- **Keep a human in charge:** Let the AI decide on reversible local tasks, such as formatting files or drafting. A person decides on anything irreversible or high-impact, such as deleting files, sending emails or changing a production database.
+- **Cost:** The four demos used about 90,000 tokens in total, roughly $0.90 by the presenter's estimate.
+
+## Key takeaway
+
+> Speed alone is not an advantage, because everyone can get code from an idea now. Quality, security and reliability are what set you apart.
+
+## Quiz
+
+[Quiz and Feedback given in class](https://docs.google.com/forms/d/1Che3gsgkUdb95mFa6R5WP9KP1fPIKKmuIz6aowhrKAE/viewform?ts=6af9c907&edit_requested=true)
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::

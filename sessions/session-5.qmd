@@ -1,0 +1,29 @@
+---
+title: "Session V: Development Paradigms"
+---
+
+[← All session summaries](../sessions.qmd) · [← Previous: Session II](session-2.qmd) · [Next: Session VI →](session-6.qmd)
+
+**Date:** November 7, 2026 at 09:00 GMT+3 · **Presenter:** Akshi Rao · **Type:** Theory and hands-on application (about 4 hours with breaks)
+
+## What we covered
+
+- **Design first:** Vague prompts such as "build a dashboard" make the AI guess. The guessing wastes tokens and produces fragile results.
+- **Five-part specification:** The same framework as Session II, applied to a job search application.
+- **Development lifecycle:** Requirements, AI development, testing and review, QA sign-off, then production.
+- **Plan before you build:** Use Plan mode so you can review the AI's approach before it changes anything.
+- **Download, customise, deploy:** Generate the app, customise it offline, test it locally, push it to GitHub, then deploy it.
+- **Common mistakes:** Skipping the specification, trusting AI output without review, hardcoding secrets and deploying untested code.
+- **When to stop using AI:** When it loops on the same answer, when it keeps hallucinating, when the cost is higher than the value, or when the task is security-critical.
+
+## Quiz
+
+[Quiz: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true){.btn .btn-primary .btn-lg target="_blank"}
+
+## Key takeaway
+
+> Vibe coding is an accelerant for people who understand software engineering. It is not a replacement for it.
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::

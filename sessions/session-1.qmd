@@ -1,0 +1,25 @@
+---
+title: "Session I: Introduction to Vibe Coding"
+---
+
+[← All session summaries](../sessions.qmd) · [Next: Session II →](session-2.qmd)
+
+**Date:** November 2, 2026 at 18:30 GMT+3 · **Presenter:** Phyo Ko Ko · **Type:** Introduction and theory
+
+## What we covered
+
+- **Why it matters:** AI makes building fast, so quality and security become the real advantage.
+- **What vibe coding is:** You decide *what* to build, and AI decides *how* to build it.
+- **Three phases of AI coding:** AI guessing the next line (2021–2022), chat assistance (2022–2024), and agents that read a whole project, run commands and fix their own mistakes (today).
+- **Tools:** Editors such as VS Code and Cursor, and models such as Claude, GPT, Gemini and DeepSeek.
+- **Write in Markdown:** Headings, code blocks and bullet points help AI understand your request and reduce hallucinations.
+- **Save tokens:** Put fixed rules in a system prompt, send only what is needed, and use smaller models for easy tasks.
+- **Program overview:** The 10 sessions and what each one covers.
+
+## Key takeaway
+
+> Technology is a tool, but security is the foundation of trust. Your job is to decide what good code looks like and to check that it is there.
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::

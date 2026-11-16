@@ -1,0 +1,27 @@
+---
+title: "Session II: Introduction to Vibe Coding, Practical Session"
+---
+
+[← All session summaries](../sessions.qmd) · [← Previous: Session I](session-1.qmd) · [Next: Session V →](session-5.qmd)
+
+**Date:** November 3, 2026 at 18:30 GMT+3 · **Presenter:** Phyo Ko Ko · **Type:** Hands-on lab and security demo
+
+## What we covered
+
+- **Security scanners:** Bandit checks Python code, TruffleHog finds hardcoded secrets, and Snyk finds vulnerable dependencies.
+- **Five-part specification:** Functional requirements, non-functional requirements, constraints, interface and acceptance criteria. Write these before you build.
+- **Live build:** A job search application, built from the specification with Claude Code in Plan mode.
+- **Customise and test:** Adjust the result in VS Code and run it locally before anything else.
+- **Publish:** Push the code to GitHub and deploy it on Render or Netlify.
+- **Security habits:**
+    - Never put API keys in code you push. Keep secrets in `.env` files.
+    - Run the scanners before every commit.
+    - Choose "Allow Once", not "Allow Always", for actions the AI performs.
+
+## Key takeaway
+
+> AI handles the mechanical coding. You handle judgment, oversight and verification.
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::

@@ -1,0 +1,35 @@
+---
+title: "Session VI: Agents Mechanisms"
+---
+
+[← All session summaries](../sessions.qmd) · [← Previous: Session V](session-5.qmd) · [Next: Session VII →](session-7.qmd)
+
+**Date:** November 14, 2026 at 17:00 GMT+3 · **Presenter:** Alan Al Jammoor · **Type:** Theory with a quiz
+
+## What we covered
+
+- **Five levels of AI:**
+    1. **Naked LLM:** text in, text out.
+    2. **Augmented LLM:** the model can use a few tools, such as search or files.
+    3. **Workflow:** several steps run in a fixed order.
+    4. **Agent:** the model decides its own next steps.
+    5. **Multi-agent:** a team of specialised agents works on the same goal.
+- **Use the simplest level that works.** Translating a paragraph needs only an LLM. Booking a room with a fallback option needs an agent.
+- **The agentic loop:** Plan, act (use a tool), observe the result, and repeat until the goal is met.
+- **Tools:** A calculator, web search, code execution, file access, a browser or email. Tools let the AI get exact answers instead of guessing.
+- **Memory:** Short-term memory is the conversation. Long-term memory is in project files, such as a `memory.md`.
+- **Four planning patterns:** Think step by step, react (reason, then act), plan-execute with a to-do list, and check and fix.
+- **Cost:** Every loop costs tokens, so agents are expensive for simple or high-volume tasks.
+
+## Key takeaway
+
+> An agent is not better than an LLM. It is more complex and more expensive. Use an agent only when the task needs adaptive decisions.
+
+## Quiz
+
+[Quiz: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true){.btn .btn-primary .btn-lg target="_blank"}
+
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::
