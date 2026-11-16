@@ -76,7 +76,7 @@ These and more answers in our class. You can watch the Theorical Session in our 
 Forms given in Class: [Session 1 feedback: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true)
 
 
-### Class 5: Managing Multi-Agent Teams
+### Session VIII and IX: Managing Multi-Agent Teams
 
 **Presenter:** Lwin Ravendom, [GitHub](https://github.com/W4sP4nx2) **Status:** Ready **Roadmap session:** S5
 
