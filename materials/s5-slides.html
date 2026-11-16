@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Managing Multi-Agent Teams | TRINITY Orchestration</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #020617;
+            --bar: #0b1223;
+            --panel: #0f192d;
+            --line: #27364f;
+            --ink: #f1f5f9;
+            --muted: #b6c3d7;
+            --cyan: #7dd3fc;
+            --green: #6ee7b7;
+            --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+            --mono: "JetBrains Mono", ui-monospace, monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            height: 100vh;
+            height: 100dvh;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr) auto;
+            background: radial-gradient(ellipse at 10% 0%, #101e37 0%, var(--bg) 58%);
+            color: var(--ink);
+            font: 1rem/1.55 var(--sans);
+        }
+        [hidden] { display: none !important; }
+        button { font: inherit; }
+        a { color: var(--cyan); text-underline-offset: 0.2em; }
+        a:hover { color: var(--green); }
+        :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+        h1, h2, h3, p { margin: 0; }
+        h1, h2, h3 { line-height: 1.14; }
+        h1, h2 { letter-spacing: -0.045em; text-wrap: balance; }
+        h1 { font-size: clamp(2.5rem, 7vw, 5.8rem); }
+        h2 { font-size: clamp(1.9rem, 4vw, 3.35rem); }
+        h3 { font-size: 1.02rem; }
+        ul, ol { padding-inline-start: 1.25em; margin: 0; }
+        li + li { margin-block-start: 0.48em; }
+        code, .formula { font-family: var(--mono); }
+        code { overflow-wrap: anywhere; color: var(--cyan); }
+        pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+
+        .topbar, .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding: 0.75rem clamp(0.85rem, 4vw, 3rem);
+            background: var(--bar);
+        }
+        .topbar { border-bottom: 1px solid var(--line); }
+        .brand {
+            font-weight: 750;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+        }
+        .brand::before {
+            content: "";
+            display: inline-block;
+            width: 0.62rem;
+            height: 0.62rem;
+            margin-inline-end: 0.55rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--green));
+        }
+        #slide-counter {
+            color: var(--muted);
+            white-space: nowrap;
+            font: 0.76rem/1.2 var(--mono);
+        }
+
+        main {
+            min-height: 0;
+            overflow: auto;
+            overscroll-behavior: contain;
+            scrollbar-color: var(--line) var(--bg);
+        }
+        .slide {
+            display: flex;
+            min-height: 100%;
+            width: min(100%, 80rem);
+            margin-inline: auto;
+            padding: clamp(1.25rem, 4vw, 3rem);
+            padding-block: clamp(1.15rem, min(3vw, 3dvh), 2.5rem);
+        }
+        .slide-content {
+            width: 100%;
+            min-width: 0;
+            margin-block: auto;
+            display: grid;
+            gap: clamp(0.8rem, 1.6vw, 1.2rem);
+        }
+        .slide-heading { display: grid; gap: 0.38rem; }
+        .eyebrow {
+            color: var(--cyan);
+            font: 700 0.72rem/1.4 var(--mono);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .lede {
+            max-width: 65ch;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+        }
+        .hero { max-width: 70rem; }
+        .hero h1 { font-size: clamp(2.4rem, 5.9vw, 4.7rem); }
+        .hero-subtitle {
+            color: var(--cyan);
+            font-size: clamp(1.25rem, 2.8vw, 2rem);
+            font-weight: 650;
+            letter-spacing: -0.025em;
+        }
+        .hero .slide-heading { gap: 0.7rem; }
+        .hero .panel { border-top: 2px solid #4f9fbe; }
+        .hero .panel:last-child { border-top-color: #4ca589; }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            list-style: none;
+            padding: 0;
+        }
+        .tags li {
+            margin: 0;
+            padding: 0.26rem 0.68rem;
+            border: 1px solid #365574;
+            border-radius: 100vw;
+            color: var(--cyan);
+            background: #0d1c31;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .panel-grid {
+            display: grid;
+            gap: clamp(0.8rem, 2vw, 1.25rem);
+        }
+        .panel-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .panel-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .panel, .bridge {
+            min-width: 0;
+            padding: clamp(1rem, 2vw, 1.4rem);
+            border: 1px solid var(--line);
+            border-radius: 0.9rem;
+            font-size: 0.93rem;
+            color: var(--muted);
+        }
+        .panel { background: var(--panel); }
+        .panel h3, .bridge h3 { color: var(--ink); }
+        .panel > * + *, .bridge > * + * { margin-block-start: 0.68rem; }
+        .panel strong, .bridge strong { color: var(--ink); }
+        .panel li::marker { color: var(--cyan); }
+        .bridge {
+            padding-block: 0.8rem;
+            background: #0a2125;
+            border-color: #245245;
+            border-inline-start: 3px solid var(--green);
+        }
+        .bridge h3 { color: var(--green); }
+        .source {
+            color: var(--muted);
+            font-size: 0.83rem;
+        }
+        .teaching {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 0.75rem;
+            align-items: start;
+            font-size: 0.85rem;
+        }
+        .recall, .next-concept {
+            min-width: 0;
+            border: 1px solid var(--line);
+            border-radius: 0.65rem;
+            background: #0b1426;
+        }
+        .recall summary, .next-concept {
+            padding: 0.68rem 0.85rem;
+        }
+        .recall summary { color: var(--ink); cursor: pointer; }
+        .recall summary::marker { color: var(--green); }
+        .recall p {
+            margin: 0 0.85rem 0.75rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+        }
+        .teaching-label {
+            margin-inline-end: 0.4rem;
+            color: var(--green);
+            font: 700 0.7rem/1.4 var(--mono);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .next-concept { text-decoration: none; }
+        .next-concept:hover { border-color: var(--cyan); }
+        .next-concept:hover .next-topic { text-decoration: underline; }
+
+        .mind-map {
+            --connector: #3b6480;
+            --branch-length: 1.35rem;
+            margin: 0;
+        }
+        .mind-root {
+            position: relative;
+            width: fit-content;
+            max-width: 100%;
+            margin-inline: auto;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid #5193b1;
+            border-radius: 0.65rem;
+            background: #122940;
+            color: var(--ink);
+            font-weight: 700;
+            text-align: center;
+        }
+        .mind-branches {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-block-start: var(--branch-length);
+            padding: var(--branch-length) 0 0;
+            list-style: none;
+        }
+        .mind-branch {
+            position: relative;
+            min-width: 0;
+            margin: 0;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            background: var(--panel);
+        }
+        .mind-root::after, .mind-branch::before {
+            content: "";
+            position: absolute;
+            inset-inline-start: 50%;
+            width: 1px;
+            height: var(--branch-length);
+            background: var(--connector);
+        }
+        .mind-root::after { inset-block-start: 100%; }
+        .mind-branch::before { inset-block-end: 100%; }
+        .mind-branch::after {
+            content: "";
+            position: absolute;
+            inset: calc(-1 * var(--branch-length)) -0.5rem auto;
+            border-top: 1px solid var(--connector);
+        }
+        .mind-branch:first-child::after { inset-inline-start: 50%; }
+        .mind-branch:last-child::after { inset-inline-end: 50%; }
+        .mind-branch h3 { margin-bottom: 0.6rem; }
+        .mind-nodes { list-style: none; padding: 0; }
+        .mind-nodes li + li { margin-top: 0.22rem; }
+        .mind-nodes a {
+            display: block;
+            padding: 0.35rem 0.55rem;
+            border-inline-start: 2px solid #39627c;
+            border-radius: 0.2rem;
+            background: #0b1426;
+            font-size: 0.84rem;
+            text-decoration: none;
+        }
+        .mind-nodes a:hover { border-color: var(--green); text-decoration: underline; }
+        .formula {
+            padding: 0.65rem 0.8rem;
+            border: 1px solid #273d57;
+            border-radius: 0.45rem;
+            background: var(--bg);
+            color: var(--cyan);
+            font-size: 0.85rem;
+            overflow-wrap: anywhere;
+        }
+        .flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem 0.7rem;
+            list-style: none;
+            padding: 0;
+        }
+        .flow li {
+            margin: 0;
+            padding: 0.35rem 0.6rem;
+            border: 1px solid var(--line);
+            border-radius: 0.35rem;
+            background: var(--bg);
+            color: var(--ink);
+            font: 0.8rem/1.4 var(--mono);
+        }
+
+        .curriculum {
+            width: 100%;
+            border-spacing: 0;
+            table-layout: fixed;
+            border: 1px solid var(--line);
+            border-radius: 0.85rem;
+            background: var(--panel);
+            overflow: hidden;
+            text-align: left;
+            font-size: 0.85rem;
+            line-height: 1.35;
+        }
+        .curriculum thead { background: #13223a; }
+        .curriculum th, .curriculum td {
+            padding: 0.58rem 0.85rem;
+            border-block-end: 1px solid var(--line);
+            vertical-align: top;
+        }
+        .curriculum tbody tr:last-child > * { border-block-end: 0; }
+        .curriculum tbody td { color: var(--muted); }
+        .curriculum thead th:first-child { width: 22%; }
+        .curriculum thead th:last-child, .curriculum .column-label { color: var(--green); }
+        .column-label { display: none; }
+        .reading li + li { margin-block-start: 0.65rem; }
+
+        .controls { border-top: 1px solid var(--line); }
+        .nav-button {
+            min-height: 2.65rem;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid var(--line);
+            border-radius: 0.55rem;
+            background: var(--panel);
+            color: var(--ink);
+            font-size: 0.86rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-button:hover:enabled { border-color: var(--cyan); }
+        .nav-button:disabled { opacity: 0.45; cursor: default; }
+        #next-slide { background: #7dd3fc; border-color: #7dd3fc; color: #082032; }
+        #next-slide:hover:enabled { background: #bae6fd; }
+        .nav-center {
+            display: grid;
+            text-align: center;
+            justify-items: center;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.75rem; }
+        .keyboard-hint { color: var(--muted); font-size: 0.7rem; }
+
+        @media (max-width: 760px) {
+            .panel-grid.two, .panel-grid.three, .teaching, .mind-branches { grid-template-columns: minmax(0, 1fr); }
+            .mind-root { margin-inline: 0; text-align: start; }
+            .mind-root::after, .mind-branch::before, .mind-branch::after { content: none; }
+            .mind-branches {
+                margin: 0.25rem 0 0 0.8rem;
+                padding: 0.4rem 0 0 0.85rem;
+                border-inline-start: 1px solid var(--connector);
+                gap: 0.65rem;
+            }
+            .curriculum, .curriculum tbody { display: block; }
+            .curriculum thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip-path: inset(50%);
+                white-space: nowrap;
+            }
+            .curriculum tbody tr { display: grid; padding: 0.95rem 1rem; }
+            .curriculum tbody tr + tr { border-top: 1px solid var(--line); }
+            .curriculum tbody th, .curriculum tbody td { padding: 0.26rem 0; border: 0; }
+            .curriculum tbody th { font-size: 0.98rem; }
+            .curriculum .column-label {
+                display: block;
+                margin-block-start: 0.2rem;
+                color: var(--ink);
+                font-size: 0.76rem;
+                font-weight: 700;
+            }
+        }
+        @media (max-width: 460px) {
+            .keyboard-hint { display: none; }
+            .controls { gap: 0.45rem; padding-inline: 0.65rem; }
+            .nav-button { padding-inline: 0.65rem; }
+            .jump-links { column-gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">Multi-Agent Teams</div>
+        <span id="slide-counter" aria-live="polite" aria-atomic="true"></span>
+    </header>
+
+    <main id="slides" tabindex="0">
+        <section class="slide" id="overview" aria-labelledby="overview-title">
+            <div class="slide-content hero">
+                <header class="slide-heading">
+                    <h1 id="overview-title">Managing Multi-Agent Teams</h1>
+                    <p class="hero-subtitle">From governed handoffs to TRINITY orchestration</p>
+                </header>
+                <ul class="tags" aria-label="Course tags">
+                    <li>UNDP</li>
+                    <li>ICPSD</li>
+                    <li>UN Volunteers</li>
+                </ul>
+                <p class="lede">Start with the repository’s labs on typed handoffs, team oversight, and bounded repair. Use those controls to reason about TRINITY’s adaptive orchestration. <a href="https://github.com/W4sP4nx2/Managing-Multi-Agent-Teams" target="_blank" rel="noopener noreferrer">Open the core course repository</a></p>
+                <div class="panel-grid three">
+                    <article class="panel">
+                        <h3>Core course labs</h3>
+                        <p>Use fixed fixtures to see which handoffs pass, who may act, and when retries stop.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering foundations</h3>
+                        <p>Connect statistics, model APIs, retrieval, and observability to team decisions.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>TRINITY engineering</h3>
+                        <p>Study the learned coordinator, how it is optimized, and the results under different benchmark budgets.</p>
+                    </article>
+                </div>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What do the core labs teach you to check?</summary>
+                        <p>Check the handoff contract, who is allowed to act, and when the run must stop or escalate.</p>
+                    </details>
+                    <a class="next-concept" href="#mind-map"><span class="teaching-label">Next</span><span class="next-topic">See how the labs lead to TRINITY</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="mind-map" aria-labelledby="mind-map-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <h2 id="mind-map-title">Course mind map</h2>
+                </header>
+                <figure class="mind-map" aria-labelledby="mind-map-root">
+                    <figcaption class="mind-root" id="mind-map-root"><a href="#managing-teams">Managing Multi-Agent Teams</a></figcaption>
+                    <ul class="mind-branches">
+                        <li class="mind-branch">
+                            <h3>Practice the controls</h3>
+                            <ul class="mind-nodes">
+                                <li><a href="#managing-teams">Core labs 1–3</a></li>
+                                <li><a href="#multi-agent">Typed handoffs and scoped roles</a></li>
+                                <li><a href="#governance">Review and escalation</a></li>
+                            </ul>
+                        </li>
+                        <li class="mind-branch">
+                            <h3>Build the foundations</h3>
+                            <ul class="mind-nodes">
+                                <li><a href="#data-science">1. Statistical foundations</a></li>
+                                <li><a href="#simulation">2. Simulation and uncertainty</a></li>
+                                <li><a href="#model-endpoints">3. Model endpoints</a></li>
+                                <li><a href="#rag">4. RAG and vector search</a></li>
+                                <li><a href="#agent-workflows">5. Agent routes</a></li>
+                                <li><a href="#observability">6. Observability and governance</a></li>
+                            </ul>
+                        </li>
+                        <li class="mind-branch">
+                            <h3>Engineer adaptive orchestration</h3>
+                            <ul class="mind-nodes">
+                                <li><a href="#trinity">7. TRINITY coordinator</a></li>
+                                <li><a href="#trinity-optimization">Learn the routing policy</a></li>
+                                <li><a href="#trinity-results">Measure benchmark outcomes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </figure>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>How do the labs prepare you for adaptive orchestration?</summary>
+                        <p>They let you inspect contracts, role limits, and stopping rules before a learned coordinator starts choosing the next turn.</p>
+                    </details>
+                    <a class="next-concept" href="#managing-teams"><span class="teaching-label">Next</span><span class="next-topic">Start with the core labs</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="managing-teams" aria-labelledby="managing-teams-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Core course · Deterministic labs</p>
+                    <h2 id="managing-teams-title">Practice the controls on fixed fixtures</h2>
+                </header>
+                <div class="panel-grid three">
+                    <article class="panel">
+                        <h3>Lab 1 · Typed contracts</h3>
+                        <p>Constrain the confidence score to 0–1 and reject undeclared fields. Rerun the fixtures and confirm that valid input passes and both invalid cases fail.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Lab 2 · Team oversight</h3>
+                        <p>Give the Coder the Architect’s task context and remove the Manager’s write tool. Check that <code>PASS_TO_QA</code> admits one validated patch to the simulated QA inbox.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Lab 3 · Bounded repair</h3>
+                        <p>Validate inputs before calls. Allow one mock attempt and three retries. When all four fail, record <code>ESCALATE_TO_HUMAN</code>.</p>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Apply the lab controls to TRINITY</h3>
+                    <p>Use typed artifacts at model boundaries, define allowed model and role pairs, and enforce the turn budget in the workflow. The fixed fixtures let you verify each control before introducing adaptive routing.</p>
+                </aside>
+                <p class="source"><a href="https://github.com/W4sP4nx2/Managing-Multi-Agent-Teams" target="_blank" rel="noopener noreferrer">Managing Multi-Agent Teams</a> · <a href="https://github.com/W4sP4nx2/Managing-Multi-Agent-Teams/blob/main/COURSE_MAP.md#seven-notebook-order" target="_blank" rel="noopener noreferrer">Course map and lab evidence</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What evidence shows the controls work?</summary>
+                        <p>The invalid payload is rejected, one valid patch passes to QA, and the failing repair loop stops and escalates.</p>
+                    </details>
+                    <a class="next-concept" href="#curriculum-map"><span class="teaching-label">Next</span><span class="next-topic">Connect the labs to engineering foundations</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="curriculum-map" aria-labelledby="curriculum-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <h2 id="curriculum-title">Engineering foundations</h2>
+                </header>
+                <table class="curriculum" role="table" aria-labelledby="curriculum-title">
+                    <thead role="rowgroup">
+                        <tr role="row">
+                            <th scope="col" role="columnheader">Slide module / layer</th>
+                            <th scope="col" role="columnheader">Core concepts &amp; mathematical foundations</th>
+                            <th scope="col" role="columnheader">Engineering &amp; API integration</th>
+                            <th scope="col" role="columnheader">Bridge to RAG &amp; multi-agent architecture</th>
+                        </tr>
+                    </thead>
+                    <tbody role="rowgroup">
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#data-science">1. Data Science &amp; Statistical Foundations</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>EDA, linear and logistic regression, loss functions, and thresholds.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Clean telemetry in pandas, handle nulls, and scale NumPy features.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Connect fitted weights and probability scores to next-token prediction.</td>
+                        </tr>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#simulation">2. Simulation &amp; Uncertainty Modeling</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>Monte Carlo sampling, confidence intervals, and variance.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Run reproducible Python batches to probe failure boundaries.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Measure agent-loop behavior under noisy inputs and tool failures.</td>
+                        </tr>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#model-endpoints">3. API Integration &amp; Model Endpoints</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>HTTP lifecycle, JSON, status codes, polling, and rate limits.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Use REST or gRPC and configure model sampling, output limits, and streaming.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Move from a local notebook to a model invoked by services and agents.</td>
+                        </tr>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#rag">4. The RAG &amp; Vector Search Bridge</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>Vector spaces, cosine similarity, dot products, and Precision@K.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Index document chunks and serve retrieval through an endpoint or an MCP tool.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Give the model external evidence with source references.</td>
+                        </tr>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#agent-workflows">5. Agentic Workflows &amp; Fundamental Routes</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>State transitions and deterministic or model-driven branching.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Define tool schemas, validate JSON payloads, and enforce typed handoffs.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Use bounded loops, validate handoffs, and compare fixed routes with learned routes.</td>
+                        </tr>
+                        <tr role="row">
+                            <th scope="row" role="rowheader"><a href="#observability">6. Production Observability &amp; Governance</a></th>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Foundations</span>Drift, latency, cost per token, and error propagation.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Engineering</span>Correlate structured logs, metrics, traces, dashboards, and alerts.</td>
+                            <td role="cell"><span class="column-label" aria-hidden="true">Architecture bridge</span>Contain failures across handoffs through security gates and human review.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What comes before calling a model?</summary>
+                        <p>Define a baseline and simulate failure so the live workflow has a measurable comparison.</p>
+                    </details>
+                    <a class="next-concept" href="#data-science"><span class="teaching-label">Next</span><span class="next-topic">Fit a measurable baseline</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="data-science" aria-labelledby="data-science-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 1</p>
+                    <h2 id="data-science-title">Data Science &amp; Statistical Foundations</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <ul>
+                            <li><strong>Linear regression</strong> predicts a continuous target, such as response latency. Fit the weights by minimizing mean squared error.</li>
+                            <li><strong>Logistic regression</strong> estimates the probability of a binary outcome, such as a timeout. Fit with binary cross-entropy and choose a decision threshold on validation data.</li>
+                        </ul>
+                        <p class="formula">
+                            ŷ = wᵀx + b<br>
+                            MSE = mean[(y − ŷ)²]<br>
+                            p = 1 / (1 + e<sup>−(wᵀx + b)</sup>)<br>
+                            BCE = −mean[y log(p) + (1 − y) log(1 − p)]
+                        </p>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <ul>
+                            <li>Parse raw telemetry into a pandas DataFrame. Check types, units, duplicate events, and missing fields.</li>
+                            <li>Use exploratory data analysis (EDA) to inspect distributions, outliers, and class imbalance.</li>
+                            <li>Fit imputation and scaling on training data, apply the same transformations to validation data, and export the numeric features as NumPy arrays.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>The same idea of learned scoring carries to TRINITY, where scores guide the next model and role selection.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Which regression fits latency? Which fits timeout risk?</summary>
+                        <p>Linear regression estimates continuous latency. Logistic regression estimates the probability of a timeout.</p>
+                    </details>
+                    <a class="next-concept" href="#simulation"><span class="teaching-label">Next</span><span class="next-topic">Sample noisy inputs</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="simulation" aria-labelledby="simulation-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 2</p>
+                    <h2 id="simulation-title">Simulation &amp; Uncertainty Modeling</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <ul>
+                            <li><strong>Monte Carlo simulation</strong> estimates risk by repeatedly sampling uncertain inputs, such as response times or missing observations.</li>
+                            <li>Track outcome variance across trials and report a confidence interval for the estimated failure rate, such as a Wilson interval for independent trials.</li>
+                        </ul>
+                        <p class="formula">Estimated failure rate = failed trials / total trials</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <ul>
+                            <li>Run seeded Python batches against a simulated workflow. Sample inputs and record the outcome of each trial.</li>
+                            <li>Sweep timeout and retry settings. Compare failure rates across scenarios to identify where the workflow exceeds its error budget.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>Use repeated trials to measure how agent loops respond to delay or missing evidence. TRINITY also evaluates candidate routing policies over repeated runs.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What do you count after sampling many scenarios?</summary>
+                        <p>Count failures, divide by the number of trials, and report uncertainty around the estimate.</p>
+                    </details>
+                    <a class="next-concept" href="#model-endpoints"><span class="teaching-label">Next</span><span class="next-topic">Handle delays and limits in the API</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="model-endpoints" aria-labelledby="model-endpoints-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 3</p>
+                    <h2 id="model-endpoints-title">API Integration &amp; Model Endpoints</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <ul>
+                            <li>Follow the HTTP request–response lifecycle from method, headers, and JSON body to response status and payload.</li>
+                            <li>Distinguish a synchronous response, incremental streaming chunks, and an asynchronous job that returns an ID for status polling.</li>
+                            <li>Handle <code>429</code> rate limits with bounded backoff and honor <code>Retry-After</code> when supplied.</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <ul>
+                            <li>Call a REST endpoint with a JSON payload or use a gRPC client with a typed service contract.</li>
+                            <li>Configure supported LLM settings for temperature, top-p, and maximum output tokens.</li>
+                            <li>Parse streaming chunks incrementally and poll only endpoints that expose asynchronous job status.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>A coordinator can call separate model endpoints through adapters. Record each model’s settings and limits so you can compare routes under the same conditions.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>How does streaming differ from polling?</summary>
+                        <p>Streaming delivers chunks on an open response. Polling sends separate requests to check job status.</p>
+                    </details>
+                    <a class="next-concept" href="#model-internals"><span class="teaching-label">Next</span><span class="next-topic">Follow the model’s token stream</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="model-internals" aria-labelledby="model-internals-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 3 · Model internals</p>
+                    <h2 id="model-internals-title">From Text to Next-Token Prediction</h2>
+                </header>
+                <div class="panel-grid three">
+                    <article class="panel">
+                        <h3>Tokenization &amp; embeddings</h3>
+                        <p>A model-specific tokenizer maps text to vocabulary IDs. A tokenizer using byte-pair encoding can split a word into several tokens. Each ID maps to a learned vector, and the token count determines how much of the context window the input uses.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Transformer self-attention</h3>
+                        <p>Queries score keys to weight values. The causal mask <i>M</i> limits attention to current and earlier tokens.</p>
+                        <p class="formula">softmax(QK<sup>T</sup> / √d<sub>k</sub> + M)V</p>
+                        <p>The key dimension <i>d</i><sub>k</sub> sets the scale. Transformer blocks combine multi-head attention, feed-forward layers, position information, residual connections, and normalization.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Logits &amp; decoding</h3>
+                        <p>Softmax turns vocabulary logits into probabilities. Temperature reshapes that distribution. Top-k keeps the highest-scoring tokens, while top-p keeps the smallest highest-probability set that reaches a cumulative probability threshold.</p>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>Token budgets determine how much retrieved context fits in a request. Decoding settings affect variation in model-generated responses and tool arguments.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Why does the context window matter for RAG?</summary>
+                        <p>Retrieved passages consume input tokens, so the application has to select which evidence fits.</p>
+                    </details>
+                    <a class="next-concept" href="#rag"><span class="teaching-label">Next</span><span class="next-topic">Rank passages for retrieval</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="rag" aria-labelledby="rag-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 4</p>
+                    <h2 id="rag-title">The RAG &amp; Vector Search Bridge</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <p>Embed queries and document chunks in the same high-dimensional vector space. Rank by dot product or cosine similarity, which normalizes for vector length. Use labeled queries to measure Precision@K.</p>
+                        <p class="formula">
+                            cos(q, d) = (q · d) / (‖q‖ ‖d‖)<br>
+                            Precision@K = (relevant results in the top K) / K
+                        </p>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <ul>
+                            <li><strong>Index.</strong> Split documents along semantic boundaries, embed the chunks, and store vectors and source metadata in pgvector or Qdrant.</li>
+                            <li><strong>Retrieve.</strong> Embed the query, apply access filters, and rank matching chunks. Compare dense search with hybrid keyword search and reranking.</li>
+                            <li><strong>Generate.</strong> Serve a RAG endpoint that passes the top chunks to the model and returns an answer with source references.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>Retrieval-augmented generation adds selected excerpts to the model’s context at inference time. Pass excerpts and source references together so downstream agents can verify the evidence.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What does Precision@K count?</summary>
+                        <p>It is the fraction of the top K retrieved items judged relevant to the query.</p>
+                    </details>
+                    <a class="next-concept" href="#mcp"><span class="teaching-label">Next</span><span class="next-topic">Expose retrieval as an MCP tool</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="mcp" aria-labelledby="mcp-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 4 · Tool integration</p>
+                    <h2 id="mcp-title">Connect retrieval tools through MCP</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Host, client, and server</h3>
+                        <p>The host coordinates the workflow, manages consent, and creates one MCP client per server. A server can expose <strong>resources</strong> for data, <strong>prompts</strong> for templates, and <strong>tools</strong> for callable operations.</p>
+                        <p>In the <code>2026-07-28</code> revision, self-contained JSON-RPC 2.0 requests carry protocol version and client capabilities. Clients can call <code>server/discover</code> to check a server’s versions and capabilities.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Example · Read-only document search</h3>
+                        <ol>
+                            <li>The client uses <code>tools/list</code> to discover the search tool and its input schema.</li>
+                            <li>The host checks permission and validates the query. The client sends <code>tools/call</code>, and the server enforces document access.</li>
+                            <li>The client validates the returned passages and source IDs. The host passes that evidence to the model.</li>
+                        </ol>
+                    </article>
+                </div>
+                <p class="source"><a href="https://modelcontextprotocol.io/specification/2026-07-28" target="_blank" rel="noopener noreferrer">MCP specification, 2026-07-28</a> · <a href="https://modelcontextprotocol.io/specification/2026-07-28/architecture" target="_blank" rel="noopener noreferrer">Architecture</a> · <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">Tools</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Who controls, connects, and serves?</summary>
+                        <p>The host manages consent and coordination. The client connects. The server exposes capabilities and enforces access.</p>
+                    </details>
+                    <a class="next-concept" href="#agent-workflows"><span class="teaching-label">Next</span><span class="next-topic">Choose when the workflow calls the tool</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="agent-workflows" aria-labelledby="agent-workflows-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 5</p>
+                    <h2 id="agent-workflows-title">Agentic Workflows &amp; Fundamental Routes</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <ul>
+                            <li><strong>State transition graphs.</strong> Define the states and allowed transitions for each decision branch, including retries, review, and completion.</li>
+                            <li><strong>Deterministic routes.</strong> Apply fixed rules to observable state, such as routing insufficient evidence to review.</li>
+                            <li><strong>Model-driven routes.</strong> Let the model select from predefined transitions, such as retrieval or drafting.</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <p>Define each tool’s inputs and outputs. Use JSON Schema to validate function-call arguments, check authorization before execution, and validate results before updating state.</p>
+                        <p>Record the selected route and tool outcome. Bound the loop with step, retry, and time limits.</p>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>In the ReAct loop, the agent plans a step, acts by calling a tool such as retrieval, then observes the result and updates state before continuing or stopping.</p>
+                    <p class="formula">Think → Act → Observe → repeat or finish</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What follows Think and Act in ReAct?</summary>
+                        <p>Observe. Read the tool result, update state, then decide whether to continue or stop.</p>
+                    </details>
+                    <a class="next-concept" href="#multi-agent"><span class="teaching-label">Next</span><span class="next-topic">Define what crosses a team boundary</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="multi-agent" aria-labelledby="multi-agent-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 5 · Architecture</p>
+                    <h2 id="multi-agent-title">Multi-Agent Orchestration &amp; Typed Contracts</h2>
+                </header>
+                <ol class="flow" aria-label="Example agent handoff sequence">
+                    <li>Orchestrator</li>
+                    <li>Researcher</li>
+                    <li>Validator</li>
+                    <li>Reviewer</li>
+                </ol>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Define roles and handoffs</h3>
+                        <p>The orchestrator assigns the task. The researcher returns findings with evidence. The validator checks the schema and source support. The reviewer approves release where policy requires it.</p>
+                        <p>A typed JSON handoff can carry a task ID, status, findings, source IDs, and a structured error.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Handle failure at each boundary</h3>
+                        <ul>
+                            <li>Keep each agent’s working state scoped to its task.</li>
+                            <li>Validate each handoff before forwarding it.</li>
+                            <li>Retry transient failures within a budget and escalate when a handoff fails validation repeatedly.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to production observability</h3>
+                    <p>Carry a trace ID through each handoff. The core labs show what contract evidence to record, and ChatDev illustrates how artifacts move between stages.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What does a receiver need to verify a handoff?</summary>
+                        <p>A task ID, a typed result, and source references. The receiver checks the contract and the evidence.</p>
+                    </details>
+                    <a class="next-concept" href="#chatdev"><span class="teaching-label">Next</span><span class="next-topic">Follow a staged handoff in ChatDev</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="chatdev" aria-labelledby="chatdev-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 5 · Research case study</p>
+                    <h2 id="chatdev-title">ChatDev and the staged handoff</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Design → coding → testing</h3>
+                        <p>A chat chain divides each phase into subtasks. An instructor agent and an assistant agent work through a subtask and pass the resulting artifact forward.</p>
+                        <p>The assistant can ask for missing details before finalizing an artifact. The paper calls this communicative dehallucination.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Classroom example</h3>
+                        <p>Design a volunteer FAQ assistant. Write the requirements, implement retrieval, then test whether the answer cites the right policy. Ask the instructor which policy applies if the requirement is ambiguous.</p>
+                        <p>The authors describe prototype-scale tasks and report added token and time costs from agent coordination.</p>
+                    </article>
+                </div>
+                <p class="source">Qian et al., ACL 2024, Fig. 2 and §§3.1–3.2, 6. <a href="https://aclanthology.org/2024.acl-long.810.pdf" target="_blank" rel="noopener noreferrer">ChatDev: Communicative Agents for Software Development (PDF)</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What does each phase hand to the next?</summary>
+                        <p>An artifact such as requirements, code, or test evidence. Ask for clarification when the requirement is vague.</p>
+                    </details>
+                    <a class="next-concept" href="#observability"><span class="teaching-label">Next</span><span class="next-topic">Trace decisions across a team run</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="observability" aria-labelledby="observability-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 6</p>
+                    <h2 id="observability-title">Production Observability &amp; Governance</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Core concepts &amp; mathematical foundations</h3>
+                        <ul>
+                            <li><strong>Drift.</strong> Compare input and output distributions with a baseline and investigate sustained shifts.</li>
+                            <li><strong>Latency and cost.</strong> Track median and p95 latency, input and output token counts, and effective cost per token.</li>
+                            <li><strong>Error propagation.</strong> Use a dependency tree to trace a failed call through downstream retries and handoffs.</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Engineering &amp; API integration</h3>
+                        <ul>
+                            <li><strong>System logs.</strong> Write structured JSON to stdout with trace IDs, event names, and error codes.</li>
+                            <li><strong>Model performance logs.</strong> Record model version, latency, token consumption, and evaluation signals for drift tracking.</li>
+                            <li><strong>Observability and alerting.</strong> Instrument with OpenTelemetry, monitor metrics with Prometheus, and configure Grafana dashboards and alerts.</li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Bridge to RAG &amp; multi-agent architecture</h3>
+                    <p>Use trace context to follow requests across MCP tools and agent handoffs. Route recurring failures to human review. <a href="https://modelcontextprotocol.io/specification/2026-07-28/changelog#minor-changes" target="_blank" rel="noopener noreferrer">MCP trace context conventions</a></p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>How do you follow one failed request across services?</summary>
+                        <p>Use the trace context to correlate spans, tool calls, and handoff events.</p>
+                    </details>
+                    <a class="next-concept" href="#governance"><span class="teaching-label">Next</span><span class="next-topic">Review whether the evidence is trustworthy</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="governance" aria-labelledby="governance-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 6 · Case study</p>
+                    <h2 id="governance-title">Security, Guardrails &amp; Evaluation Integrity</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Control what each agent can do</h3>
+                        <ul>
+                            <li><strong>Prompt injection.</strong> Treat retrieved text as untrusted data and enforce tool policies outside the model.</li>
+                            <li><strong>Least privilege.</strong> Scope tools by role and isolate execution where applicable.</li>
+                            <li><strong>Human approval.</strong> Pause for authorized review before high-impact actions. Log the decision against its trace ID.</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>BrowseComp evaluation</h3>
+                        <p>Anthropic found that leaked benchmark material could affect results. In its Claude Opus 4.6 runs on 1,266 problems, unintended solutions occurred on 0.24% of problems in the single-agent setup and 0.87% in the multi-agent setup.</p>
+                        <p><a href="https://www.anthropic.com/research/eval-awareness-browsecomp" target="_blank" rel="noopener noreferrer">Anthropic’s BrowseComp report</a></p>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>Review evidence across agent handoffs</h3>
+                    <p>Record which sources supported each answer and audit the retrieved evidence when benchmark integrity is in doubt. A higher score can reflect access to leaked answers.</p>
+                </aside>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Why can an answer be correct while the evaluation is invalid?</summary>
+                        <p>The answer may come from leaked benchmark material. Inspect the source and how it reached the agent.</p>
+                    </details>
+                    <a class="next-concept" href="#trinity"><span class="teaching-label">Next</span><span class="next-topic">Apply these controls to adaptive orchestration</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="trinity" aria-labelledby="trinity-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 7 · TRINITY engineering</p>
+                    <h2 id="trinity-title">Build a coordinator that chooses the next turn</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>From transcript to routing decision</h3>
+                        <p>TRINITY feeds the request and prior turns to a compact Qwen3-0.6B model. A lightweight head reads the penultimate-token hidden state and scores the available models and roles separately.</p>
+                        <p>The coordinator sends a role-specific prompt to the chosen model and adds its processed response to the transcript for the next turn.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Give each role a contract</h3>
+                        <ul>
+                            <li><strong>Thinker</strong> proposes a plan or diagnoses a gap.</li>
+                            <li><strong>Worker</strong> produces a candidate solution or revision.</li>
+                            <li><strong>Verifier</strong> returns <code>ACCEPT</code> or <code>REVISE</code>, optionally with a diagnosis.</li>
+                        </ul>
+                        <p>The run ends when the Verifier accepts or the turn budget runs out.</p>
+                    </article>
+                </div>
+                <aside class="bridge">
+                    <h3>From course handoffs to adaptive delegation</h3>
+                    <p>Carry the lab’s role contracts and validated handoffs into a design where the coordinator chooses who takes the next turn.</p>
+                </aside>
+                <p class="source">Xu et al., Fig. 1–2 and §§2–3.2. <a href="https://arxiv.org/pdf/2512.04695" target="_blank" rel="noopener noreferrer">TRINITY: An Evolved LLM Coordinator (PDF)</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What does the coordinator choose each turn?</summary>
+                        <p>A model and a role. The turn loop ends at Verifier acceptance or the turn limit.</p>
+                    </details>
+                    <a class="next-concept" href="#trinity-optimization"><span class="teaching-label">Next</span><span class="next-topic">Learn how task outcomes shape the routing policy</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="trinity-optimization" aria-labelledby="trinity-optimization-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 7 · TRINITY engineering</p>
+                    <h2 id="trinity-optimization-title">Learn a routing policy from task outcomes</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Optimize for end-to-end success</h3>
+                        <p>With separable CMA-ES, sample variants of the routing parameters, run tasks end to end, score final task success, and use the better candidates to update the search distribution.</p>
+                        <p>Training updates the routing head and selected singular-value scales in the compact coordinator. The external models keep their weights.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Transfer the lab’s testing method</h3>
+                        <p>Use the same fixtures to compare a fixed workflow and an adaptive router under the same limits. Record role and model choices, final test results, turns, and tokens.</p>
+                        <p><code>ACCEPT</code> is the stopping signal. The task’s test suite provides the separate measure of success.</p>
+                    </article>
+                </div>
+                <p class="source">Xu et al., §§2, 3.1, and 3.3. <a href="https://arxiv.org/pdf/2512.04695" target="_blank" rel="noopener noreferrer">TRINITY paper (PDF)</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>What makes one routing policy better?</summary>
+                        <p>More successful end-to-end runs on the same tasks under the same limits. Track turns and tokens alongside pass rates.</p>
+                    </details>
+                    <a class="next-concept" href="#trinity-results"><span class="teaching-label">Next</span><span class="next-topic">Compare outcomes under stated inference budgets</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="trinity-results" aria-labelledby="trinity-results-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Module 7 · TRINITY engineering</p>
+                    <h2 id="trinity-results-title">Measure gains at a stated inference budget</h2>
+                </header>
+                <p class="lede">LiveCodeBench V6 tested 175 newly released problems from January to April 2025. Pass@1 estimates the chance that one submitted solution passes the tests.</p>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>61.46% pass@1 · Bounded run</h3>
+                        <p>The paper’s default evaluation allowed up to five coordination turns and 4,096 generated tokens per model call.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>86.2% pass@1 · Output cap removed</h3>
+                        <p>In a separate run, the authors removed the default output cap without retraining the coordinator. GPT-5 scored 83.8% in the same comparison, 2.4 percentage points below TRINITY.</p>
+                    </article>
+                </div>
+                <p>On held-out tasks, TRINITY led the tested individual models on AIME, MT-Bench, and GPQA-D. It tied the best individual result on BigCodeBench (35.80).</p>
+                <p class="source">Xu et al., §§4.1–4.5, Fig. 4 and Tables 1–2. <a href="https://arxiv.org/pdf/2512.04695" target="_blank" rel="noopener noreferrer">TRINITY paper (PDF)</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Which setup produced 86.2% pass@1?</summary>
+                        <p>The separate LiveCodeBench V6 run with the default output cap removed. GPT-5 scored 83.8% in that comparison.</p>
+                    </details>
+                    <a class="next-concept" href="#ai-literacy"><span class="teaching-label">Next</span><span class="next-topic">Practice explaining the result and its limits</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="ai-literacy" aria-labelledby="ai-literacy-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <p class="eyebrow">Teaching &amp; assessment</p>
+                    <h2 id="ai-literacy-title">Applying the four AI literacy domains</h2>
+                </header>
+                <div class="panel-grid two">
+                    <article class="panel">
+                        <h3>Functional literacy</h3>
+                        <p>Trace a request from tokenization and retrieval through generation and a validated agent handoff.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Ethical literacy</h3>
+                        <p>Decide what telemetry can be logged, who can access documents, and when a tool action requires review.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Rhetorical literacy</h3>
+                        <p>Write role instructions for a specific audience and assess whether a generated answer supports its claims with evidence.</p>
+                    </article>
+                    <article class="panel">
+                        <h3>Pedagogical literacy</h3>
+                        <p>Use a worked example and a lab to assess whether learners can explain, test, and improve the workflow.</p>
+                    </article>
+                </div>
+                <p class="lede">The lab outcomes adapt the four domains described by Stanford Teaching Commons. <a href="https://teachingcommons.stanford.edu/teaching-guides/artificial-intelligence-teaching-guide/understanding-ai-literacy" target="_blank" rel="noopener noreferrer">Understanding AI Literacy</a></p>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Which literacy domains help assess an orchestration result?</summary>
+                        <p>Functional traces the routing, ethical checks permissions and harm, rhetorical assesses the claims, and pedagogical tests what learners can explain.</p>
+                    </details>
+                    <a class="next-concept" href="#references"><span class="teaching-label">Next</span><span class="next-topic">Find the core course and research sources</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="slide" id="references" aria-labelledby="references-title" hidden>
+            <div class="slide-content">
+                <header class="slide-heading">
+                    <h2 id="references-title">References &amp; further reading</h2>
+                </header>
+                <div class="panel-grid three">
+                    <article class="panel">
+                        <h3>Core course &amp; engineering sources</h3>
+                        <ul class="reading">
+                            <li>Course backbone. <a href="https://github.com/W4sP4nx2/Managing-Multi-Agent-Teams" target="_blank" rel="noopener noreferrer">Managing Multi-Agent Teams</a></li>
+                            <li>Staged role collaboration. <a href="https://aclanthology.org/2024.acl-long.810.pdf" target="_blank" rel="noopener noreferrer">ChatDev (ACL 2024, PDF)</a></li>
+                            <li>Host, client, and server contracts. <a href="https://modelcontextprotocol.io/specification/2026-07-28" target="_blank" rel="noopener noreferrer">MCP 2026-07-28 specification</a></li>
+                            <li>Coordinator design and measured outcomes. <a href="https://arxiv.org/pdf/2512.04695" target="_blank" rel="noopener noreferrer">TRINITY (arXiv:2512.04695, PDF)</a></li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Model internals, retrieval &amp; agents</h3>
+                        <ul class="reading">
+                            <li>Research archive. <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer">arXiv</a></li>
+                            <li>Transformer attention. <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Attention Is All You Need</a></li>
+                            <li>Retrieval-augmented generation. <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener noreferrer">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a></li>
+                            <li>Reasoning and tool use. <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct: Synergizing Reasoning and Acting in Language Models</a></li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>AI literacy &amp; evaluation</h3>
+                        <ul class="reading">
+                            <li>Stanford Graduate School of Education professional learning course. <a href="https://online.stanford.edu/courses/gse-xplex0001-ai-literacy-educators" target="_blank" rel="noopener noreferrer">AI Literacy for Educators</a></li>
+                            <li>Stanford Teaching Commons’ four-domain framework. <a href="https://teachingcommons.stanford.edu/teaching-guides/artificial-intelligence-teaching-guide/understanding-ai-literacy" target="_blank" rel="noopener noreferrer">Understanding AI Literacy</a></li>
+                            <li>Anthropic case study on benchmark contamination in agent evaluations. <a href="https://www.anthropic.com/research/eval-awareness-browsecomp" target="_blank" rel="noopener noreferrer">Eval awareness in Claude Opus 4.6’s BrowseComp performance</a></li>
+                        </ul>
+                    </article>
+                </div>
+                <aside class="teaching" aria-label="Teach-back and next concept">
+                    <details class="recall">
+                        <summary><span class="teaching-label">By heart</span>Which source teaches tool integration? Which teaches adaptive delegation?</summary>
+                        <p>The MCP specification defines the host-to-server contract. TRINITY studies a coordinator that selects models and roles.</p>
+                    </details>
+                    <a class="next-concept" href="#mind-map"><span class="teaching-label">Review</span><span class="next-topic">Return to the mind map</span> <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <nav class="controls" aria-label="Slide navigation">
+        <button class="nav-button" type="button" id="previous-slide" aria-keyshortcuts="ArrowLeft" disabled>← Previous</button>
+        <div class="nav-center">
+            <div class="jump-links">
+                <a href="#mind-map">Mind map</a>
+                <a href="#curriculum-map">Curriculum</a>
+            </div>
+            <span class="keyboard-hint">← → to navigate</span>
+        </div>
+        <button class="nav-button" type="button" id="next-slide" aria-keyshortcuts="ArrowRight">Next →</button>
+    </nav>
+
+    <script>
+        const workspace = document.getElementById("slides");
+        const slides = Array.from(workspace.querySelectorAll(".slide"));
+        const counter = document.getElementById("slide-counter");
+        const previous = document.getElementById("previous-slide");
+        const next = document.getElementById("next-slide");
+        let currentSlide = 0;
+
+        function displaySlide(index, focusHeading = false) {
+            slides[currentSlide].hidden = true;
+            currentSlide = index;
+            const slide = slides[currentSlide];
+            slide.hidden = false;
+            workspace.scrollTop = 0;
+            counter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+            previous.disabled = currentSlide === 0;
+            next.disabled = currentSlide === slides.length - 1;
+
+            if (focusHeading) {
+                const heading = document.getElementById(slide.getAttribute("aria-labelledby"));
+                heading.tabIndex = -1;
+                heading.focus({ preventScroll: true });
+            }
+        }
+
+        function slideIndexForHash(hash) {
+            return slides.findIndex(slide => `#${slide.id}` === hash);
+        }
+
+        function navigateTo(index, focusHeading = false) {
+            if (index < 0 || index >= slides.length) return;
+            displaySlide(index, focusHeading);
+            history.replaceState(null, "", `#${slides[index].id}`);
+        }
+
+        previous.addEventListener("click", () => navigateTo(currentSlide - 1));
+        next.addEventListener("click", () => navigateTo(currentSlide + 1));
+
+        document.addEventListener("click", event => {
+            if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            const link = event.target.closest('a[href^="#"]');
+            if (!link) return;
+            const index = slideIndexForHash(link.hash);
+            if (index < 0) return;
+            event.preventDefault();
+            navigateTo(index, true);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                navigateTo(currentSlide - 1);
+            } else if (event.key === "ArrowRight" || (event.key === " " && !event.target.closest("a, button, summary"))) {
+                event.preventDefault();
+                navigateTo(currentSlide + 1);
+            }
+        });
+
+        window.addEventListener("hashchange", () => {
+            displaySlide(Math.max(0, slideIndexForHash(location.hash)), true);
+        });
+        displaySlide(Math.max(0, slideIndexForHash(location.hash)));
+    </script>
+</body>
+</html>
