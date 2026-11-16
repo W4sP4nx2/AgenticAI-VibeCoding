@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>session-v_development-paradigms – Agentic AI Lessons</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a6a6f33836b8e69c33045518c714b347.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Agentic AI Lessons</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sessions.html"> 
+<span class="menu-text">Session summaries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../free-providers.html"> 
+<span class="menu-text">Free providers</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#development-paradigms---theoretical-and-practical" id="toc-development-paradigms---theoretical-and-practical" class="nav-link active" data-scroll-target="#development-paradigms---theoretical-and-practical">Development Paradigms - Theoretical and Practical</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#key-learning-outcomes" id="toc-key-learning-outcomes" class="nav-link" data-scroll-target="#key-learning-outcomes">Key Learning Outcomes</a></li>
+  <li><a href="#main-topics-covered" id="toc-main-topics-covered" class="nav-link" data-scroll-target="#main-topics-covered">Main Topics Covered</a></li>
+  <li><a href="#key-business-insight" id="toc-key-business-insight" class="nav-link" data-scroll-target="#key-business-insight">Key Business Insight</a></li>
+  <li><a href="#action-items-for-participants" id="toc-action-items-for-participants" class="nav-link" data-scroll-target="#action-items-for-participants">Action Items for Participants</a></li>
+  <li><a href="#homework-optional-but-recommended" id="toc-homework-optional-but-recommended" class="nav-link" data-scroll-target="#homework-optional-but-recommended">Homework (Optional but Recommended)</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">Key Takeaway</a></li>
+  <li><a href="#resources-references" id="toc-resources-references" class="nav-link" data-scroll-target="#resources-references">Resources &amp; References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="development-paradigms---theoretical-and-practical" class="level1">
+<h1>Development Paradigms - Theoretical and Practical</h1>
+<p><strong>📅 Date &amp; Time:</strong> November 7, 2026 at 09:00 (9:00 AM UTC)<br>
+<strong>👨‍🏫 Presenter:</strong> Akshi Rao<br>
+<strong>🎯 Session Type:</strong> Comprehensive Theory + Hands-On Application (4-hour session with breaks)</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This session bridges the gap between understanding Vibe Coding concepts and implementing them in production-level applications. Participants learn that “Vibe Coding” isn’t just about typing prompts—it requires understanding <strong>system design principles, business requirements, and software development lifecycle</strong> before engaging AI as a tool. The session emphasizes that <strong>system design is a founding principle</strong> of responsible AI development.</p>
+<hr>
+</section>
+<section id="key-learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="key-learning-outcomes">Key Learning Outcomes</h2>
+<ol type="1">
+<li><strong>System Design First</strong> - Understand why proper planning prevents AI hallucination and wasted tokens</li>
+<li><strong>Spec-Driven Workflow</strong> - Learn the five-component system specification framework</li>
+<li><strong>Production-Level Coding</strong> - Build applications ready for real-world use, not just demos</li>
+<li><strong>Avoid Blind AI Trust</strong> - Understand limitations and when to stop prompting</li>
+<li><strong>End-to-End Deployment</strong> - From concept to hosted application</li>
+</ol>
+<hr>
+</section>
+<section id="main-topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="main-topics-covered">Main Topics Covered</h2>
+<section id="why-system-design-is-fundamental" class="level3">
+<h3 class="anchored" data-anchor-id="why-system-design-is-fundamental">1. <strong>Why System Design is Fundamental</strong></h3>
+<p><strong>Historical Context:</strong> - Google and Amazon interviews require mastery of <strong>system design</strong> for software engineers - System design addresses: scalability, reliability, performance, security, maintainability - Building Facebook or Amazon requires complex system architecture across multiple data centers - <strong>Traditional development:</strong> Months or years to launch a production system</p>
+<p><strong>Current Vibe Coding Challenge:</strong> - People often launch applications without proper system design thinking - Result: Applications that work initially but fail under scale, security, or complexity - AI makes it <em>easy</em> to build something—but easy ≠ production-ready - <strong>Without system design, you waste tokens and create technical debt</strong></p>
+<p><strong>The Principle:</strong> &gt; Don’t just say “build a dashboard.” Say “build a scalable, secure dashboard with these specific requirements, this architecture, and these constraints.”</p>
+</section>
+<section id="the-problem-with-random-prompting" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-with-random-prompting">2. <strong>The Problem with Random Prompting</strong></h3>
+<p><strong>Anti-Pattern: Vague Requests</strong></p>
+<pre><code>❌ "Build a dashboard"
+❌ "Create a website"
+❌ "Make a chatbot"</code></pre>
+<p><strong>Why This Fails:</strong> - AI must guess what you want (token waste, hallucination) - Result likely doesn’t match your actual needs - May have security or architectural problems - You burn tokens before getting something usable</p>
+<p><strong>Better Pattern: Structured Specification</strong></p>
+<pre><code>✅ Functional requirements clearly listed
+✅ Non-functional requirements defined
+✅ Interface design described
+✅ Acceptance criteria specified
+✅ Constraints and limitations noted</code></pre>
+</section>
+<section id="the-five-component-specification-framework" class="level3">
+<h3 class="anchored" data-anchor-id="the-five-component-specification-framework">3. <strong>The Five-Component Specification Framework</strong></h3>
+<p>Every system should be defined by:</p>
+<section id="component-1-functional-requirements" class="level4">
+<h4 class="anchored" data-anchor-id="component-1-functional-requirements"><strong>Component 1: Functional Requirements</strong></h4>
+<ul>
+<li><strong>Definition:</strong> What MUST the system do?</li>
+<li><strong>Question:</strong> What is the core purpose and capability?</li>
+<li><strong>Example (Job Search App):</strong>
+<ul>
+<li>Search across 3 job websites</li>
+<li>Filter by city and job title</li>
+<li>Display results matching user skills</li>
+</ul></li>
+</ul>
+</section>
+<section id="component-2-non-functional-requirements" class="level4">
+<h4 class="anchored" data-anchor-id="component-2-non-functional-requirements"><strong>Component 2: Non-Functional Requirements</strong></h4>
+<ul>
+<li><strong>Definition:</strong> What qualities must it have? (Not “what does it do” but “how well does it do it?”)</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Performance: Response time &lt; 2 seconds</li>
+<li>Security: Comply with OWASP Top 10</li>
+<li>Usability: Mobile-responsive, intuitive UI</li>
+<li>Reliability: 99.9% uptime</li>
+<li>Scalability: Handle 10,000 concurrent users</li>
+</ul></li>
+</ul>
+</section>
+<section id="component-3-constraints" class="level4">
+<h4 class="anchored" data-anchor-id="component-3-constraints"><strong>Component 3: Constraints</strong></h4>
+<ul>
+<li><strong>Definition:</strong> What are the LIMITS and RESTRICTIONS?</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>“No hardcoded credentials”</li>
+<li>“No external LLM API calls (cost control)”</li>
+<li>“No complex authentication for MVP”</li>
+<li>“HTML/CSS/JavaScript only”</li>
+<li>“Deployable offline”</li>
+</ul></li>
+</ul>
+</section>
+<section id="component-4-interface-description" class="level4">
+<h4 class="anchored" data-anchor-id="component-4-interface-description"><strong>Component 4: Interface Description</strong></h4>
+<ul>
+<li><strong>Definition:</strong> How do users interact with it?</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Design language (colors, typography)</li>
+<li>Layout structure (one-page vs.&nbsp;multi-page)</li>
+<li>Interaction patterns (scroll vs.&nbsp;click)</li>
+<li>Accessibility requirements</li>
+<li>Responsiveness targets (mobile-first? tablet-optimized?)</li>
+</ul></li>
+</ul>
+</section>
+<section id="component-5-acceptance-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="component-5-acceptance-criteria"><strong>Component 5: Acceptance Criteria</strong></h4>
+<ul>
+<li><strong>Definition:</strong> How do we measure SUCCESS?</li>
+<li><strong>Rule:</strong> Must be testable and measurable</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>“Job matching accuracy: ≥ 90% based on keyword matching”</li>
+<li>“Load time: &lt; 1.5 seconds”</li>
+<li>“No security warnings from Bandit/TruffleHog”</li>
+<li>“All features documented and tested”</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="system-design-thinking-exercise" class="level3">
+<h3 class="anchored" data-anchor-id="system-design-thinking-exercise">4. <strong>System Design Thinking Exercise</strong></h3>
+<p><strong>Example: Photo Sharing App (Like Instagram)</strong></p>
+<p><strong>Brainstorming Round (What Matters?):</strong> - <strong>Authentication:</strong> How do users log in? Security level needed? - <strong>Security:</strong> Is this public? Data privacy requirements? GDPR/compliance? - <strong>Scroll Design:</strong> Is it infinitely scrolling (mobile) or paginated (desktop)? - <strong>UI/UX:</strong> What makes it “addictive” (intentional design)? - <strong>Functional Requirements:</strong> Upload, download, share, comment, like? - <strong>Non-Functional Requirements:</strong> Handle 1M users? Global scalability? Real-time notifications? - <strong>Back-end Storage:</strong> Need database? Cloud? CDN for images? - <strong>Performance:</strong> How fast must image loading be?</p>
+<p><strong>This exercise prevents:</strong> Building something cool but impractical</p>
+</section>
+<section id="the-development-lifecycle-qa-dev-test-prod" class="level3">
+<h3 class="anchored" data-anchor-id="the-development-lifecycle-qa-dev-test-prod">5. <strong>The Development Lifecycle (QA → Dev → Test → Prod)</strong></h3>
+<p>Traditional software development follows this flow:</p>
+<pre><code>Business Analyst (BA)  →  Developer  →  QA Tester  →  Production
+    ↓                        ↓              ↓
+Define Requirements     Implement       Verify Quality
+What to build?          How to build?   Does it work?
+                                        Is it secure?</code></pre>
+<p><strong>The Vibe Coding Risk:</strong> - Many people skip from “What to build?” directly to “Build it with AI” - Bypassing design, testing, and security reviews - <strong>Result:</strong> Features that don’t match business needs, security vulnerabilities, poor user experience</p>
+<p><strong>Recommended Vibe Coding Process:</strong> 1. <strong>Business Requirements</strong> - Define spec using five components 2. <strong>AI Development</strong> - Generate code based on spec 3. <strong>Testing &amp; Review</strong> - Verify code quality, security, functionality 4. <strong>QA Sign-off</strong> - Confirm acceptance criteria met 5. <strong>Production Deployment</strong> - Release with confidence</p>
+</section>
+<section id="real-application-building-a-job-search-app" class="level3">
+<h3 class="anchored" data-anchor-id="real-application-building-a-job-search-app">6. <strong>Real Application: Building a Job Search App</strong></h3>
+<p><strong>User Need:</strong> Daily curated job listings matching my CV and skills</p>
+<p><strong>Specification Using Five Components:</strong></p>
+<pre><code># Job Search Application Specification
+
+## Functional Requirements
+1. Search job listings across multiple job boards
+2. Filter by: location (cities), job title, experience level
+3. Store user preferences and CV information
+4. Provide daily curated matches
+5. Display job card with: title, company, salary, link
+
+## Non-Functional Requirements
+1. Load within 2 seconds
+2. Mobile-responsive design (primary mobile use)
+3. No authentication required for MVP
+4. Scroll-based infinite or pagination-based interface
+5. Pink color scheme with modern aesthetics
+
+## Constraints
+1. No LLM integration (cost control)
+2. No complex backend; static deployment possible
+3. No hardcoded credentials
+4. No paid APIs (use free tier only)
+5. Keyword matching only (no ML/complex algorithm initially)
+
+## Interface Description
+- Single-page application (one-page read-only view)
+- Scroll through job cards
+- One-click apply buttons
+- Search filters at top
+- Responsive to mobile screen sizes
+
+## Acceptance Criteria
+1. Successfully displays 10+ jobs per search
+2. Filtering works correctly (location, title, experience)
+3. Job matches meet 90% accuracy vs. user CV skills
+4. No security warnings from Bandit/TruffleHog/Synk
+5. Deployment successful on free tier (Render/Netlify)
+6. Mobile loads within 2 seconds</code></pre>
+</section>
+<section id="practical-implementation-with-claude-code" class="level3">
+<h3 class="anchored" data-anchor-id="practical-implementation-with-claude-code">7. <strong>Practical Implementation with Claude Code</strong></h3>
+<p><strong>Three Critical Decisions Before Prompting:</strong></p>
+<ol type="1">
+<li><strong>Which AI Tool?</strong> (Claude Code, Cursor, ChatGPT, Gemini)</li>
+<li><strong>Which Model?</strong> (Claude Opus/Sonnet, GPT-4/3.5, Gemini Pro/Flash)</li>
+<li><strong>Which Mode?</strong> (Auto, Plan, Manual)</li>
+</ol>
+<p><strong>Recommended Approach: Plan Mode</strong> - Shows AI’s approach before executing - Allows review of architecture decisions - Reduces token waste from wrong approaches - Enables course-correction early</p>
+<p><strong>Prompt to AI (in Markdown):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Job Search Application</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functional Requirements</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Search across 3 websites (Indeed, LinkedIn, FlexJobs)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter by: 3 cities, job titles A/B/C</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Simple search engine, no API needed</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Display results in responsive layout</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Non-Functional Requirements</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Load time &lt; 2 seconds</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mobile-first responsive design</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pink and purple color scheme</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Accessible to non-technical users</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Constraints</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No LLM integration</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No authentication/OAuth</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Simple keyword matching only</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Deployable as static site</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interface</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Single page, scroll design</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>HTML/CSS/JavaScript only</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Job cards with apply buttons</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acceptance Criteria</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>90% keyword match accuracy</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All jobs from latest daily refresh</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No security vulnerabilities</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mobile load time &lt; 1.5 seconds</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Successfully deployed to Render/Netlify</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Key Advantage:</strong> This specification makes AI’s job much easier and more accurate</p>
+</section>
+<section id="download-customize-deploy-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="download-customize-deploy-workflow">8. <strong>Download → Customize → Deploy Workflow</strong></h3>
+<p><strong>Step 1: Generate with Claude Code</strong> - AI creates initial artifact (HTML/CSS/JavaScript) - Download as ZIP file</p>
+<p><strong>Step 2: Open in VS Code</strong> - Extract ZIP in local directory - Open with VS Code - Integrate Claude Code extension in “Manual” mode</p>
+<p><strong>Step 3: Customize Offline</strong> - Change colors in CSS - Modify fonts and styling - Update copy/text - All without burning tokens</p>
+<p><strong>Step 4: Test Locally</strong> - Run Python: <code>python3 -m http.server 8080</code> - Test in browser at <code>localhost:8080</code> - Verify all features work</p>
+<p><strong>Step 5: Push to GitHub</strong> - <code>git init</code> in project folder - <code>git add .</code> - <code>git commit -m "Initial job search app"</code> - Create repo on GitHub - <code>git remote add origin &lt;repo-url&gt;</code> - <code>git push -u origin main</code></p>
+<p><strong>Step 6: Deploy to Render/Netlify</strong> - Connect GitHub repo - Select branch (usually <code>main</code>) - Deploy (automatic on each push) - Get public URL</p>
+<p><strong>Step 7: Share &amp; Monitor</strong> - Test deployed version on mobile/desktop - Share portfolio URL with employers - Monitor for any issues</p>
+</section>
+<section id="common-mistakes-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="common-mistakes-solutions">9. <strong>Common Mistakes &amp; Solutions</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 28%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>Impact</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No spec before prompting</td>
+<td>Wasted tokens, wrong features</td>
+<td>Write five-component spec first</td>
+</tr>
+<tr class="even">
+<td>Trusting AI blindly</td>
+<td>Security issues, bugs</td>
+<td>Always review, test, scan</td>
+</tr>
+<tr class="odd">
+<td>Using only 1 AI model</td>
+<td>Limited perspective</td>
+<td>Have 2nd AI audit the code</td>
+</tr>
+<tr class="even">
+<td>Hardcoding secrets</td>
+<td>Credential theft</td>
+<td>Use <code>.env</code> files, never commit</td>
+</tr>
+<tr class="odd">
+<td>Deploying without testing</td>
+<td>Public-facing bugs</td>
+<td>Always test locally first</td>
+</tr>
+<tr class="even">
+<td>Ignoring security warnings</td>
+<td>Vulnerabilities in production</td>
+<td>Run Bandit/TruffleHog/Synk</td>
+</tr>
+<tr class="odd">
+<td>Over-engineering MVP</td>
+<td>Wasted time, high cost</td>
+<td>Simplify, iterate later</td>
+</tr>
+<tr class="even">
+<td>Assuming free tier === forever</td>
+<td>Sudden cost increase</td>
+<td>Plan upgrade path early</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="when-to-stop-using-ai-switch-to-manual-coding" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-stop-using-ai-switch-to-manual-coding">10. <strong>When to Stop Using AI &amp; Switch to Manual Coding</strong></h3>
+<p><strong>Decision Framework:</strong></p>
+<pre><code>If AI Output = What You Want  →  Use It
+If AI is Looping (same answer 3x)  →  Stop, Debug Manually
+If AI Hallucinating Heavily  →  Provide More Context
+If Simple Problem  →  Maybe just code it yourself
+If Your Cost &gt; Outcome Value  →  Manual is faster/cheaper
+If Security-Critical  →  Always verify, never trust completely</code></pre>
+<hr>
+</section>
+</section>
+<section id="key-business-insight" class="level2">
+<h2 class="anchored" data-anchor-id="key-business-insight">Key Business Insight</h2>
+<section id="the-real-cost-of-vibe-coding" class="level3">
+<h3 class="anchored" data-anchor-id="the-real-cost-of-vibe-coding"><strong>The Real Cost of Vibe Coding</strong></h3>
+<ul>
+<li><strong>Traditional Development:</strong> $100k+ salary × 1 engineer × 6 months = Expensive</li>
+<li><strong>Vibe Coding:</strong> $20/month subscription × 1 person × 1 month = Cheap</li>
+<li><strong>The Catch:</strong> Only works if you:
+<ol type="1">
+<li>Know what you want (good spec)</li>
+<li>Can verify it’s correct (technical understanding)</li>
+<li>Can secure it (security review)</li>
+<li>Can deploy it (DevOps knowledge)</li>
+<li>Can maintain it (ongoing support)</li>
+</ol></li>
+</ul>
+<p><strong>Therefore:</strong> Vibe Coding is not a replacement for software engineering—it’s an <strong>accelerant for people who understand software engineering</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="action-items-for-participants" class="level2">
+<h2 class="anchored" data-anchor-id="action-items-for-participants">Action Items for Participants</h2>
+<ol type="1">
+<li><strong>Define Your Problem:</strong> Choose an application you want to build</li>
+<li><strong>Write Five-Component Spec:</strong> Don’t skip this step</li>
+<li><strong>Prompt Claude Code:</strong> Use the spec as your prompt</li>
+<li><strong>Test Locally:</strong> Verify all features work on your machine</li>
+<li><strong>Run Security Scans:</strong> Bandit, TruffleHog, Synk</li>
+<li><strong>Deploy to Free Tier:</strong> Get it on the internet</li>
+<li><strong>Share and Iterate:</strong> Get feedback, improve</li>
+</ol>
+<hr>
+</section>
+<section id="homework-optional-but-recommended" class="level2">
+<h2 class="anchored" data-anchor-id="homework-optional-but-recommended">Homework (Optional but Recommended)</h2>
+<p><strong>Personal Portfolio/Job Search App Build:</strong> - Use this exact framework - Share your deployed URL - Cohort can provide feedback - Builds portfolio for interviews/job applications</p>
+<hr>
+</section>
+<section id="key-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaway">Key Takeaway</h2>
+<blockquote class="blockquote">
+<p><strong>“The biggest drawback of Vibe-based coding is failing to scale. Start with the basics and always remember: speed is now available to everyone. Your advantage is ensuring fast code is also safe, strong, and professional.”</strong></p>
+</blockquote>
+<p><strong>The mindset shift:</strong> - <strong>Old:</strong> “Can I code this?” → <strong>New:</strong> “Should I build this? And how do I verify it’s right?” - From <strong>code writer</strong> → to <strong>system architect and quality gate</strong></p>
+<hr>
+</section>
+<section id="resources-references" class="level2">
+<h2 class="anchored" data-anchor-id="resources-references">Resources &amp; References</h2>
+<ul>
+<li><strong>OWASP Top 10:</strong> https://owasp.org/www-project-top-ten/</li>
+<li><strong>System Design Interview Prep:</strong> Books like “System Design Interview” by Alex Xu</li>
+<li><strong>Render.com Deployment:</strong> https://render.com/docs</li>
+<li><strong>Netlify Deployment:</strong> https://docs.netlify.com/</li>
+<li><strong>GitHub Basics:</strong> https://docs.github.com/en</li>
+</ul>
+<hr>
+<p><strong>💡 Instructor Note:</strong> This session emphasizes that <strong>Vibe Coding is not a shortcut around software engineering—it’s a tool for those who understand software engineering to move faster.</strong></p>
+<hr>
+<p><strong>📞 Support:</strong> Questions? Reach out to trainer via WhatsApp, Signal, or course communication channels.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

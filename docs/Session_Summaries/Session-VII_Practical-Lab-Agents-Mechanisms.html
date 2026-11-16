@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>session-vii_practical-lab-agents-mechanisms – Agentic AI Lessons</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a6a6f33836b8e69c33045518c714b347.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Agentic AI Lessons</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sessions.html"> 
+<span class="menu-text">Session summaries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../free-providers.html"> 
+<span class="menu-text">Free providers</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#practical-lab-agents-mechanisms---building-real-applications" id="toc-practical-lab-agents-mechanisms---building-real-applications" class="nav-link active" data-scroll-target="#practical-lab-agents-mechanisms---building-real-applications">Practical Lab: Agents Mechanisms - Building Real Applications</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#key-learning-outcomes" id="toc-key-learning-outcomes" class="nav-link" data-scroll-target="#key-learning-outcomes">Key Learning Outcomes</a></li>
+  <li><a href="#main-topics-covered" id="toc-main-topics-covered" class="nav-link" data-scroll-target="#main-topics-covered">Main Topics Covered</a></li>
+  <li><a href="#practical-session-output" id="toc-practical-session-output" class="nav-link" data-scroll-target="#practical-session-output">Practical Session Output</a></li>
+  <li><a href="#homework-apply-todays-learning" id="toc-homework-apply-todays-learning" class="nav-link" data-scroll-target="#homework-apply-todays-learning">Homework: Apply Today’s Learning</a></li>
+  <li><a href="#questions-addressed-from-participants" id="toc-questions-addressed-from-participants" class="nav-link" data-scroll-target="#questions-addressed-from-participants">Questions Addressed (From Participants)</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">Key Takeaway</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="practical-lab-agents-mechanisms---building-real-applications" class="level1">
+<h1>Practical Lab: Agents Mechanisms - Building Real Applications</h1>
+<p><strong>📅 Date &amp; Time:</strong> November 15, 2026 at 17:00 (5:00 PM)<br>
+<strong>👨‍🏫 Presenter:</strong> Alan Al Jammoor<br>
+<strong>🎯 Session Type:</strong> Live Demonstration + Interactive Problem Solving (1 hour 4 minutes)</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This practical session brings yesterday’s theoretical foundations to life. Participants watch real applications built by agents, observe the loop in action with actual tools, and participate in interactive exercises. The focus is on seeing tools execute, understanding cost implications, and recognizing when agents are truly valuable. Alan demonstrates multiple real-world examples from simple to complex.</p>
+<hr>
+</section>
+<section id="key-learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="key-learning-outcomes">Key Learning Outcomes</h2>
+<ol type="1">
+<li><strong>See Agents in Action</strong> - Observe the loop executing with real tools</li>
+<li><strong>Understand Tool Usage</strong> - Watch different tools solve different problems</li>
+<li><strong>Learn Effective Prompting</strong> - See how structure reduces token waste</li>
+<li><strong>Manage Risk</strong> - Know where to put human oversight (“Keep a human in charge”)</li>
+<li><strong>Apply to Real Work</strong> - Leave with templates you can use immediately</li>
+</ol>
+<hr>
+</section>
+<section id="main-topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="main-topics-covered">Main Topics Covered</h2>
+<section id="the-five-core-rules-for-strong-prompts" class="level3">
+<h3 class="anchored" data-anchor-id="the-five-core-rules-for-strong-prompts">1. <strong>The Five Core Rules for Strong Prompts</strong></h3>
+<p>Before demonstrating agents, Alan emphasizes prompt structure:</p>
+<section id="why-structure-matters" class="level4">
+<h4 class="anchored" data-anchor-id="why-structure-matters"><strong>Why Structure Matters</strong></h4>
+<ul>
+<li>Reduces hallucination by 80%+</li>
+<li>AI understands exactly what you want</li>
+<li>Saves tokens by avoiding rework</li>
+<li>Tells AI which tools to use (critical!)</li>
+</ul>
+</section>
+<section id="five-components-of-strong-prompts" class="level4">
+<h4 class="anchored" data-anchor-id="five-components-of-strong-prompts"><strong>Five Components of Strong Prompts</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>GOAL</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What is the end outcome?</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Be crystal clear</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>CONTEXT</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What background info does AI need?</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What files/resources are relevant?</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Provide exact examples</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>RULES (Constraints)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What can it NOT do?</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Security/compliance requirements</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Format requirements</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>OUTPUT</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Exactly what format do you want?</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>6 slides? 1 page? Code file?</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Be specific</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>CHECKS</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What verification should happen?</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Random sampling? Spot checks?</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Security verification?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="example-good-vs.-bad-prompts" class="level4">
+<h4 class="anchored" data-anchor-id="example-good-vs.-bad-prompts"><strong>Example: Good vs.&nbsp;Bad Prompts</strong></h4>
+<p><strong>❌ BAD Prompt:</strong></p>
+<pre><code>"Make a presentation about my sales data"</code></pre>
+<ul>
+<li>AI must guess: Which file? Which format? Who’s the audience? How many slides?</li>
+<li>Result: Maybe 50% right, needs rework</li>
+</ul>
+<p><strong>✅ GOOD Prompt:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Sales Analysis Presentation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Goal</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Create a presentation to help decide next month's menu and opening hours</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Use the clean sales file from Step 1</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Summarize past 3 months</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Target audience: Owner and business partner</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rules</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Every number must come from the clean data</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use plain language (not jargon)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Include at least two charts</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Output</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>Exactly 6 slides, named in order:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Executive Summary</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Monthly Trends</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Best Sellers</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Worst Sellers</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Recommendations</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Next Steps</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Checks</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Look at every slide as an image</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm 3 random numbers against original data</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ensure no errors before delivery</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Result:</strong> 95%+ likely to be right first try</p>
+</section>
+<section id="connection-to-agent-mechanics" class="level4">
+<h4 class="anchored" data-anchor-id="connection-to-agent-mechanics"><strong>Connection to Agent Mechanics</strong></h4>
+<p>Notice the prompt also includes <strong>tool permissions</strong>: - “Use the clean file from Step 1” = Telling agent which file to access - “Create charts” = Telling agent to use visualization tools - “Plain language” = Telling agent not to get too technical</p>
+<p><strong>Key Insight:</strong> Your prompt implicitly tells agents which tools to use and how to verify their work.</p>
+<hr>
+</section>
+</section>
+<section id="example-1-data-cleaning-simple-agent-loop" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-data-cleaning-simple-agent-loop">2. <strong>Example 1: Data Cleaning (Simple Agent Loop)</strong></h3>
+<p><strong>Real Example:</strong> 3 months of café sales data (messy)</p>
+<section id="the-messy-data-problem" class="level4">
+<h4 class="anchored" data-anchor-id="the-messy-data-problem"><strong>The Messy Data Problem</strong></h4>
+<pre><code>Date formats: Sometimes "Nov 2", sometimes "2 Nov", sometimes "11/02/2024"
+Amounts: Sometimes "$100", sometimes "100 dollars", sometimes "100"
+Rows: 979 total, manually fixing is impossible</code></pre>
+</section>
+<section id="the-agentic-process-observed-step-by-step" class="level4">
+<h4 class="anchored" data-anchor-id="the-agentic-process-observed-step-by-step"><strong>The Agentic Process (Observed Step-by-Step)</strong></h4>
+<p><strong>Step 1: Plan</strong></p>
+<pre><code>Agent thinks: "I need to clean 979 rows of data. I cannot fix these one by one manually.
+I will use Python to write a script that restructures and cleans everything systematically."</code></pre>
+<p><strong>Step 2: Act (Use Tool #1 - Read File)</strong></p>
+<pre><code>Agent: "Show me the messy data"
+Result: Gets back file contents (shows the 979 rows of inconsistent data)</code></pre>
+<p><strong>Step 3: Observe &amp; Replan</strong></p>
+<pre><code>Agent: "Now I see the problem. I need Python tool to process systematically."</code></pre>
+<p><strong>Step 4: Act (Use Tool #2 - Run Python)</strong></p>
+<pre><code>Agent writes Python script to:
+- Standardize all dates to YYYY-MM-DD
+- Remove currency symbols, convert to numbers
+- Remove duplicates
+- Output to clean CSV
+
+Script executes, creates clean file with 946 rows (deduplicated)</code></pre>
+<p><strong>Step 5: Observe Result</strong></p>
+<pre><code>Agent: "Data is now clean and standardized. Goal achieved."
+Output: Clean sales file, ready for analysis</code></pre>
+<p><strong>Token Cost:</strong> ~15,000 tokens (for the entire data cleaning operation) <strong>Equivalent Work:</strong> Would take human 2-3 hours manually</p>
+<p><strong>Key Learning:</strong> Agent chose Python because it was the right tool for bulk data processing</p>
+<hr>
+</section>
+</section>
+<section id="example-2-create-presentation-complex-multi-step" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-create-presentation-complex-multi-step">3. <strong>Example 2: Create Presentation (Complex Multi-Step)</strong></h3>
+<p><strong>Real Example:</strong> Transform clean data into business-ready deck</p>
+<section id="the-challenge" class="level4">
+<h4 class="anchored" data-anchor-id="the-challenge"><strong>The Challenge</strong></h4>
+<ul>
+<li>Take clean sales data</li>
+<li>Analyze for insights</li>
+<li>Create professional presentation</li>
+<li>Verify numbers are accurate</li>
+<li>Format as slides</li>
+</ul>
+</section>
+<section id="the-agentic-process" class="level4">
+<h4 class="anchored" data-anchor-id="the-agentic-process"><strong>The Agentic Process</strong></h4>
+<p><strong>Step 1: Plan (Agent’s Internal Reasoning)</strong></p>
+<pre><code>"User wants a presentation. I need to:
+1. Analyze the data for trends and insights
+2. Create visualizations/charts
+3. Format as slides (probably HTML or PDF)
+4. Verify numbers match source data
+
+What's the best order? Should I code first or see the data first?
+I'll review the data first, then plan my approach."</code></pre>
+<p><strong>Step 2: Act (Tool: Read File)</strong></p>
+<pre><code>Agent reads clean sales data
+Observes: Cappuccino is 1/5 of all sales
+          Saturdays are busiest (15% of weekly sales)
+          Matcha latte is worst performer (1 cup/day)</code></pre>
+<p><strong>Step 3: Decide Next Step (Replan)</strong></p>
+<pre><code>Agent: "I already have the data. Now I'll write Python to create slides."</code></pre>
+<p><strong>Step 4: Act (Tool: Run Python - Create Slides)</strong></p>
+<pre><code>Agent generates Python script that:
+- Creates slide deck (PowerPoint or HTML format)
+- Adds the insights as content
+- Formats professionally</code></pre>
+<p><strong>Step 5: Act (Tool: Look at Image)</strong></p>
+<pre><code>Agent: "Render the first slide as image so I can verify it looks correct"
+Result: Sees rendered slide</code></pre>
+<p><strong>Step 6: Observe &amp; Check</strong></p>
+<pre><code>Agent: "Numbers look good, design looks professional. Let me verify accuracy.
+Checking random number: Slide says Cappuccino = $11,407. 
+Data says $11,407. ✓ Match"</code></pre>
+<p><strong>Step 7: Deliver</strong></p>
+<pre><code>Complete presentation deck with verified accuracy</code></pre>
+<p><strong>Human’s Role in the Loop:</strong> - Define: “I want 6 slides with these requirements” - Verify: “Does this look right?” (seeing the rendered slides) - Approve: “Yes, deploy this”</p>
+<hr>
+</section>
+</section>
+<section id="example-3-create-video-ai-creativity-tools" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-create-video-ai-creativity-tools">4. <strong>Example 3: Create Video (AI Creativity + Tools)</strong></h3>
+<p><strong>Real Example:</strong> 30-second promo video for social media</p>
+<section id="the-interesting-part" class="level4">
+<h4 class="anchored" data-anchor-id="the-interesting-part"><strong>The Interesting Part</strong></h4>
+<p>Agent can’t generate videos like Gemini can. So what does it do?</p>
+</section>
+<section id="agents-approach" class="level4">
+<h4 class="anchored" data-anchor-id="agents-approach"><strong>Agent’s Approach</strong></h4>
+<p><strong>Step 1: Plan</strong></p>
+<pre><code>"User wants a 30-second video. I cannot generate video directly.
+But I can:
+1. Create the visuals (images/graphics with code)
+2. Animate them together (using Remotion or similar tool)
+3. Result: Animated video"</code></pre>
+<p><strong>Step 2: Storyboard (Plan Phase)</strong></p>
+<pre><code>"30 seconds at standard frame rate = need 900 frames
+Let me break it into 5 scenes × 6 seconds each = 180 frames per scene
+
+Scene 1: Title card (frames 1-180)
+Scene 2: Data visualization (frames 181-360)
+Scene 3: Chart showing trends (frames 361-540)
+...and so on"</code></pre>
+<p><strong>Step 3: Ask Humans to Verify Plan</strong></p>
+<pre><code>Agent to humans: "Here's my plan. Does this work for you?"
+Expected: Humans approve before AI burns tokens</code></pre>
+<p><strong>Step 4: Act (Tool: Run Python)</strong></p>
+<pre><code>Agent generates Python code that:
+- Creates individual frame graphics
+- Sets up animation parameters
+- Uses colors/design from brand guidelines</code></pre>
+<p><strong>Step 5: Act (Tool: Make Video)</strong></p>
+<pre><code>Agent uses Remotion (a tool for creating videos)
+Remotion combines all frames into animated video
+Result: 30-second MP4 file ready for social media</code></pre>
+<p><strong>Cost Analysis:</strong> - One session like this = 20-30 planning loops - Many attempts if requirements unclear - Clear requirements = fewer iterations = lower cost</p>
+<hr>
+</section>
+</section>
+<section id="example-4-meal-planner-web-app-end-to-end" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-meal-planner-web-app-end-to-end">5. <strong>Example 4: Meal Planner Web App (End-to-End)</strong></h3>
+<p><strong>Real Example:</strong> Interactive web application</p>
+<section id="requirements" class="level4">
+<h4 class="anchored" data-anchor-id="requirements"><strong>Requirements</strong></h4>
+<ul>
+<li>Help families plan weekly meals</li>
+<li>Create shopping list based on selected dishes</li>
+<li>Works offline</li>
+<li>Accessible to non-technical users</li>
+<li>Includes 8 built-in dishes</li>
+<li>Allows adding custom dishes</li>
+</ul>
+</section>
+<section id="the-agentic-process-1" class="level4">
+<h4 class="anchored" data-anchor-id="the-agentic-process-1"><strong>The Agentic Process</strong></h4>
+<p><strong>Step 1: Plan</strong></p>
+<pre><code>Agent: "User wants a web app. I need:
+1. Frontend (HTML/CSS/JavaScript for interactivity)
+2. Data structure (dish list, shopping list calculator)
+3. Offline capability
+4. Responsive design
+
+Best approach: Single HTML file with embedded CSS and JavaScript = fully offline"</code></pre>
+<p><strong>Step 2: Specification Provided by Human</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functional Requirements</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Display 7 days of week</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show 8 built-in meals</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Allow selection per day</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculate shopping list automatically</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show estimated cost</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Allow adding custom meals</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Technical Requirements</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Single HTML file (offline capable)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Large, readable text</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mobile-first responsive design</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Works on laptop AND phone</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Step 3: Act (Generate Application)</strong></p>
+<pre><code>Agent creates HTML file with:
+- CSS styling for responsive design
+- JavaScript for calculations and interactivity
+- Embedded 8-meal database</code></pre>
+<p><strong>Step 4: Test (Observe)</strong></p>
+<pre><code>Agent: "Let me see if this works as a web page"
+(Renders HTML in browser)
+Result: Fully functional meal planner displayed</code></pre>
+<p><strong>Step 5: Verify Features</strong></p>
+<pre><code>- Select meals ✓
+- Shopping list updates ✓
+- Cost calculates ✓
+- Mobile responsive ✓
+- Can add custom meals ✓</code></pre>
+<p><strong>Delivery:</strong></p>
+<pre><code>User can:
+1. Open HTML file in any browser
+2. Select meals for the week
+3. See shopping list automatically
+4. Print shopping list
+5. Take to store on phone or paper</code></pre>
+<p><strong>Key Insight:</strong> No backend, no database, no deployment—just a single HTML file. Perfect for MVP.</p>
+<hr>
+</section>
+</section>
+<section id="interactive-exercise-what-tools-will-the-agent-use" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-exercise-what-tools-will-the-agent-use">6. <strong>Interactive Exercise: What Tools Will the Agent Use?</strong></h3>
+<p>Alan engages audience by asking them to predict:</p>
+<p><strong>Scenario:</strong> “Create a report analyzing 3 months of sales data”</p>
+<p><strong>Possible Tools:</strong> 1. Read file (access the data) 2. Run Python (analyze the data) 3. Look at image (verify report looks right)</p>
+<p><strong>Question to Audience:</strong> “In what ORDER should the agent use these tools?”</p>
+<p><strong>Expected Reasoning:</strong></p>
+<pre><code>1. Read file (can't analyze without seeing data) ✓
+2. Run Python (analyze the data) ✓
+3. Look at image (verify results) ✓</code></pre>
+<p><strong>Key Teaching:</strong> Agent considers which tool to use in what order. Humans can guide this.</p>
+<hr>
+</section>
+<section id="the-human-in-the-loop-principle-keep-a-human-in-charge" class="level3">
+<h3 class="anchored" data-anchor-id="the-human-in-the-loop-principle-keep-a-human-in-charge">7. <strong>The Human-in-the-Loop Principle: “Keep a Human in Charge”</strong></h3>
+<p>Alan emphasizes risk management:</p>
+<section id="high-risk-actions-requiring-human-approval" class="level4">
+<h4 class="anchored" data-anchor-id="high-risk-actions-requiring-human-approval"><strong>High-Risk Actions Requiring Human Approval</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Risk</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reversible</strong></td>
+<td>Low</td>
+<td>Let AI decide (fix later if needed)</td>
+</tr>
+<tr class="even">
+<td><strong>Moderate Risk</strong></td>
+<td>Medium</td>
+<td>AI asks permission, humans decide</td>
+</tr>
+<tr class="odd">
+<td><strong>Irreversible</strong></td>
+<td>High</td>
+<td>ALWAYS keep human in charge</td>
+</tr>
+<tr class="even">
+<td><strong>High Impact</strong></td>
+<td>High</td>
+<td>ALWAYS keep human in charge</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples-requiring-human-oversight" class="level4">
+<h4 class="anchored" data-anchor-id="examples-requiring-human-oversight"><strong>Examples Requiring Human Oversight</strong></h4>
+<p>❌ <strong>DON’T Let AI Decide Alone:</strong> - Delete files (irreversible) - Send emails to customers (high impact) - Modify production database (irreversible) - Approve transactions (high impact) - Generate public-facing content (reputational risk) - Access private/sensitive data</p>
+<p>✅ <strong>CAN Let AI Decide Alone:</strong> - Format local files - Create drafts (you review before sending) - Analyze data (you verify insights) - Modify draft code (you test before deployment) - Run local tests (safe environment)</p>
+</section>
+<section id="the-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="the-pattern"><strong>The Pattern</strong></h4>
+<pre><code>High-Risk Action → AI asks: "Do you approve? [Allow Once] [Allow Always]"
+Human: "Let me review..."
+Review: Check the action is correct
+Decision: [Allow Once] ← Always choose this, not "Allow Always"
+Reason: Each situation might be different</code></pre>
+<p><strong>Key Rule:</strong> “Allow Once” &gt; “Allow Always” (maintains human judgment)</p>
+<hr>
+</section>
+</section>
+<section id="cost-management-in-action" class="level3">
+<h3 class="anchored" data-anchor-id="cost-management-in-action">8. <strong>Cost Management in Action</strong></h3>
+<section id="real-token-usage-from-live-demo" class="level4">
+<h4 class="anchored" data-anchor-id="real-token-usage-from-live-demo"><strong>Real Token Usage from Live Demo</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Tokens Used</th>
+<th>Cost</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clean 979 rows data</td>
+<td>~15,000</td>
+<td>~$0.15</td>
+<td>2 min</td>
+</tr>
+<tr class="even">
+<td>Create 6-slide deck</td>
+<td>~25,000</td>
+<td>~$0.25</td>
+<td>3 min</td>
+</tr>
+<tr class="odd">
+<td>Generate 30-sec video</td>
+<td>~20,000</td>
+<td>~$0.20</td>
+<td>2 min</td>
+</tr>
+<tr class="even">
+<td>Build meal planner app</td>
+<td>~30,000</td>
+<td>~$0.30</td>
+<td>3 min</td>
+</tr>
+<tr class="odd">
+<td><strong>Total Example</strong></td>
+<td><strong>~90,000</strong></td>
+<td><strong>~$0.90</strong></td>
+<td><strong>~10 min</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparison:</strong> - Equivalent human work: 20+ hours → costs $500-2,000 - Agent work: 10 minutes → costs $0.90 - Savings: 99.95%+</p>
+<p><strong>BUT:</strong> Only if requirements are clear, tools are chosen wisely, and human oversight is maintained</p>
+<hr>
+</section>
+</section>
+<section id="practical-workflow-for-using-agents" class="level3">
+<h3 class="anchored" data-anchor-id="practical-workflow-for-using-agents">9. <strong>Practical Workflow for Using Agents</strong></h3>
+<section id="step-1-define-your-goal-clearly" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-define-your-goal-clearly"><strong>Step 1: Define Your Goal Clearly</strong></h4>
+<pre><code>❌ "Build a dashboard"
+✅ "Build a dashboard showing daily sales by product category, 
+   refreshed hourly, with drill-down capability for each category"</code></pre>
+</section>
+<section id="step-2-provide-context" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-provide-context"><strong>Step 2: Provide Context</strong></h4>
+<pre><code>"Here's the data structure..."
+"Here's the brand style guide..."
+"Here are the acceptance criteria..."</code></pre>
+</section>
+<section id="step-3-specify-tools-you-want-used" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-specify-tools-you-want-used"><strong>Step 3: Specify Tools You Want Used</strong></h4>
+<pre><code>"Use Python for data processing"
+"Use HTML/CSS/JavaScript for frontend (not React, to keep it simple)"
+"Use chart.js for visualizations"</code></pre>
+</section>
+<section id="step-4-set-human-checkpoints" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-set-human-checkpoints"><strong>Step 4: Set Human Checkpoints</strong></h4>
+<pre><code>"Show me the plan before executing (Plan mode, not Auto)"
+"Render the preview before final deployment"
+"Run security scans before anything touches production"</code></pre>
+</section>
+<section id="step-5-monitor-the-loop" class="level4">
+<h4 class="anchored" data-anchor-id="step-5-monitor-the-loop"><strong>Step 5: Monitor the Loop</strong></h4>
+<pre><code>Watch as agent:
+- Plans next steps
+- Uses tools to execute
+- Observes results
+- Adjusts if needed
+- Loops until complete</code></pre>
+</section>
+<section id="step-6-verify-output" class="level4">
+<h4 class="anchored" data-anchor-id="step-6-verify-output"><strong>Step 6: Verify Output</strong></h4>
+<pre><code>- Does it match your spec? ✓
+- Is it secure? (ran scans?) ✓
+- Does it perform well? ✓
+- Ready to deploy? ✓</code></pre>
+<hr>
+</section>
+</section>
+<section id="common-mistakes-demonstrated" class="level3">
+<h3 class="anchored" data-anchor-id="common-mistakes-demonstrated">10. <strong>Common Mistakes Demonstrated</strong></h3>
+<section id="mistake-1-unclear-requirements" class="level4">
+<h4 class="anchored" data-anchor-id="mistake-1-unclear-requirements"><strong>Mistake 1: Unclear Requirements</strong></h4>
+<p><strong>Result:</strong> Agent creates “something,” but not what you wanted <strong>Solution:</strong> Use five-component framework from yesterday’s session</p>
+</section>
+<section id="mistake-2-not-using-right-tools" class="level4">
+<h4 class="anchored" data-anchor-id="mistake-2-not-using-right-tools"><strong>Mistake 2: Not Using Right Tools</strong></h4>
+<p><strong>Example:</strong> Agent tries to calculate with LLM instead of calculator <strong>Result:</strong> Wrong answers, wasted tokens <strong>Solution:</strong> Explicitly tell AI which tools to use</p>
+</section>
+<section id="mistake-3-too-many-loops" class="level4">
+<h4 class="anchored" data-anchor-id="mistake-3-too-many-loops"><strong>Mistake 3: Too Many Loops</strong></h4>
+<p><strong>Example:</strong> Requirements unclear, so agent keeps reworking <strong>Result:</strong> Token budget blown <strong>Solution:</strong> Get requirements right before starting</p>
+</section>
+<section id="mistake-4-skipping-verification" class="level4">
+<h4 class="anchored" data-anchor-id="mistake-4-skipping-verification"><strong>Mistake 4: Skipping Verification</strong></h4>
+<p><strong>Example:</strong> Deploy without checking numbers <strong>Result:</strong> Wrong data in production <strong>Solution:</strong> Always have verification step in plan</p>
+</section>
+<section id="mistake-5-over-engineering" class="level4">
+<h4 class="anchored" data-anchor-id="mistake-5-over-engineering"><strong>Mistake 5: Over-Engineering</strong></h4>
+<p><strong>Example:</strong> Use agent for task that needs simple LLM <strong>Result:</strong> Expensive, slow, unnecessary complexity <strong>Solution:</strong> Use simplest tool that works</p>
+<hr>
+</section>
+</section>
+<section id="deciding-when-is-agent-right-choice" class="level3">
+<h3 class="anchored" data-anchor-id="deciding-when-is-agent-right-choice">11. <strong>Deciding: When IS Agent Right Choice?</strong></h3>
+<p>Alan provides decision tree:</p>
+<pre><code>Task Type?
+│
+├─ Simple computation (1 step)
+│  → Use LLM ✓
+│
+├─ Need current info
+│  → Augmented LLM (with search) ✓
+│
+├─ Same steps, every time
+│  → Workflow ✓
+│
+├─ ADAPTIVE decision-making needed
+│  └─ Single role?
+│     → Agent ✓
+│     
+│  └─ Multiple specialized roles?
+│     → Multi-Agent ✓
+│
+└─ When in doubt?
+   → Use simpler level, upgrade if needed</code></pre>
+<hr>
+</section>
+<section id="the-three-most-important-lessons" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-most-important-lessons">12. <strong>The Three Most Important Lessons</strong></h3>
+<section id="lesson-1-speed-alone-advantage" class="level4">
+<h4 class="anchored" data-anchor-id="lesson-1-speed-alone-advantage"><strong>Lesson 1: Speed Alone ≠ Advantage</strong></h4>
+<blockquote class="blockquote">
+<p>“You can now describe your idea in English and get code. So can everyone else. What differentiates you is <strong>quality, security, and reliability</strong>.”</p>
+</blockquote>
+</section>
+<section id="lesson-2-keep-humans-in-charge" class="level4">
+<h4 class="anchored" data-anchor-id="lesson-2-keep-humans-in-charge"><strong>Lesson 2: Keep Humans in Charge</strong></h4>
+<blockquote class="blockquote">
+<p>“AI is a powerful tool. But the moment you blindly trust it with critical decisions, you’ve lost control. Always maintain checkpoints.”</p>
+</blockquote>
+</section>
+<section id="lesson-3-understand-your-tools" class="level4">
+<h4 class="anchored" data-anchor-id="lesson-3-understand-your-tools"><strong>Lesson 3: Understand Your Tools</strong></h4>
+<blockquote class="blockquote">
+<p>“An agent is only as good as the tools it has access to. Know what your AI can do (and cannot do). Design your workflows around those capabilities.”</p>
+</blockquote>
+<hr>
+</section>
+</section>
+</section>
+<section id="practical-session-output" class="level2">
+<h2 class="anchored" data-anchor-id="practical-session-output">Practical Session Output</h2>
+<p><strong>Live Demonstrations Completed:</strong> 1. ✅ Data cleaning (messy → clean CSV) 2. ✅ Report generation (data → 6-slide deck) 3. ✅ Video creation (concept → 30-second video) 4. ✅ Web application (spec → fully functional app)</p>
+<p><strong>All Verifiable:</strong> Participants saw rendered outputs, verified correctness</p>
+<hr>
+</section>
+<section id="homework-apply-todays-learning" class="level2">
+<h2 class="anchored" data-anchor-id="homework-apply-todays-learning">Homework: Apply Today’s Learning</h2>
+<section id="for-each-of-your-own-projects" class="level3">
+<h3 class="anchored" data-anchor-id="for-each-of-your-own-projects"><strong>For Each of Your Own Projects:</strong></h3>
+<ol type="1">
+<li><strong>Define it clearly</strong> (use five-component spec)</li>
+<li><strong>Identify tools needed</strong> (Python? JavaScript? Database?)</li>
+<li><strong>Plan the loop</strong> (what are steps? In what order?)</li>
+<li><strong>Choose right level</strong> (LLM? Augmented LLM? Workflow? Agent? Multi-Agent?)</li>
+<li><strong>Build with AI</strong> (use Claude Code or similar)</li>
+<li><strong>Verify thoroughly</strong> (security scans, manual checks, testing)</li>
+<li><strong>Deploy carefully</strong> (staging first, then production)</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="questions-addressed-from-participants" class="level2">
+<h2 class="anchored" data-anchor-id="questions-addressed-from-participants">Questions Addressed (From Participants)</h2>
+<p><strong>Q: When I give AI a prompt, it often skips tasks or misses requirements. Why?</strong></p>
+<p>A: Several reasons: - Unclear specification (use five-component framework) - Too many requirements at once (break into steps) - AI doesn’t have context (provide examples and templates) - <strong>Solution:</strong> Use system prompts (reusable templates) + multi-agent verification</p>
+<p><strong>Q: How do I ensure AI code is secure?</strong></p>
+<p>A: Multiple approaches: 1. Run security scanners (Bandit, TruffleHog, Synk) 2. Have second AI agent review code 3. Use deterministic tools for sensitive operations 4. Test in safe environments before production 5. Keep humans in charge of critical operations</p>
+<p><strong>Q: Can I use multiple AI models to reduce hallucination?</strong></p>
+<p>A: Yes! Perfect approach: - Model A writes the code - Model B from different vendor audits the code - Model A fixes issues - Result: Much higher quality</p>
+<p><strong>Q: Is AI coding faster than hiring developers?</strong></p>
+<p>A: Yes, but different: - <strong>Speed:</strong> 100x faster (minutes vs.&nbsp;months) - <strong>Cost:</strong> 1000x cheaper ($ vs.&nbsp;$k) - <strong>Catch:</strong> Requires human judgment to verify - <strong>Trade:</strong> You become the architect/reviewer, not code writer</p>
+<hr>
+</section>
+<section id="key-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaway">Key Takeaway</h2>
+<blockquote class="blockquote">
+<p><strong>“The age of human programmers is not ending. It’s evolving. You’re becoming architects, reviewers, and decision-makers. AI handles the mechanical coding. You handle judgment, oversight, verification, and strategic decisions.”</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p><strong>Before Next Session:</strong> - Practice building something with agents - Experiment with different tools - Understand your limitations and AI’s limitations - Prepare questions for future sessions</p>
+<p><strong>Coming Next:</strong> - Multi-agent teams (coordinating specialized agents) - Security &amp; safety nets - MCP (connecting AI to external systems) - Deployment &amp; operations at scale</p>
+<hr>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><strong>Claude Code Documentation:</strong> Available from trainer</li>
+<li><strong>Tool Integration Guides:</strong> Will be shared in course materials</li>
+<li><strong>Example Projects:</strong> Available in GitHub repository</li>
+<li><strong>Template Prompts:</strong> Share in course channel</li>
+</ul>
+<hr>
+<p><strong>📞 Support:</strong> Questions or stuck? Reach out to trainer or cohort.</p>
+<p><strong>🎯 Goal for Next Week:</strong> Build 1 complete application using agents, verify it thoroughly, deploy it.</p>
+<hr>
+<p><strong>Session Complete!</strong> Next session focuses on putting multiple agents together as a coordinated team.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

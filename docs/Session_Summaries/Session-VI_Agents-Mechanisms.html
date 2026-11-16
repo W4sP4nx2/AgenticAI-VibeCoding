@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>session-vi_agents-mechanisms – Agentic AI Lessons</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a6a6f33836b8e69c33045518c714b347.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Agentic AI Lessons</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sessions.html"> 
+<span class="menu-text">Session summaries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../free-providers.html"> 
+<span class="menu-text">Free providers</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#agents-mechanisms---understanding-agentic-ai" id="toc-agents-mechanisms---understanding-agentic-ai" class="nav-link active" data-scroll-target="#agents-mechanisms---understanding-agentic-ai">Agents Mechanisms - Understanding Agentic AI</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#key-learning-outcomes" id="toc-key-learning-outcomes" class="nav-link" data-scroll-target="#key-learning-outcomes">Key Learning Outcomes</a></li>
+  <li><a href="#main-topics-covered" id="toc-main-topics-covered" class="nav-link" data-scroll-target="#main-topics-covered">Main Topics Covered</a></li>
+  <li><a href="#key-concepts-summary" id="toc-key-concepts-summary" class="nav-link" data-scroll-target="#key-concepts-summary">Key Concepts Summary</a></li>
+  <li><a href="#action-items" id="toc-action-items" class="nav-link" data-scroll-target="#action-items">Action Items</a></li>
+  <li><a href="#homework-before-tomorrows-practical-session" id="toc-homework-before-tomorrows-practical-session" class="nav-link" data-scroll-target="#homework-before-tomorrows-practical-session">Homework (Before Tomorrow’s Practical Session)</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">Key Takeaway</a></li>
+  <li><a href="#connection-to-tomorrow" id="toc-connection-to-tomorrow" class="nav-link" data-scroll-target="#connection-to-tomorrow">Connection to Tomorrow</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="agents-mechanisms---understanding-agentic-ai" class="level1">
+<h1>Agents Mechanisms - Understanding Agentic AI</h1>
+<p><strong>📅 Date &amp; Time:</strong> November 14, 2026 at 17:00 (5:00 PM)<br>
+<strong>👨‍🏫 Presenter:</strong> Alan Al Jammoor (PMP Certified, 10+ years AI Implementation, MENA Region)<br>
+<strong>🎯 Session Type:</strong> Theoretical Foundation + Quiz-Based Learning</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This foundational session explores the core mechanics of AI agents: how they differ from traditional LLMs, the anatomy of an agentic loop, the concept of tools, and planning strategies. Alan emphasizes that understanding these mechanisms is critical before attempting to build with agents. This is a deep conceptual session laying groundwork for the practical session tomorrow.</p>
+<hr>
+</section>
+<section id="key-learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="key-learning-outcomes">Key Learning Outcomes</h2>
+<ol type="1">
+<li><strong>Understand Five Levels of AI Configuration</strong> - Identify when agents are truly needed</li>
+<li><strong>Master the Agentic Loop</strong> - Understand how agents think, plan, and execute</li>
+<li><strong>Recognize Tool Capabilities</strong> - Know what enables agent action</li>
+<li><strong>Grasp Planning Patterns</strong> - Learn how agents break down complex problems</li>
+<li><strong>Apply Cost-Benefit Analysis</strong> - Know when agents are overkill</li>
+</ol>
+<hr>
+</section>
+<section id="main-topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="main-topics-covered">Main Topics Covered</h2>
+<section id="five-levels-of-ai-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="five-levels-of-ai-configuration">1. <strong>Five Levels of AI Configuration</strong></h3>
+<p>Alan introduces a framework for understanding different AI capabilities:</p>
+<section id="level-1-naked-llm-2022-2023" class="level4">
+<h4 class="anchored" data-anchor-id="level-1-naked-llm-2022-2023"><strong>Level 1: Naked LLM</strong> (2022-2023)</h4>
+<ul>
+<li><strong>Example:</strong> ChatGPT interface on web</li>
+<li><strong>Capability:</strong> Text input → Text output</li>
+<li><strong>Limitation:</strong> No external tools, often gives outdated information</li>
+<li><strong>Use Case:</strong> Creative writing, brainstorming, explanations</li>
+<li><strong>Cost:</strong> Cheapest</li>
+<li><strong>Latency:</strong> Fastest</li>
+<li><strong>Complexity:</strong> Simplest</li>
+</ul>
+<p><strong>Example in Work:</strong> - “Polish this email draft” → LLM rewrites it → Done</p>
+<hr>
+</section>
+<section id="level-2-augmented-llm-2023-2024" class="level4">
+<h4 class="anchored" data-anchor-id="level-2-augmented-llm-2023-2024"><strong>Level 2: Augmented LLM</strong> (2023-2024)</h4>
+<ul>
+<li><strong>Definition:</strong> LLM with access to 1-3 tools (search, files, memory)</li>
+<li><strong>Capability:</strong> Can access external information or perform limited actions</li>
+<li><strong>Limitation:</strong> Still requires human orchestration of steps</li>
+<li><strong>Use Case:</strong> Answering current-events questions, accessing company documents</li>
+</ul>
+<p><strong>Example in Work:</strong> - Q: “What time is the last bus?” - LLM: “I don’t know, let me check the bus schedule [tool] → 8:45 PM” - You still coordinate what comes next</p>
+<hr>
+</section>
+<section id="level-3-workflow-multi-step-pre-planned" class="level4">
+<h4 class="anchored" data-anchor-id="level-3-workflow-multi-step-pre-planned"><strong>Level 3: Workflow</strong> (Multi-step, pre-planned)</h4>
+<ul>
+<li><strong>Definition:</strong> Multiple AI steps connected in sequence; steps are pre-defined</li>
+<li><strong>Capability:</strong> “Every Monday, summarize feedback → sort by topic → draft report”</li>
+<li><strong>Automation Level:</strong> Repeats same steps automatically</li>
+<li><strong>Limitation:</strong> If something unexpected happens, it fails; no adaptation</li>
+<li><strong>Use Case:</strong> Scheduled, repetitive processes</li>
+</ul>
+<p><strong>Example in Work:</strong> - Monday morning → AI runs same process → Report auto-generated - BUT: If feedback format changes, process breaks</p>
+<hr>
+</section>
+<section id="level-4-agent-adaptive-decision-making-loop" class="level4">
+<h4 class="anchored" data-anchor-id="level-4-agent-adaptive-decision-making-loop"><strong>Level 4: Agent</strong> (Adaptive decision-making loop)</h4>
+<ul>
+<li><strong>Definition:</strong> LLM + Tools + Memory + Loop that decides its own next steps</li>
+<li><strong>Key Innovation:</strong> <strong>AI decides the steps, not humans</strong></li>
+<li><strong>Capability:</strong> “Book a room for 30 people Thursday, adapt if usual room is full”</li>
+<li><strong>Automation Level:</strong> High—AI plans and executes in real-time</li>
+<li><strong>Adaptability:</strong> Handles unexpected situations</li>
+<li><strong>Use Case:</strong> Complex, unpredictable tasks</li>
+</ul>
+<p><strong>Example in Work:</strong> - “Book a room” → AI plans steps → Checks availability → Finds usual room full → Automatically books alternative → Success</p>
+<hr>
+</section>
+<section id="level-5-multi-agent-team-of-specialized-agents" class="level4">
+<h4 class="anchored" data-anchor-id="level-5-multi-agent-team-of-specialized-agents"><strong>Level 5: Multi-Agent</strong> (Team of specialized agents)</h4>
+<ul>
+<li><strong>Definition:</strong> Multiple agents with different roles working toward same goal</li>
+<li><strong>Example:</strong> Researcher Agent + Writer Agent + Fact-Checker Agent</li>
+<li><strong>Why Multiple Agents?</strong> Context isolation—prevents bias and errors</li>
+<li><strong>Use Case:</strong> Complex projects needing specialized expertise</li>
+<li><strong>Example Benefit:</strong>
+<ul>
+<li>If Researcher verifies own work, bias creeps in</li>
+<li>Separate Fact-Checker agent catches errors Researcher missed</li>
+</ul></li>
+</ul>
+<p><strong>Example in Work:</strong> - Task: “Produce one market research report” - Researcher Agent: Collects data, synthesizes findings - Writer Agent: Formats into professional document - Fact-Checker Agent: Verifies 3 random statistics against original sources</p>
+<hr>
+</section>
+</section>
+<section id="the-critical-decision-which-level-do-you-need" class="level3">
+<h3 class="anchored" data-anchor-id="the-critical-decision-which-level-do-you-need">2. <strong>The Critical Decision: Which Level Do You Need?</strong></h3>
+<p><strong>Anti-Pattern: Over-engineering</strong></p>
+<p>Many people jump to agents when simpler solutions suffice:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 45%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Appropriate Level</th>
+<th>Why Not Agent?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Translate English → French</td>
+<td>LLM</td>
+<td>No loop needed, deterministic task</td>
+</tr>
+<tr class="even">
+<td>Answer questions from PDF</td>
+<td>Augmented LLM</td>
+<td>Just need file access + search</td>
+</tr>
+<tr class="odd">
+<td>Weekly report from sign-up sheet</td>
+<td>Workflow</td>
+<td>Same steps every time, no adaptation</td>
+</tr>
+<tr class="even">
+<td>Book room for 30 (adapt if full)</td>
+<td><strong>Agent</strong></td>
+<td>Need adaptive decision-making</td>
+</tr>
+<tr class="odd">
+<td>Write 20-page research with QA</td>
+<td><strong>Multi-Agent</strong></td>
+<td>Need separation of concerns</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cost Impact:</strong> - Each loop iteration costs tokens (plan + action + observe + repeat) - Translation with Agent = ❌ Bankrupt in days (overkill cost) - Translation with LLM = ✅ Pennies (simple + efficient)</p>
+<p><strong>Rule:</strong> Use simplest tool that solves the problem. Beyond that = diminishing returns.</p>
+<hr>
+</section>
+<section id="what-makes-an-agent-different-the-agentic-loop" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-an-agent-different-the-agentic-loop">3. <strong>What Makes an Agent Different: The Agentic Loop</strong></h3>
+<section id="the-three-core-components" class="level4">
+<h4 class="anchored" data-anchor-id="the-three-core-components"><strong>The Three Core Components:</strong></h4>
+<pre><code>┌─────────────────────────────────────┐
+│   Agentic Loop Components           │
+├─────────────────────────────────────┤
+│ 1. PLAN: Agent decides next step    │
+│ 2. ACT: Agent uses a tool           │
+│ 3. OBSERVE: Agent reads result      │
+│ → REPEAT until goal achieved        │
+└─────────────────────────────────────┘</code></pre>
+</section>
+<section id="definition" class="level4">
+<h4 class="anchored" data-anchor-id="definition"><strong>Definition:</strong></h4>
+<blockquote class="blockquote">
+<p>An agent is an AI that works toward a goal by deciding the next step, using a tool, reading the result, observing the outcome, and repeating until the goal is met.</p>
+</blockquote>
+</section>
+<section id="what-this-enables" class="level4">
+<h4 class="anchored" data-anchor-id="what-this-enables"><strong>What This Enables:</strong></h4>
+<ul>
+<li><strong>Autonomous Planning:</strong> “I need to calculate X, divide by Y. I’ll use a calculator.”</li>
+<li><strong>Tool Selection:</strong> “This needs math → calculator tool, not guessing”</li>
+<li><strong>Error Correction:</strong> “Result doesn’t look right → try different approach → loop again”</li>
+<li><strong>Goal Achievement:</strong> Keeps looping until success or max attempts</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-components-of-an-agent-system" class="level3">
+<h3 class="anchored" data-anchor-id="the-components-of-an-agent-system">4. <strong>The Components of an Agent System</strong></h3>
+<p>An agent consists of multiple interacting parts:</p>
+<pre><code>                    ┌─────────────────┐
+                    │  Large Language │
+                    │  Model (Claude) │
+                    │  (Thinking)     │
+                    └────────┬────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        v                    v                    v
+  ┌──────────┐         ┌──────────┐         ┌──────────┐
+  │  Tools   │         │ Memory   │         │   Loop   │
+  │ (Calcs,  │         │(Project  │         │(Planning,│
+  │  Search, │         │ Notes)   │         │ Acting,  │
+  │  Code)   │         │          │         │Observing)│
+  └──────────┘         └──────────┘         └──────────┘</code></pre>
+<section id="tool-capability-the-ai-can-request" class="level4">
+<h4 class="anchored" data-anchor-id="tool-capability-the-ai-can-request"><strong>Tool:</strong> Capability the AI can request</h4>
+<ul>
+<li>Calculator (math)</li>
+<li>Web search (current info)</li>
+<li>Code execution (Python, JavaScript)</li>
+<li>File operations (read, write)</li>
+<li>MCP (Model Context Protocol) - extensions</li>
+</ul>
+</section>
+<section id="memory-persistent-context-across-iterations" class="level4">
+<h4 class="anchored" data-anchor-id="memory-persistent-context-across-iterations"><strong>Memory:</strong> Persistent context across iterations</h4>
+<ul>
+<li>Project folder with <code>.md</code> files</li>
+<li>Notes tracking what’s been done</li>
+<li>Decisions made and why</li>
+<li>Progress toward goal</li>
+</ul>
+</section>
+<section id="loop-the-iterative-process" class="level4">
+<h4 class="anchored" data-anchor-id="loop-the-iterative-process"><strong>Loop:</strong> The iterative process</h4>
+<ul>
+<li>Plan what to do next</li>
+<li>Execute/request tool</li>
+<li>Read result back</li>
+<li>Adjust plan based on result</li>
+<li>Repeat</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tools-how-agents-take-action" class="level3">
+<h3 class="anchored" data-anchor-id="tools-how-agents-take-action">5. <strong>Tools: How Agents Take Action</strong></h3>
+<section id="definition-1" class="level4">
+<h4 class="anchored" data-anchor-id="definition-1"><strong>Definition:</strong></h4>
+<blockquote class="blockquote">
+<p>A tool is an artifact or capability the AI can ask the computer to do for it.</p>
+</blockquote>
+</section>
+<section id="why-tools-matter" class="level4">
+<h4 class="anchored" data-anchor-id="why-tools-matter"><strong>Why Tools Matter:</strong></h4>
+<ul>
+<li><strong>LLM Limitation:</strong> Cannot calculate 15% of 4,750 accurately (would guess)</li>
+<li><strong>With Calculator Tool:</strong> Calculates exactly, returns to AI</li>
+<li><strong>Result:</strong> AI reads answer, can build on it</li>
+</ul>
+</section>
+<section id="tool-anatomy" class="level4">
+<h4 class="anchored" data-anchor-id="tool-anatomy"><strong>Tool Anatomy:</strong></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Calculator Tool</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Name:** calculator</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Description:** "Do exact arithmetic when user asks for calculation"</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Input:** Expression (e.g., "18% of 4750")</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Output:** Numerical result (e.g., 855)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tools-ai-can-request" class="level4">
+<h4 class="anchored" data-anchor-id="tools-ai-can-request"><strong>Tools AI Can Request:</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool Type</th>
+<th>Example</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Calculator</td>
+<td>18% × 4,750</td>
+<td>Exact math (not guessing)</td>
+</tr>
+<tr class="even">
+<td>Code Runner</td>
+<td>Execute Python script</td>
+<td>Complex logic, data processing</td>
+</tr>
+<tr class="odd">
+<td>Web Search</td>
+<td>“Current weather in Bangkok”</td>
+<td>Real-time, current data</td>
+</tr>
+<tr class="even">
+<td>File Access</td>
+<td>Read project files</td>
+<td>Context about project</td>
+</tr>
+<tr class="odd">
+<td>Browser</td>
+<td>Auto-browse web for info</td>
+<td>Autonomous research</td>
+</tr>
+<tr class="even">
+<td>Email</td>
+<td>Send notification</td>
+<td>Autonomous communication</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="practical-loop-example-school-trip-bus-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="practical-loop-example-school-trip-bus-calculation">6. <strong>Practical Loop Example: School Trip Bus Calculation</strong></h3>
+<p><strong>Scenario:</strong> - 4,750 students going on trip - 18% will take the bus - Each bus holds 52 seats - <strong>Question:</strong> How many buses needed?</p>
+<section id="if-llm-guesses-no-tools" class="level4">
+<h4 class="anchored" data-anchor-id="if-llm-guesses-no-tools"><strong>If LLM Guesses (No Tools):</strong></h4>
+<pre><code>Human: "How many buses?"
+LLM Output: "About 16 buses"
+Result: ❌ WRONG (actual: 17)</code></pre>
+</section>
+<section id="if-llm-uses-calculator-tool-agentic" class="level4">
+<h4 class="anchored" data-anchor-id="if-llm-uses-calculator-tool-agentic"><strong>If LLM Uses Calculator Tool (Agentic):</strong></h4>
+<p><strong>Step 1: Plan</strong></p>
+<pre><code>LLM thinks: "I need 18% of 4,750. I should not guess math. I will use the calculator."</code></pre>
+<p><strong>Step 2: Act (Use Tool)</strong></p>
+<pre><code>LLM calls: calculator(18% of 4750)
+Tool returns: 855</code></pre>
+<p><strong>Step 3: Observe</strong></p>
+<pre><code>LLM reads: "855 students will take the bus."</code></pre>
+<p><strong>Step 4: Plan Next</strong></p>
+<pre><code>LLM thinks: "Now I need 855 ÷ 52. Using calculator again."</code></pre>
+<p><strong>Step 5: Act (Use Tool Again)</strong></p>
+<pre><code>LLM calls: calculator(855 ÷ 52)
+Tool returns: 16.44</code></pre>
+<p><strong>Step 6: Observe &amp; Reason</strong></p>
+<pre><code>LLM reads: "16.44 buses. Can't have 0.44 buses. 16 would leave students behind."
+LLM reasons: "Must round UP to 17."</code></pre>
+<p><strong>Step 7: Final Answer</strong></p>
+<pre><code>LLM: "Need 17 buses. 855 students. 17 buses × 52 seats = 884 seats total."</code></pre>
+<p><strong>Key Insight:</strong> Each tool use loops back to LLM for interpretation, not just mechanical computation.</p>
+<hr>
+</section>
+</section>
+<section id="memory-in-agents" class="level3">
+<h3 class="anchored" data-anchor-id="memory-in-agents">7. <strong>Memory in Agents</strong></h3>
+<p><strong>Definition:</strong> How agents remember context across iterations</p>
+<section id="two-types-of-memory" class="level4">
+<h4 class="anchored" data-anchor-id="two-types-of-memory"><strong>Two Types of Memory:</strong></h4>
+<ol type="1">
+<li><strong>Context Window (Short-term)</strong>
+<ul>
+<li>What fits in current LLM conversation</li>
+<li>Lost when conversation ends</li>
+<li>Limited by token count</li>
+</ul></li>
+<li><strong>Project Memory (Long-term)</strong>
+<ul>
+<li>Files in project folder (like <code>memory.md</code>)</li>
+<li>Persists across sessions</li>
+<li>Loaded into context when agent deploys</li>
+</ul></li>
+</ol>
+<p><strong>Example Memory File:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project Progress Log</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision 1: Architecture</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chose: Database + Backend + Frontend</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why: Need to store user data</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Status: ✓ Decided</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision 2: Security</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chose: OAuth2 + JWT tokens</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why: Enterprise requirement</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Status: ✓ Implemented</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Errors Found &amp; Fixed</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bug 1: Password reset failing</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Cause: Email not configured</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Fix: Added SendGrid integration</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Status: ✓ Fixed</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Next Steps</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Add two-factor authentication</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Scale database to multi-region</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="four-planning-patterns-agents-use" class="level3">
+<h3 class="anchored" data-anchor-id="four-planning-patterns-agents-use">8. <strong>Four Planning Patterns Agents Use</strong></h3>
+<p>Agents choose strategies based on problem type. Alan provides four named patterns:</p>
+<section id="pattern-1-think-step-by-step-chain-of-thought" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-1-think-step-by-step-chain-of-thought"><strong>Pattern 1: Think Step-By-Step (Chain of Thought)</strong></h4>
+<p><strong>Problem:</strong> Problems needing logical breakdown <strong>Example:</strong> “On what date is the last Friday of a 30-day month starting on Tuesday?”</p>
+<p><strong>AI Process:</strong></p>
+<pre><code>"Day 1 is Tuesday. 
+Days 4, 11, 18, 25 are Fridays.
+Day 32 would be next Friday but exceeds month.
+Answer: 25th"</code></pre>
+<p><strong>vs.&nbsp;Guessing:</strong></p>
+<pre><code>"Probably the 30th" ❌ WRONG</code></pre>
+<p><strong>When Used:</strong> Logical reasoning, math, multi-step decision</p>
+<hr>
+</section>
+<section id="pattern-2-react-reason-act" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-2-react-reason-act"><strong>Pattern 2: React (Reason → Act)</strong></h4>
+<p><strong>Problem:</strong> Need information before deciding <strong>Example:</strong> “Which rooms are free on Thursday at 10 AM for 30 people?”</p>
+<p><strong>AI Process:</strong></p>
+<pre><code>1. Reason: "I need to know room availability. I'll search."
+2. Act: Search tool → "Room A full, Room B available (35 seats), Room C (20 seats too small)"
+3. Reason: "Room B is perfect. But it affects others. Should ask user first."
+4. Act: Ask human → "Should I book Room B?"
+5. Act: User approves
+6. Act: Book Room B</code></pre>
+<p><strong>Key:</strong> Intervene when outcome has human implications</p>
+<hr>
+</section>
+<section id="pattern-3-plan-execute-to-do-list" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-3-plan-execute-to-do-list"><strong>Pattern 3: Plan-Execute (To-Do List)</strong></h4>
+<p><strong>Problem:</strong> Many tasks; need to track completion <strong>Example:</strong> “Analyze cafe sales over 3 months, decide on menu changes”</p>
+<p><strong>AI Process:</strong></p>
+<pre><code>To-Do:
+1. ☑ Read sales file
+2. ☑ Check if data is clean
+3. ☑ Note: Data is messy; will clean first
+4. ☑ Run cleaning process
+5. ☑ Calculate sales per product
+6. ☑ Analyze findings
+7. ☑ Compare to business rules
+8. ☑ Check every number against source
+9. ☑ Write recommendation</code></pre>
+<p><strong>Key:</strong> Ensures nothing is forgotten; accountability trail</p>
+<hr>
+</section>
+<section id="pattern-4-check-fix-iterative-refinement" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-4-check-fix-iterative-refinement"><strong>Pattern 4: Check &amp; Fix (Iterative Refinement)</strong></h4>
+<p><strong>Problem:</strong> First draft has mistakes; need verification <strong>Example:</strong> “Create a report with verified numbers”</p>
+<p><strong>AI Process:</strong></p>
+<pre><code>1. Create initial draft
+2. Check: "Report says cappuccino earned $11,047"
+3. Verify: Look at source data
+4. Find: Source says $11,407 (2 digits swapped)
+5. Fix: Correct the number
+6. Output: Verified report</code></pre>
+<p><strong>Key:</strong> Catches errors before output; quality gate</p>
+<hr>
+</section>
+</section>
+<section id="who-decides-which-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="who-decides-which-pattern">9. <strong>Who Decides Which Pattern?</strong></h3>
+<p><strong>Question:</strong> When does AI use which pattern?</p>
+<p><strong>Answer:</strong> Depends on problem. AI reasons about which pattern to use:</p>
+<p><strong>Decision Framework:</strong> - <strong>Problem needs logical breakdown?</strong> → Think Step-By-Step - <strong>Missing information or external action needed?</strong> → React (Reason → Act) - <strong>Multiple tasks to track?</strong> → Plan-Execute (To-Do) - <strong>Accuracy critical or risk of errors?</strong> → Check &amp; Fix</p>
+<p><strong>You Can Override:</strong> If you want specific pattern, tell AI: - “Show me your plan first” → Plan-Execute - “Think step by step” → Chain of Thought - “Look up the answer before deciding” → React</p>
+<hr>
+</section>
+<section id="tools-in-claude-code-real-example" class="level3">
+<h3 class="anchored" data-anchor-id="tools-in-claude-code-real-example">10. <strong>Tools in Claude Code (Real Example)</strong></h3>
+<p>Alan demonstrates Claude Code as a practical agent:</p>
+<section id="what-claude-code-can-access" class="level4">
+<h4 class="anchored" data-anchor-id="what-claude-code-can-access"><strong>What Claude Code Can Access:</strong></h4>
+<ul>
+<li>File system (read, write, delete)</li>
+<li>Terminal commands (run code, install packages)</li>
+<li>Browser (via Chrome extension)</li>
+<li>Python, JavaScript, Node.js</li>
+<li>Databases</li>
+<li>APIs (with keys)</li>
+</ul>
+</section>
+<section id="safety-mechanisms" class="level4">
+<h4 class="anchored" data-anchor-id="safety-mechanisms"><strong>Safety Mechanisms:</strong></h4>
+<ul>
+<li>Asks permission before dangerous actions</li>
+<li>Restricted context (can’t access whole machine unless granted)</li>
+<li>Checks work before returning results</li>
+<li>Error handling and recovery</li>
+</ul>
+</section>
+<section id="example-flow" class="level4">
+<h4 class="anchored" data-anchor-id="example-flow"><strong>Example Flow:</strong></h4>
+<pre><code>User: "Clean up this messy CSV data and create a chart"
+
+Claude Code:
+1. Plans: "Need to read file, check format, clean, analyze"
+2. Reads: CSV file (messy format)
+3. Observes: "Dates inconsistent, amounts have symbols, duplicates"
+4. Plans: "Will write Python script to standardize"
+5. Acts: Runs Python script
+6. Checks: Verifies output looks clean
+7. Plans: "Will create chart visualization"
+8. Acts: Generates chart
+9. Outputs: Clean data + chart</code></pre>
+<hr>
+</section>
+</section>
+<section id="interactive-quiz-which-level-do-you-need" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-quiz-which-level-do-you-need">11. <strong>Interactive Quiz: Which Level Do You Need?</strong></h3>
+<p>Alan engages audience with real-world scenarios:</p>
+<section id="scenario-1-translate-paragraph-into-french" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-1-translate-paragraph-into-french"><strong>Scenario 1: Translate paragraph into French</strong></h4>
+<ul>
+<li>❓ Which AI level?</li>
+<li>✅ <strong>LLM</strong> (single task, no adaptation needed)</li>
+<li>❌ Not Workflow, not Agent</li>
+</ul>
+</section>
+<section id="scenario-2-answer-questions-about-bus-timetable-pdf-file" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-2-answer-questions-about-bus-timetable-pdf-file"><strong>Scenario 2: Answer questions about bus timetable (PDF file)</strong></h4>
+<ul>
+<li>❓ Which AI level?</li>
+<li>✅ <strong>Augmented LLM</strong> (need file access)</li>
+<li>❌ Not Workflow, not Agent</li>
+</ul>
+</section>
+<section id="scenario-3-every-friday-turn-sign-up-sheet-into-summary-email" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-3-every-friday-turn-sign-up-sheet-into-summary-email"><strong>Scenario 3: Every Friday, turn sign-up sheet into summary email</strong></h4>
+<ul>
+<li>❓ Which AI level?</li>
+<li>✅ <strong>Workflow</strong> (repeating same steps)</li>
+<li>❌ Not Agent (no adaptation)</li>
+</ul>
+</section>
+<section id="scenario-4-find-venue-caterer-date-for-50-people-under-budget-adapt-if-options-fall-through" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-4-find-venue-caterer-date-for-50-people-under-budget-adapt-if-options-fall-through"><strong>Scenario 4: Find venue, caterer, date for 50 people under budget (adapt if options fall through)</strong></h4>
+<ul>
+<li>❓ Which AI level?</li>
+<li>✅ <strong>Agent</strong> (need adaptive decision-making)</li>
+<li>❌ Not Workflow (can’t pre-plan all scenarios)</li>
+</ul>
+</section>
+<section id="scenario-5-write-20-page-market-study-research-writing-fact-checking-by-specialists" class="level4">
+<h4 class="anchored" data-anchor-id="scenario-5-write-20-page-market-study-research-writing-fact-checking-by-specialists"><strong>Scenario 5: Write 20-page market study (research + writing + fact-checking by specialists)</strong></h4>
+<ul>
+<li>❓ Which AI level?</li>
+<li>✅ <strong>Multi-Agent</strong> (need separated specialist roles)</li>
+<li>❌ Not single Agent (bias if same agent researches AND verifies)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="preventing-hallucination" class="level3">
+<h3 class="anchored" data-anchor-id="preventing-hallucination">12. <strong>Preventing Hallucination</strong></h3>
+<p><strong>What is Hallucination?</strong> - AI states something false with confidence - Not lying (not intentional); confidently wrong</p>
+<p><strong>Example:</strong> - “What’s 2+2?” → AI outputs “5” (hallucination) - “Who is the CEO of Google?” → AI outputs fake name (hallucination)</p>
+<p><strong>Prevention Strategies:</strong></p>
+<ol type="1">
+<li><strong>Give Right Context:</strong> More context = less hallucination</li>
+<li><strong>Use Tools:</strong> Let tools handle exact data (not AI guessing)</li>
+<li><strong>System Prompts:</strong> Provide standards at top (cached, cheap)</li>
+<li><strong>Multi-Agent Verification:</strong> Have 2nd AI fact-check</li>
+<li><strong>Lower Temperature:</strong> More deterministic (less creative, fewer errors)</li>
+<li><strong>Multiple LLMs:</strong> Different models catch different errors</li>
+</ol>
+<p><strong>Key Rule:</strong> Never trust AI for exact information without verification.</p>
+<hr>
+</section>
+<section id="cost-benefit-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="cost-benefit-analysis">13. <strong>Cost-Benefit Analysis</strong></h3>
+<p><strong>When NOT to Use Agents:</strong></p>
+<pre><code>Scenario: Translate 1,000,000 items daily
+
+LLM: 1 token per item = 1M tokens/day = ~$0.01 ✅ CHEAP
+Agent: Every iteration through loop = 10-100 tokens per item
+        = 10-100M tokens/day = $0.10-$1.00 per day ❌ EXPENSIVE
+
+Conclusion: Use Agent = Company bankrupt in days
+            Use LLM = Perfect, tiny cost</code></pre>
+<p><strong>Rule:</strong> Avoid agents for high-volume, deterministic tasks.</p>
+<hr>
+</section>
+</section>
+<section id="key-concepts-summary" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-summary">Key Concepts Summary</h2>
+<section id="five-levels" class="level3">
+<h3 class="anchored" data-anchor-id="five-levels"><strong>Five Levels</strong></h3>
+<ol type="1">
+<li>Naked LLM - Simple</li>
+<li>Augmented LLM - With tools</li>
+<li>Workflow - Repeating steps</li>
+<li><strong>Agent</strong> - Adaptive loop</li>
+<li>Multi-Agent - Specialized teams</li>
+</ol>
+</section>
+<section id="agentic-loop" class="level3">
+<h3 class="anchored" data-anchor-id="agentic-loop"><strong>Agentic Loop</strong></h3>
+<p>Plan → Act (use tool) → Observe → Repeat</p>
+</section>
+<section id="tools" class="level3">
+<h3 class="anchored" data-anchor-id="tools"><strong>Tools</strong></h3>
+<p>Enable exact computation, real-time data, autonomous action</p>
+</section>
+<section id="four-planning-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="four-planning-patterns"><strong>Four Planning Patterns</strong></h3>
+<ol type="1">
+<li>Think step-by-step</li>
+<li>React (reason + act)</li>
+<li>Plan-execute (to-do list)</li>
+<li>Check &amp; fix</li>
+</ol>
+</section>
+<section id="memory" class="level3">
+<h3 class="anchored" data-anchor-id="memory"><strong>Memory</strong></h3>
+<p>Short-term (context window) + Long-term (project files)</p>
+<hr>
+</section>
+</section>
+<section id="action-items" class="level2">
+<h2 class="anchored" data-anchor-id="action-items">Action Items</h2>
+<ol type="1">
+<li><strong>Assess Your Tasks:</strong> Categorize into five levels</li>
+<li><strong>Avoid Over-Engineering:</strong> Use simplest level that works</li>
+<li><strong>Understand Your Tools:</strong> Know what your AI can access</li>
+<li><strong>Cost Justify Agents:</strong> Confirm benefits outweigh tokens</li>
+<li><strong>Test Patterns:</strong> See different approaches in action tomorrow</li>
+</ol>
+<hr>
+</section>
+<section id="homework-before-tomorrows-practical-session" class="level2">
+<h2 class="anchored" data-anchor-id="homework-before-tomorrows-practical-session">Homework (Before Tomorrow’s Practical Session)</h2>
+<ul>
+<li>Think of a task you want to automate</li>
+<li>Determine which level it truly needs (don’t jump to agent)</li>
+<li>Understand what tools it would need</li>
+<li>Consider what memories/context it needs</li>
+</ul>
+<hr>
+</section>
+<section id="key-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaway">Key Takeaway</h2>
+<blockquote class="blockquote">
+<p><strong>“An agent is not better than an LLM. It’s just more complex and expensive. Use agents only when the task truly requires adaptive decision-making. Otherwise, you’re wasting tokens and time.”</strong></p>
+</blockquote>
+<hr>
+</section>
+<section id="connection-to-tomorrow" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-tomorrow">Connection to Tomorrow</h2>
+<p>Tomorrow’s practical session (Session VII) will show these mechanisms in action: - Building an application with agents - Seeing tools execute in real-time - Understanding cost implications - Creating practical prompts that leverage these patterns</p>
+<hr>
+<p><strong>📞 Questions:</strong> Reach out to trainer or cohort; clarify concepts before tomorrow’s practical session.</p>
+<p><strong>🔗 Prerequisite:</strong> Understand these concepts before Session VII practical lab.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

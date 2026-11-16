@@ -4,7 +4,8 @@ project:
   pre-render: python3 scripts/build_calendar.py
   render:
     - "*.qmd"
-    - roadmap_synthesis.md
+    - "sessions/*.qmd"
+    - "Session_Summaries/*.md"
     - README.md
     - roadmap.md
     - setup.md
@@ -23,10 +24,10 @@ website:
     left:
       - text: "Home"
         href: index.qmd
+      - text: "Session summaries"
+        href: sessions.qmd
       - text: "Roadmap"
         href: roadmap.md
-      - text: "Roadmap synthesis"
-        href: roadmap_synthesis.md
       - text: "Setup"
         href: setup.md
       - text: "Free providers"
