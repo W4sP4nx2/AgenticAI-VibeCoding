@@ -8,7 +8,6 @@ on:
       - "labs/agent-guardrails/**"
       - "materials/prompt-injection-lab/**"
   push:
-    branches: [main]
     paths:
       - ".github/workflows/guardrails.yml"
       - "architecture/ARCH-03-agent-runtime-enforcement.md"
