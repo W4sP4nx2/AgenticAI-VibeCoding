@@ -20,7 +20,6 @@ project:
     - materials/agent-step-by-step.html
     - materials/prompt-injection-lab/poisoned.md
     - materials/prompt-injection-lab/poisoned.csv
-    - labs/agent-guardrails/**
 
 website:
   title: "Agentic AI Lessons"

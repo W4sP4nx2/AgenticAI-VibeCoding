@@ -28,7 +28,7 @@ Run this lab only with the synthetic fixtures below and a mock `delete_records` 
 
 ### Enforced reference implementation
 
-The runnable <a href="../labs/agent-guardrails/README.md" download>stdlib guardrail lab</a> implements the deterministic boundary described below. It enforces an exact request schema, immutable host tool grants, hash-bound approval for state changes, one-use signed capabilities, path confinement, fixed tool dispatch, independent result checks and minimized JSONL audit events. The [ARCH-03 design](../architecture/ARCH-03-agent-runtime-enforcement.html) records the trust boundaries and limitations.
+The runnable [stdlib guardrail lab](https://github.com/ftl-brazil-2026/AgenticAI-VibeCoding/tree/main/labs/agent-guardrails){target="_blank"} implements the deterministic boundary described below. It enforces an exact request schema, immutable host tool grants, hash-bound approval for state changes, one-use signed capabilities, path confinement, fixed tool dispatch, independent result checks and minimized JSONL audit events. The [ARCH-03 design](../architecture/ARCH-03-agent-runtime-enforcement.html) records the trust boundaries and limitations.
 
 Local Python runs enforce application-level policy but do not isolate the operating system. CI adds a non-root container with no network, a read-only root filesystem, no Linux capabilities and one writable audit mount. The `LAB_*` and telemetry environment variables remain advisory unless the named software or launcher enforces them.
 
