@@ -29,6 +29,21 @@ from build_calendar import day_cell, sanitize_calendar_url
             "form_url",
             "https://forms.cloud.microsoft:443/r/xyz987",
         ),
+        (
+            "https://forms.cloud.microsoft/r/xyz987#confirmation",
+            "form_url",
+            "https://forms.cloud.microsoft/r/xyz987#confirmation",
+        ),
+        (
+            "HTTPS://FORMS.CLOUD.MICROSOFT/r/xyz987",
+            "form_url",
+            "HTTPS://FORMS.CLOUD.MICROSOFT/r/xyz987",
+        ),
+        (
+            "https://forms.cloud.microsoft:0443/r/xyz987",
+            "form_url",
+            "https://forms.cloud.microsoft:0443/r/xyz987",
+        ),
     ],
 )
 def test_accepts_valid_and_empty_urls(url, field, expected):
@@ -51,6 +66,22 @@ def test_accepts_valid_and_empty_urls(url, field, expected):
         ("https://forms.cloud.microsoft/r/xy z", "form_url"),
         ("https://forms.cloud.microsoft:not-a-port/r/xyz", "form_url"),
         ("https://events.teams.microsoft.com/event/123", "form_url"),
+        ("https://forms.cloud.microsoft/r/xyz%0D%0ASet-Cookie:a=b", "form_url"),
+        ("https://forms.cloud.microsoft/r/xyz%00", "form_url"),
+        ("https://forms.cloud.microsoft\\@evil.tld/", "form_url"),
+        ("https://evil.tld\\.forms.cloud.microsoft/", "form_url"),
+        ("https:forms.cloud.microsoft/r/xyz", "form_url"),
+        ("https:///forms.cloud.microsoft/r/xyz", "form_url"),
+        ("https://forms.cloud.microsoft./r/xyz", "form_url"),
+        ("https://forms.cloud.micr\u043esoft/r/xyz", "form_url"),
+        ("https://forms\u200b.cloud.microsoft/r/xyz", "form_url"),
+        ("https://forms.cloud.microsoft/r/xy\u00a0z", "form_url"),
+        ("https://forms.cloud.microsoft@evil.tld/", "form_url"),
+        ("https://evil.tld/#@forms.cloud.microsoft", "form_url"),
+        ("https://evil.tld/?@forms.cloud.microsoft", "form_url"),
+        ("https://[::1]/r/xyz", "form_url"),
+        ("javascript://forms.cloud.microsoft/%0aalert(1)", "form_url"),
+        ("https://forms.cloud.microsoft:99999/r/xyz", "form_url"),
     ],
 )
 def test_rejects_malicious_or_unapproved_urls(bad_url, field):

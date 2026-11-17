@@ -18,7 +18,7 @@ import html
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import unquote_to_bytes, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "materials" / "sessions.csv"
@@ -51,6 +51,10 @@ def sanitize_calendar_url(raw_url: str, field_name: str) -> str:
         return ""
     if any(character.isspace() for character in value):
         raise ValueError(f"Whitespace detected in {field_name}")
+
+    decoded_value = unquote_to_bytes(value)
+    if any(byte < 32 or byte == 127 for byte in decoded_value):
+        raise ValueError(f"Encoded control characters detected in {field_name}")
 
     try:
         parsed = urlsplit(value)
