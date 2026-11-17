@@ -13,7 +13,9 @@
 data/
 scratch/
 *.log
+*.jsonl
 logs/
+labs/agent-guardrails/output/
 
 /.quarto/
 **/*.quarto_ipynb

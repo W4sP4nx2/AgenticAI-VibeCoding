@@ -224,6 +224,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Run this lab only with the synthetic fixtures below and a mock <code>delete_records</code> function. Do not connect it to a real database, production tool, credential or unrestricted network. The ICS mappings are architectural analogies for layered containment; they do not mean this course website is an industrial control system.</p>
 </div>
 </div>
+<section id="enforced-reference-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="enforced-reference-implementation">Enforced reference implementation</h3>
+<p>The runnable <a href="../labs/agent-guardrails/README.md" download="">stdlib guardrail lab</a> implements the deterministic boundary described below. It enforces an exact request schema, immutable host tool grants, hash-bound approval for state changes, one-use signed capabilities, path confinement, fixed tool dispatch, independent result checks and minimized JSONL audit events. The <a href="../architecture/ARCH-03-agent-runtime-enforcement.html">ARCH-03 design</a> records the trust boundaries and limitations.</p>
+<p>Local Python runs enforce application-level policy but do not isolate the operating system. CI adds a non-root container with no network, a read-only root filesystem, no Linux capabilities and one writable audit mount. The <code>LAB_*</code> and telemetry environment variables remain advisory unless the named software or launcher enforces them.</p>
+</section>
 <section id="defense-in-depth-mapping" class="level3">
 <h3 class="anchored" data-anchor-id="defense-in-depth-mapping">Defense-in-depth mapping</h3>
 <p>The repository controls connect ordinary web and CI security to <a href="https://attack.mitre.org/mitigations/enterprise/">MITRE ATT&amp;CK Enterprise mitigations</a>, <a href="https://attack.mitre.org/mitigations/ics/">MITRE ATT&amp;CK ICS mitigations</a> and the <a href="https://top10.owasp.org/2025/">OWASP Top 10:2025</a>. The official ICS name for M0817 is <strong>Supply Chain Management</strong>. M0808 is <strong>Encrypt Network Traffic</strong>; it is complementary to secret hygiene, not something a <code>.gitignore</code> rule implements.</p>

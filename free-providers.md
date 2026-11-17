@@ -153,6 +153,8 @@ export TRANSFORMERS_OFFLINE=1
 
 These variables are instructions to software that supports them; they are not a network security boundary by themselves. The lab launcher must reject tools outside `LAB_ALLOWED_TOOLS`, disable cloud fallback, and fail closed when `LAB_OFFLINE=1`. Use an operating-system firewall, container with networking disabled, or an explicit egress allowlist when no outbound traffic is permitted. This separates local inference from tool execution and network access, following the containment ideas in [Enterprise M1048: Application Isolation and Sandboxing](https://attack.mitre.org/mitigations/M1048/), [ICS M0948: Application Isolation and Sandboxing](https://attack.mitre.org/mitigations/M0948/), [ICS M0930: Network Segmentation](https://attack.mitre.org/mitigations/M0930/) and [ICS M0807: Network Allowlists](https://attack.mitre.org/mitigations/M0807/).
 
+The course's <a href="labs/agent-guardrails/README.md" download>stdlib guardrail reference lab</a> enforces tool schemas, fixed tool grants, request-bound approval, path confinement and audit minimization. Its CI container enforces the stronger network and filesystem boundary. The environment variables above remain advisory and are not treated as proof of isolation.
+
 Local models are usually weaker and slower than hosted models. Install Ollama from <https://ollama.com>, pull a small coding model, and point Aider, Cline or OpenCode at the local endpoint. Most learners with 8–16 GB RAM can run a model of about 1.5–8 billion parameters.
 
 ## 5. Compare at a glance

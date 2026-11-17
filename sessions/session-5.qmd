@@ -26,6 +26,12 @@ An LLM is a probabilistic controller; a tool is an actuator that changes a syste
 Run this lab only with the synthetic fixtures below and a mock `delete_records` function. Do not connect it to a real database, production tool, credential or unrestricted network. The ICS mappings are architectural analogies for layered containment; they do not mean this course website is an industrial control system.
 :::
 
+### Enforced reference implementation
+
+The runnable <a href="../labs/agent-guardrails/README.md" download>stdlib guardrail lab</a> implements the deterministic boundary described below. It enforces an exact request schema, immutable host tool grants, hash-bound approval for state changes, one-use signed capabilities, path confinement, fixed tool dispatch, independent result checks and minimized JSONL audit events. The [ARCH-03 design](../architecture/ARCH-03-agent-runtime-enforcement.html) records the trust boundaries and limitations.
+
+Local Python runs enforce application-level policy but do not isolate the operating system. CI adds a non-root container with no network, a read-only root filesystem, no Linux capabilities and one writable audit mount. The `LAB_*` and telemetry environment variables remain advisory unless the named software or launcher enforces them.
+
 ### Defense-in-depth mapping
 
 The repository controls connect ordinary web and CI security to [MITRE ATT&CK Enterprise mitigations](https://attack.mitre.org/mitigations/enterprise/), [MITRE ATT&CK ICS mitigations](https://attack.mitre.org/mitigations/ics/) and the [OWASP Top 10:2025](https://top10.owasp.org/2025/). The official ICS name for M0817 is **Supply Chain Management**. M0808 is **Encrypt Network Traffic**; it is complementary to secret hygiene, not something a `.gitignore` rule implements.
