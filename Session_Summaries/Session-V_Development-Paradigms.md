@@ -4,13 +4,13 @@
 **👨‍🏫 Presenter:** Akshi Rao  
 **🎯 Session Type:** Comprehensive Theory + Hands-On Application (4-hour session with breaks)
 
----
+* * *
 
 ## Overview
 
 This session bridges the gap between understanding Vibe Coding concepts and implementing them in production-level applications. Participants learn that "Vibe Coding" isn't just about typing prompts—it requires understanding **system design principles, business requirements, and software development lifecycle** before engaging AI as a tool. The session emphasizes that **system design is a founding principle** of responsible AI development.
 
----
+* * *
 
 ## Key Learning Outcomes
 
@@ -20,7 +20,7 @@ This session bridges the gap between understanding Vibe Coding concepts and impl
 4. **Avoid Blind AI Trust** - Understand limitations and when to stop prompting
 5. **End-to-End Deployment** - From concept to hosted application
 
----
+* * *
 
 ## Main Topics Covered
 
@@ -318,7 +318,7 @@ If Your Cost > Outcome Value  →  Manual is faster/cheaper
 If Security-Critical  →  Always verify, never trust completely
 ```
 
----
+* * *
 
 ## Key Business Insight
 
@@ -335,7 +335,7 @@ If Security-Critical  →  Always verify, never trust completely
 
 **Therefore:** Vibe Coding is not a replacement for software engineering—it's an **accelerant for people who understand software engineering**.
 
----
+* * *
 
 ## Action Items for Participants
 
@@ -347,7 +347,7 @@ If Security-Critical  →  Always verify, never trust completely
 6. **Deploy to Free Tier:** Get it on the internet
 7. **Share and Iterate:** Get feedback, improve
 
----
+* * *
 
 ## Homework (Optional but Recommended)
 
@@ -357,7 +357,7 @@ If Security-Critical  →  Always verify, never trust completely
 - Cohort can provide feedback
 - Builds portfolio for interviews/job applications
 
----
+* * *
 
 ## Key Takeaway
 
@@ -367,7 +367,7 @@ If Security-Critical  →  Always verify, never trust completely
 - **Old:** "Can I code this?"  →  **New:** "Should I build this? And how do I verify it's right?"
 - From **code writer** → to **system architect and quality gate**
 
----
+* * *
 
 ## Resources & References
 
@@ -377,10 +377,10 @@ If Security-Critical  →  Always verify, never trust completely
 - **Netlify Deployment:** https://docs.netlify.com/
 - **GitHub Basics:** https://docs.github.com/en
 
----
+* * *
 
 **💡 Instructor Note:** This session emphasizes that **Vibe Coding is not a shortcut around software engineering—it's a tool for those who understand software engineering to move faster.**
 
----
+* * *
 
 **📞 Support:** Questions? Reach out to trainer via WhatsApp, Signal, or course communication channels.

@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent at Work</title>
+<style>
+  :root {
+    --blue: #0063AC; --blue-soft: #e8f1f8; --ink: #1a1a1a; --muted: #5a6b80; --line: #dbe6f3;
+    --bg: #f4f7fb; --card: #ffffff;
+    --goal: #3b4252; --aside: #c0392b; --plan: #0063AC; --act: #7a3fb0; --observe: #0f7b6c;
+    --ask: #b26a00; --done: #2e7d32;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Helvetica Neue', Arial, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+  header { display: flex; align-items: center; gap: 14px; padding: 12px 24px; background: var(--card); border-bottom: 2px solid var(--line); flex-wrap: wrap; }
+  header h1 { font-size: 21px; margin: 0; color: var(--blue); flex: 1; min-width: 220px; }
+  header h1 small { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tabs button { border: 2px solid var(--line); background: var(--card); color: var(--muted); border-radius: 10px; padding: 8px 14px; font: 700 15px inherit; font-family: inherit; cursor: pointer; }
+  .tabs button[aria-selected="true"] { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+  main { flex: 1; display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 18px; padding: 18px 24px 0; }
+  .panel { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-height: 330px; transition: border-color .3s, box-shadow .3s; }
+  .panel.focus { border-color: var(--blue); box-shadow: 0 0 0 5px rgba(0, 99, 172, .13); }
+  .panel h2 { font-size: 13px; letter-spacing: 1.5px; margin: 0; color: var(--muted); }
+  .panel h2 b { color: var(--ink); font-size: 16px; letter-spacing: 1px; margin-right: 6px; }
+  .bubble { font-size: clamp(16px, 1.45vw, 21px); line-height: 1.42; padding: 12px 15px; border-radius: 14px; white-space: pre-line; }
+  .msg { background: #f1f3f6; }
+  .msg.from-model { background: var(--blue-soft); border-left: 4px solid var(--blue); }
+  .msg .who { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--muted); margin-bottom: 3px; }
+  .msg.old { opacity: .5; }
+  .chip { align-self: flex-start; padding: 6px 14px; border-radius: 999px; color: #fff; font-weight: 700; font-size: 16px; }
+  .chip span { font-weight: 400; opacity: .9; }
+  .thought { background: var(--blue-soft); flex: 1; min-height: 140px; }
+  .thought.aside { background: #fdecea; border: 2px dashed var(--aside); }
+  .tool { border: 2px solid var(--line); border-radius: 12px; padding: 9px 12px; transition: border-color .3s, background .3s; }
+  .tool .name { font-family: Menlo, Consolas, monospace; font-weight: 700; color: var(--blue); font-size: 16px; }
+  .tool .desc { font-size: 14px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+  .tool.active { border-color: var(--act); background: #f6f0fb; }
+  .io { font-family: Menlo, Consolas, monospace; font-size: clamp(14px, 1.25vw, 18px); padding: 10px 12px; border-radius: 10px; white-space: pre-line; line-height: 1.4; transition: opacity .3s; }
+  .io .lbl { display: block; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; letter-spacing: 1px; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+  .io.req { background: #f6f0fb; border: 1px solid #dccbee; }
+  .io.res { background: #e8f5f2; border: 1px solid #bfe3db; }
+  .io.res.err { background: #fdecea; border-color: #f3c2bc; }
+  .io.old { opacity: .45; }
+  .waiting { opacity: .12 !important; }
+  .packet { position: fixed; z-index: 20; left: 0; top: 0; padding: 8px 14px; border-radius: 10px; font: 15px Menlo, Consolas, monospace; color: #fff; pointer-events: none; transition: transform .75s cubic-bezier(.4, 0, .2, 1); box-shadow: 0 8px 20px rgba(0, 0, 0, .2); max-width: 36vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .caption-bar { margin: 16px 24px 0; background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 14px 20px; display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start; }
+  .caption-main { flex: 1; min-width: 280px; }
+  .caption { font-size: clamp(18px, 1.6vw, 23px); line-height: 1.45; margin: 0; }
+  .habit { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .habit span { border-radius: 8px; padding: 5px 12px; font-size: 15px; font-weight: 700; }
+  .habit .h-name { background: var(--blue); color: #fff; }
+  .habit .h-who { background: #fff6e5; color: #7a4a00; border: 1px solid #f0c36d; }
+  .askbox { background: #fff6e5; border: 2px solid #f0c36d; border-radius: 12px; padding: 10px 14px; font-size: 18px; max-width: 360px; line-height: 1.4; }
+  .askbox b { display: block; font-size: 13px; letter-spacing: 1px; color: #7a4a00; margin-bottom: 3px; }
+  .askbox.quiz { border-width: 3px; font-size: 20px; max-width: 420px; }
+  .askbox.answer { background: #e8f5e9; border-color: #81c784; max-width: 420px; }
+  .askbox.answer b { color: var(--done); }
+  .io.req.quiz { border: 3px dashed var(--act); text-align: center; font-size: 34px; font-weight: 700; color: var(--act); }
+  .io.req.quiz .lbl { text-align: left; }
+  .summary { margin: 10px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
+  .summary li { background: var(--blue-soft); border-radius: 10px; padding: 8px 12px; font-size: 15px; line-height: 1.35; }
+  .summary li b { display: block; color: var(--blue); font-size: 16px; }
+  footer { display: flex; align-items: center; gap: 14px; padding: 14px 24px 18px; flex-wrap: wrap; }
+  .loop { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .loop .st { padding: 6px 12px; border-radius: 8px; background: #e6ebf2; color: var(--muted); font-weight: 700; font-size: 14px; transition: background .3s, color .3s; }
+  .loop .arrow { color: var(--muted); }
+  .loop .ring { border: 2px dashed #b9c5d6; border-radius: 12px; padding: 4px 6px; display: flex; gap: 6px; align-items: center; }
+  .loop .ring::after { content: 'repeat'; font-size: 12px; color: var(--muted); padding: 0 4px; }
+  .controls { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .counter { color: var(--muted); font-size: 15px; margin-right: 6px; }
+  .btn { border: 2px solid var(--blue); background: #fff; color: var(--blue); padding: 8px 16px; border-radius: 10px; font: 700 16px 'Helvetica Neue', Arial, sans-serif; cursor: pointer; }
+  .btn.primary { background: var(--blue); color: #fff; min-width: 110px; }
+  .btn:disabled { opacity: .35; cursor: default; }
+  .btn[aria-pressed="true"] { background: var(--blue-soft); }
+  .log { position: fixed; top: 0; right: 0; bottom: 0; width: min(360px, 90vw); background: var(--card); border-left: 2px solid var(--line); box-shadow: -10px 0 30px rgba(0, 0, 0, .1); padding: 20px; transform: translateX(105%); transition: transform .3s; z-index: 30; overflow-y: auto; }
+  .log.open { transform: none; }
+  .log h3 { margin: 0 0 4px; color: var(--blue); }
+  .log p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+  .log ol { padding-left: 22px; margin: 0; }
+  .log li { margin-bottom: 8px; font-size: 15px; line-height: 1.35; }
+  .keys { color: var(--muted); font-size: 13px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } .panel { min-height: 0; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>How the agent did the jobs, step by step<small>What really happened inside Jobs 1 and 2, simplified. Press the right arrow key or Next.</small></h1>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+</header>
+
+<main>
+  <section class="panel" id="p-person">
+    <h2><b>YOU</b>the person</h2>
+    <div id="messages" style="display:flex;flex-direction:column;gap:10px"></div>
+  </section>
+  <section class="panel" id="p-model">
+    <h2><b>THE MODEL</b>the brain that decides</h2>
+    <div class="chip" id="chip"></div>
+    <div class="bubble thought" id="thought"></div>
+  </section>
+  <section class="panel" id="p-computer">
+    <h2><b>THE COMPUTER</b>the hands that act</h2>
+    <div id="tools" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="io req" id="request" hidden><span class="lbl" id="request-lbl">REQUEST FROM THE MODEL</span><span id="request-text"></span></div>
+    <div class="io res" id="result" hidden><span class="lbl">RESULT SENT BACK</span><span id="result-text"></span></div>
+  </section>
+</main>
+
+<section class="caption-bar">
+  <div class="caption-main">
+    <div class="habit" id="habit" hidden></div>
+    <p class="caption" id="caption"></p>
+    <ul class="summary" id="summary" hidden></ul>
+  </div>
+  <div class="askbox" id="ask" hidden><b id="ask-lbl">ASK THE ROOM</b><span id="ask-text"></span></div>
+</section>
+
+<footer>
+  <div class="loop" id="loop">
+    <span class="st" data-stage="goal">GOAL</span><span class="arrow">&#8594;</span>
+    <span class="ring"><span class="st" data-stage="plan">PLAN</span><span class="arrow">&#8594;</span><span class="st" data-stage="act">ACT</span><span class="arrow">&#8594;</span><span class="st" data-stage="observe">OBSERVE</span></span>
+    <span class="arrow">&#8594;</span><span class="st" data-stage="done">DONE</span>
+  </div>
+  <div class="controls">
+    <span class="counter" id="counter"></span>
+    <button class="btn" id="btn-log" aria-pressed="false">Log</button>
+    <button class="btn" id="btn-auto" aria-pressed="false">Auto</button>
+    <button class="btn" id="btn-restart">Restart</button>
+    <button class="btn" id="btn-back">Back</button>
+    <button class="btn primary" id="btn-next">Next</button>
+  </div>
+</footer>
+
+<aside class="log" id="log" aria-label="Log of what happened">
+  <h3>What happened so far</h3>
+  <p>The agent's log: every step, in order. Checking this is how you check the path, not just the answer.</p>
+  <ol id="log-list"></ol>
+  <p class="keys" style="margin-top:16px">Keys: right arrow or space = next, left arrow = back, Home = restart, 1 2 3 = scenario, L = log, A = auto.</p>
+</aside>
+
+<script>
+// ---------- Content: edit the text here ----------
+const HABITS = {
+  todo: 'To-do list first (Plan and Execute)',
+  lookup: 'Look it up as you go (ReAct)',
+  steps: 'Think step by step (Chain of Thought)',
+  check: 'Check and fix (Reflection)',
+};
+const WHO = { you: 'Who decided: you, in the prompt', model: 'Who decided: the model, by itself' };
+
+const SCENARIOS = [
+  {
+    tab: '1. Clean the data',
+    tools: [
+      { name: 'read_file', desc: 'Opens a file and shows what is inside. Changes nothing.' },
+      { name: 'run_python', desc: 'Runs a small program the agent writes. Good for counting, and for making the same fix to many rows.' },
+      { name: 'write_file', desc: 'Saves a new file, such as a plan or a report.' },
+    ],
+    steps: [
+      { stage: 'goal', person: 'GOAL: Clean 3 months of café sales.\nRULES: Show a plan first. Never edit the original. If a row is unclear, set it aside, do not guess.\nCHECK: Compare rows in and out. Recalculate the total.', model: 'A new goal has arrived.\nA big job, with rules to follow.', caption: 'This is our prompt from the slide, in short. Watch how each part of it shows up in what the agent does.', log: 'Goal: clean the café sales file' },
+      { stage: 'plan', model: 'I cannot plan a clean-up before I have seen the mess.\nFirst I will look at the file, without changing anything.', quiz: 'Look at the three tool cards. Which tool will it use first?', caption: 'PLAN: decide the next step. The model picks a tool by reading the tool cards on the right, just like in Session 1.', log: 'Plan: look at the file first' },
+      { stage: 'act', request: { tool: 'read_file', input: 'cafe_sales_messy.csv' }, model: 'Opening the file. Reading only.', answer: 'read_file. Look before you touch. Reading changes nothing, so the original stays safe, as the RULES asked.', caption: 'ACT: the computer opens the file. The model only asked.', log: 'Act: read_file(cafe_sales_messy.csv)' },
+      { stage: 'observe', habit: 'todo', who: 'you', result: { text: '979 rows\n3 different date styles\nTypos like "Cappucino"\nRefunds, monthly totals, blanks' }, model: 'Very messy.\nMy plan: list every kind of mess, then fix it all the same way.\n979 rows is too many to fix one by one.', quiz: '979 rows all need the same fixes. Which tool fits that job?', caption: 'OBSERVE: read what came back. Now the agent knows the mess, and writes its plan first, because the prompt asked for one.', log: 'Observe: 979 messy rows, plan written' },
+      { stage: 'act', request: { tool: 'run_python', input: 'clean.py: fix dates, spellings, prices; set unclear rows aside' }, model: 'Writing a small cleaning program, then running it.', answer: 'run_python. The agent writes a short program, so every row gets exactly the same fix. No tired eyes, no skipped rows.', caption: 'ACT: the agent writes its own tool. A program is the right choice when the same fix must happen 979 times.', log: 'Act: run_python(clean.py)' },
+      { stage: 'observe', habit: 'check', who: 'you', request: { tool: 'run_python', input: 'check: count rows in and out, recalculate the total' }, result: { text: '979 rows in = 946 clean + 33 removed\nTotal $55,510.40: matches\n4 smudged rows set aside, not guessed' }, model: 'The rows add up. The total matches.\nThe original file is unchanged.\nMy plan said 34 typos, the program found 33,\nso I corrected my plan.', caption: 'CHECK: this step happens because the prompt had a CHECK part. The agent even caught a small mistake in its own plan.', log: 'Check: rows add up, total matches' },
+      { stage: 'done', reply: 'Done. A clean file with 946 rows, cleaning notes in plain language, and a short summary. Your original file is untouched.', model: 'The goal is met, and checked. Stopping.', caption: 'DONE. The same loop as the school buses: plan, act, observe, repeat. More steps, and this time the agent wrote one of its own tools.', log: 'Done: clean file, notes, summary' },
+    ],
+  },
+  {
+    tab: '2. Make the slides',
+    tools: [
+      { name: 'read_file', desc: 'Opens a file and shows what is inside.' },
+      { name: 'run_python', desc: 'Runs a small program the agent writes. It can read data and build files, such as slides.' },
+      { name: 'look_at_image', desc: 'Turns a file into a picture, so the model can look at it the way you would.' },
+    ],
+    steps: [
+      { stage: 'goal', person: 'GOAL: A short presentation to decide next month\'s menu and opening hours.\nCONTEXT: Use the clean file from Job 1.\nRULES: Outline first. Every number must come from the clean data.\nCHECK: Look at every slide. Confirm three numbers.', model: 'A new goal.\nIt starts where the last job ended: the clean file.', caption: 'The output of Job 1 is the input of Job 2. This is called chaining.', log: 'Goal: a 6-slide presentation' },
+      { stage: 'plan', habit: 'todo', who: 'you', model: 'My outline: 6 slides, one message each.\n1. Three months in numbers\n2. Sales rose in October\n3. Cappuccino: a fifth of all sales\n4. Saturday is busiest\n5. Matcha Latte has not caught on\n6. Three things to try', quiz: 'The slides need charts and exact numbers from the data. Which tool will build them?', caption: 'PLAN: an outline first, because the prompt asked for one. A to-do list for a presentation.', log: 'Plan: 6-slide outline' },
+      { stage: 'act', request: { tool: 'run_python', input: 'build_deck.py: read the clean data, draw 3 charts, save cafe_review.pptx' }, model: 'Writing a program that builds the slides from the data.', answer: 'run_python. The program copies numbers straight from the data into the slides, so no number can be typed wrong.', caption: 'ACT: again the agent writes a small program. The numbers go from the data to the slides with no retyping.', log: 'Act: run_python(build_deck.py)' },
+      { stage: 'observe', result: { text: 'cafe_review.pptx saved\n6 slides, 3 charts' }, model: 'The file exists.\nBut a file can exist and still look wrong.\nI need to see it.', quiz: 'The model cannot open PowerPoint and look. Which tool lets it see its own slides?', caption: 'OBSERVE: "the file was saved" is not the same as "the slides look good".', log: 'Observe: file saved' },
+      { stage: 'act', request: { tool: 'look_at_image', input: 'slides 1 to 6, as pictures' }, model: 'Turning each slide into a picture, and looking.', answer: 'look_at_image. It looks at every slide, like a person checking a printout. That is the CHECK from the prompt.', caption: 'ACT: the CHECK part of the prompt said "Look at every slide". Here it is.', log: 'Act: look_at_image(slides 1 to 6)' },
+      { stage: 'observe', habit: 'check', who: 'you', result: { text: 'Problems:\nEvery chart has an extra title, "Sales"\nShadows on the charts', error: true }, model: 'Not what I wanted.\nFix the program, build again, look again.\nThen compare three numbers with the data.', caption: 'CHECK AND FIX: it caught its own mistakes before you ever saw the slides.', log: 'Check: removed extra titles and shadows' },
+      { stage: 'done', reply: 'Done. 6 slides with 3 charts. I checked three numbers against the data: total sales $55,510, Cappuccino $11,406.50, Saturday average $877.75. All match.', model: 'The goal is met, and checked. Stopping.', caption: 'DONE. Without the CHECK step, the slides would have gone out with those mistakes.', log: 'Done: cafe_review.pptx' },
+    ],
+  },
+  {
+    tab: '3. Make the video',
+    tools: [
+      { name: 'run_python', desc: 'Runs a small program the agent writes. With an image library, it can draw pictures.' },
+      { name: 'make_video', desc: 'Joins many pictures into one video file. (A free tool called ffmpeg.)' },
+      { name: 'check_video', desc: 'Reads a video file and reports its length, size and format. (A free tool called ffprobe.)' },
+    ],
+    steps: [
+      { stage: 'goal', person: 'GOAL: A 30-second promo video for the café.\nCONTEXT: Best sellers, busiest day, name and opening hours.\nRULES: Storyboard first. Only free tools. No made-up prices.\nCHECK: It plays, and lasts 30 seconds.', model: 'A new goal.\nBut I have no "make video" tool.', caption: 'Look at the tool cards. None of them makes a video by itself. Watch how the agent combines them.', log: 'Goal: a 30-second video' },
+      { stage: 'plan', habit: 'steps', who: 'model', model: 'Storyboard: 5 scenes, 6 seconds each.\nA video is just pictures shown fast.\n30 seconds x 30 pictures a second\n= 900 pictures.', quiz: 'Which tool can draw 900 pictures?', caption: 'PLAN: there is no video button, so the agent thinks it through: a video is many pictures. Draw them, then join them.', log: 'Plan: storyboard, then 900 pictures' },
+      { stage: 'act', request: { tool: 'run_python', input: 'draw.py: draw 900 pictures, text fades in' }, model: 'Writing a program that draws every picture.', answer: 'run_python. A short program draws every picture: the colours, a coffee cup and the words.', caption: 'ACT: before drawing all 900, it drew 5 test pictures, looked at them, and fixed two layout problems. Testing small first is cheap.', log: 'Act: run_python(draw.py)' },
+      { stage: 'observe', result: { text: '900 pictures saved\nframe_001.png ... frame_900.png' }, model: '900 pictures. But they are not a video yet.\nI need to join them together.', quiz: 'Which tool comes next?', caption: 'OBSERVE: one part done, one to go.', log: 'Observe: 900 pictures ready' },
+      { stage: 'act', request: { tool: 'make_video', input: 'join 900 pictures, 30 a second, into cafe_promo.mp4' }, model: 'Joining the pictures into a video.', answer: 'make_video. Simple tools, combined: one draws, one joins. Neither could make the video alone.', caption: 'ACT: the second tool in the chain.', log: 'Act: make_video(cafe_promo.mp4)' },
+      { stage: 'observe', habit: 'check', who: 'you', request: { tool: 'check_video', input: 'cafe_promo.mp4' }, result: { text: '30.0 seconds\n900 pictures\n1080 x 1920 (tall, for phones)' }, model: 'Exactly 30 seconds, tall, for phones.\nI did not assume it worked.\nI measured it.', caption: 'CHECK: a third tool, used only to measure the result. This is the CHECK part of the prompt.', log: 'Check: 30.0 seconds, vertical' },
+      { stage: 'done', reply: 'Done. cafe_promo.mp4: 30 seconds, 5 scenes, made for phones. Every fact comes from the sales summary.', model: 'The goal is met, and checked. Stopping.', caption: 'DONE. Three simple tools, combined by a plan, made something none of them could make alone.', log: 'Done: cafe_promo.mp4' },
+    ],
+  },
+];
+
+const STAGES = {
+  goal: { label: 'GOAL', hint: 'what the person wants', color: 'var(--goal)', focus: 'person' },
+  aside: { label: 'WITHOUT TOOLS', hint: 'what could go wrong', color: 'var(--aside)', focus: 'model' },
+  plan: { label: 'PLAN', hint: 'decide the next step', color: 'var(--plan)', focus: 'model' },
+  act: { label: 'ACT', hint: 'use a tool', color: 'var(--act)', focus: 'computer' },
+  observe: { label: 'OBSERVE', hint: 'read what came back', color: 'var(--observe)', focus: 'model' },
+  ask: { label: 'ASK', hint: 'check with the person first', color: 'var(--ask)', focus: 'person' },
+  done: { label: 'DONE', hint: 'goal met, the loop stops', color: 'var(--done)', focus: 'person' },
+};
+const AUTO_MS = 6000;
+
+// ---------- Engine ----------
+const $ = (id) => document.getElementById(id);
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let state = { scenario: 0, index: 0, logOpen: false, auto: false };
+let autoTimer = null;
+
+function setState(patch) {
+  state = { ...state, ...patch };
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function lastIndex(items, test) {
+  for (let i = items.length - 1; i >= 0; i--) if (test(items[i])) return i;
+  return -1;
+}
+
+function renderTabs() {
+  $('tabs').innerHTML = SCENARIOS.map((s, i) =>
+    `<button role="tab" aria-selected="${i === state.scenario}" data-i="${i}">${escapeHtml(s.tab)}</button>`).join('');
+}
+
+function renderMessages(seen) {
+  const msgs = seen.flatMap((s) => [
+    s.person ? { from: 'person', text: s.person } : null,
+    s.reply ? { from: 'model', text: s.reply } : null,
+  ].filter(Boolean)).slice(-3);
+  $('messages').innerHTML = msgs.map((m, i) => {
+    const old = i < msgs.length - 1 ? ' old' : '';
+    const who = m.from === 'person' ? 'YOU' : 'THE AGENT';
+    return `<div class="bubble msg from-${m.from}${old}"><span class="who">${who}</span>${escapeHtml(m.text)}</div>`;
+  }).join('');
+}
+
+function renderModel(step) {
+  const st = STAGES[step.stage];
+  const chip = $('chip');
+  chip.style.background = st.color;
+  chip.innerHTML = `${st.label} <span>: ${st.hint}</span>`;
+  const thought = $('thought');
+  thought.textContent = step.model || '';
+  thought.classList.toggle('aside', step.stage === 'aside');
+}
+
+function renderComputer(sc, seen) {
+  const step = seen[seen.length - 1];
+  const reqIdx = lastIndex(seen, (s) => s.request);
+  const resIdx = lastIndex(seen, (s) => s.result);
+  const current = seen.length - 1;
+  const activeTool = step.quiz ? null : step.tool || (step.request && step.request.tool) || (step.result && reqIdx >= 0 ? seen[reqIdx].request.tool : null);
+  $('tools').innerHTML = sc.tools.map((t) =>
+    `<div class="tool${t.name === activeTool ? ' active' : ''}"><div class="name">${escapeHtml(t.name)}</div><div class="desc">${escapeHtml(t.desc)}</div></div>`).join('');
+
+  const req = $('request');
+  req.classList.toggle('quiz', Boolean(step.quiz));
+  $('request-lbl').textContent = step.quiz ? 'WHICH TOOL WILL IT ASK FOR?' : 'REQUEST FROM THE MODEL';
+  if (step.quiz) {
+    req.hidden = false;
+    req.classList.remove('old');
+    $('request-text').textContent = '?';
+    $('result').hidden = !step.result;
+    if (step.result) {
+      $('result-text').textContent = step.result.text;
+      $('result').classList.remove('old', 'err');
+    }
+    return;
+  }
+  req.hidden = reqIdx < 0;
+  if (reqIdx >= 0) {
+    const r = seen[reqIdx].request;
+    $('request-text').textContent = `${r.tool}(${r.input})`;
+    req.classList.toggle('old', reqIdx !== current && resIdx !== current);
+  }
+  const res = $('result');
+  res.hidden = resIdx < 0 || resIdx < reqIdx;
+  if (!res.hidden) {
+    $('result-text').textContent = seen[resIdx].result.text;
+    res.classList.toggle('err', Boolean(seen[resIdx].result.error));
+    res.classList.toggle('old', resIdx !== current);
+  }
+}
+
+function renderCaption(step) {
+  $('caption').textContent = step.caption || '';
+  const habit = $('habit');
+  habit.hidden = !step.habit;
+  if (step.habit) {
+    habit.innerHTML = `<span class="h-name">Habit: ${escapeHtml(HABITS[step.habit])}</span><span class="h-who">${escapeHtml(WHO[step.who])}</span>`;
+  }
+  const summary = $('summary');
+  summary.hidden = !step.summary;
+  if (step.summary) {
+    summary.innerHTML = step.summary.map((s) => `<li><b>${escapeHtml(HABITS[s.habit])}</b>${escapeHtml(s.who)}</li>`).join('');
+  }
+  const box = step.quiz
+    ? { label: 'QUESTION: TYPE YOUR ANSWER IN THE CHAT', text: step.quiz, kind: 'quiz' }
+    : step.answer
+      ? { label: 'ANSWER', text: step.answer, kind: 'answer' }
+      : step.ask ? { label: 'ASK THE ROOM', text: step.ask, kind: '' } : null;
+  $('ask').hidden = !box;
+  $('ask').classList.toggle('quiz', Boolean(box && box.kind === 'quiz'));
+  $('ask').classList.toggle('answer', Boolean(box && box.kind === 'answer'));
+  $('ask-lbl').textContent = box ? box.label : '';
+  $('ask-text').textContent = box ? box.text : '';
+}
+
+function renderFooter(steps, seen, step) {
+  const loopStage = step.stage === 'ask' || step.stage === 'aside' ? null : step.stage;
+  document.querySelectorAll('#loop .st').forEach((el) => {
+    const on = el.dataset.stage === loopStage;
+    el.style.background = on ? STAGES[el.dataset.stage].color : '';
+    el.style.color = on ? '#fff' : '';
+  });
+  $('counter').textContent = `Step ${state.index + 1} of ${steps.length}`;
+  $('btn-back').disabled = state.index === 0;
+  $('btn-next').disabled = state.index === steps.length - 1;
+  $('log-list').innerHTML = seen.filter((s) => s.log).map((s) => `<li>${escapeHtml(s.log)}</li>`).join('');
+  $('log').classList.toggle('open', state.logOpen);
+  $('btn-log').setAttribute('aria-pressed', String(state.logOpen));
+  $('btn-auto').setAttribute('aria-pressed', String(state.auto));
+}
+
+function render() {
+  const sc = SCENARIOS[state.scenario];
+  const seen = sc.steps.slice(0, state.index + 1);
+  const step = seen[seen.length - 1];
+  renderTabs();
+  renderMessages(seen);
+  renderModel(step);
+  renderComputer(sc, seen);
+  renderCaption(step);
+  renderFooter(sc.steps, seen, step);
+  ['person', 'model', 'computer'].forEach((p) =>
+    $(`p-${p}`).classList.toggle('focus', STAGES[step.stage].focus === p));
+}
+
+function centerOf(el) {
+  const r = el.getBoundingClientRect();
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+
+function fly(fromEl, toEl, text, color, revealEl) {
+  if (reducedMotion) return;
+  revealEl.classList.add('waiting');
+  const packet = document.createElement('div');
+  packet.className = 'packet';
+  packet.textContent = text;
+  packet.style.background = color;
+  document.body.appendChild(packet);
+  const from = centerOf(fromEl);
+  const to = centerOf(toEl);
+  const w = packet.offsetWidth / 2;
+  const h = packet.offsetHeight / 2;
+  packet.style.transform = `translate(${from.x - w}px, ${from.y - h}px)`;
+  packet.getBoundingClientRect();
+  packet.style.transform = `translate(${to.x - w}px, ${to.y - h}px)`;
+  setTimeout(() => { packet.remove(); revealEl.classList.remove('waiting'); }, 800);
+}
+
+function animateStep(step) {
+  if (step.request) {
+    fly($('thought'), $('request'), `${step.request.tool}(${step.request.input})`, 'var(--act)', $('request'));
+  } else if (step.result) {
+    fly($('result'), $('thought'), step.result.text.split('\n')[0], 'var(--observe)', $('thought'));
+  }
+}
+
+function go(index, animate) {
+  const steps = SCENARIOS[state.scenario].steps;
+  const next = Math.max(0, Math.min(index, steps.length - 1));
+  const forward = next === state.index + 1;
+  setState({ index: next });
+  render();
+  if (animate && forward) animateStep(steps[next]);
+  if (next === steps.length - 1) stopAuto();
+}
+
+function chooseScenario(i) {
+  if (i < 0 || i >= SCENARIOS.length) return;
+  stopAuto();
+  setState({ scenario: i, index: 0 });
+  history.replaceState(null, '', `#${i + 1}`);
+  render();
+}
+
+function stopAuto() {
+  clearInterval(autoTimer);
+  autoTimer = null;
+  setState({ auto: false });
+  $('btn-auto').setAttribute('aria-pressed', 'false');
+}
+
+function toggleAuto() {
+  if (state.auto) { stopAuto(); return; }
+  setState({ auto: true });
+  autoTimer = setInterval(() => go(state.index + 1, true), AUTO_MS);
+  render();
+}
+
+function toggleLog() {
+  setState({ logOpen: !state.logOpen });
+  render();
+}
+
+$('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (btn) chooseScenario(Number(btn.dataset.i));
+});
+$('btn-next').addEventListener('click', () => go(state.index + 1, true));
+$('btn-back').addEventListener('click', () => go(state.index - 1, false));
+$('btn-restart').addEventListener('click', () => go(0, false));
+$('btn-auto').addEventListener('click', toggleAuto);
+$('btn-log').addEventListener('click', toggleLog);
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+  if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(key)) { e.preventDefault(); go(state.index + 1, true); }
+  else if (['ArrowLeft', 'PageUp'].includes(key)) { e.preventDefault(); go(state.index - 1, false); }
+  else if (key === 'Home') go(0, false);
+  else if (['1', '2', '3'].includes(key)) chooseScenario(Number(key) - 1);
+  else if (key.toLowerCase() === 'l') toggleLog();
+  else if (key.toLowerCase() === 'a') toggleAuto();
+});
+
+// Deep links: #2 opens scenario 2, #2-9 opens scenario 2 at step 9.
+function startFromHash() {
+  const match = location.hash.match(/^#(\d)(?:-(\d+))?$/);
+  const scenario = match ? Number(match[1]) - 1 : 0;
+  const safeScenario = scenario >= 0 && scenario < SCENARIOS.length ? scenario : 0;
+  const lastStep = SCENARIOS[safeScenario].steps.length - 1;
+  const step = match && match[2] ? Math.min(Math.max(Number(match[2]) - 1, 0), lastStep) : 0;
+  setState({ scenario: safeScenario, index: step });
+  render();
+}
+startFromHash();
+</script>
+</body>
+</html>

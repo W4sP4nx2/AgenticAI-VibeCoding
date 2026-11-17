@@ -5,23 +5,25 @@
 **Organized By:** UNDP in partnership with UN Volunteers  
 **Program Lead:** Emanuel Goulart
 
----
+* * *
 
 ## 📚 Complete Session Overview
 
 This index provides quick navigation to all session summaries, including date, time, presenter, and key topics covered. Each session builds on previous learning to develop comprehensive skills in AI-driven development, agentic systems, and secure software engineering.
 
----
+* * *
 
 ## Session Summaries
 
 ### **Session I: Introduction to Vibe Coding**
+
 📅 **November 2, 2026 at 18:30**  
 👨‍🏫 **Presenter:** Phyo Ko Ko (Senior Cybersecurity Analyst, Thailand)  
 ⏱️ **Duration:** 60 minutes  
 🎯 **Type:** Theoretical Foundation
 
 **Key Topics:**
+
 - Why Vibe Coding for developing countries
 - Evolution from traditional coding to AI-driven development
 - Three phases of AI coding (2021-2024)
@@ -33,7 +35,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 📄 **[Read Full Summary](Session-I_Introduction-to-Vibe-Coding.md)**
 
----
+* * *
 
 ### **Session II: Introduction to Vibe Coding - Practical Session**
 📅 **November 3, 2026 at 18:30**  
@@ -54,7 +56,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 📄 **[Read Full Summary](Session-II_Vibe-Coding-Practical-Session.md)**
 
----
+* * *
 
 ### **Session III: Architecting and Configuring the AI Workspace**
 📅 **November 4, 2026 at 18:30**  
@@ -71,7 +73,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 🔗 *Summary to be added*
 
----
+* * *
 
 ### **Session IV: Practical Session - Architecting and Configuring the AI Workspace**
 📅 **November 6, 2026 at 18:30**  
@@ -88,7 +90,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 🔗 *Summary to be added*
 
----
+* * *
 
 ### **Session V: Development Paradigms - Theoretical and Practical**
 📅 **November 7, 2026 at 09:00 (UTC)**  
@@ -111,7 +113,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 📄 **[Read Full Summary](Session-V_Development-Paradigms.md)**
 
----
+* * *
 
 ### **Session VI: Agents Mechanisms**
 📅 **November 14, 2026 at 17:00**  
@@ -134,7 +136,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 📄 **[Read Full Summary](Session-VI_Agents-Mechanisms.md)**
 
----
+* * *
 
 ### **Session VII: Practical Lab - Agents Mechanisms**
 📅 **November 15, 2026 at 17:00**  
@@ -158,24 +160,30 @@ This index provides quick navigation to all session summaries, including date, t
 
 📄 **[Read Full Summary](Session-VII_Practical-Lab-Agents-Mechanisms.md)**
 
----
+* * *
 
 ### **Session VIII: Multi-Agents Orchestration**
 📅 **November 16, 2026 at 18:30**  
-👨‍🏫 **Presenter:** Lwin Ravendo  
-⏱️ **Duration:** 60 minutes  
-🎯 **Type:** Theoretical + Architecture Design
+👨‍🏫 **Presenter:** Lwin Ravendo (Frontier Tech Leader, UN Volunteer)  
+⏱️ **Duration:** 102 minutes  
+🎯 **Type:** Theoretical Framework + Research Paper Analysis
 
-**Topics:** (Transcript not yet summarized)
-- Why multiple agents over single agent
-- Specialization and context isolation
-- Agent coordination patterns
-- Designing multi-agent workflows
-- Example: Research + Writing + Fact-Checking agents
+**Key Topics:**
+- Why multi-agent orchestration is urgent (80% code is AI-generated, 27.4% has vulnerabilities)
+- Paradigm shift: Software 1.0 → Vibe 2.0 → AI-First SDLC
+- The Four D Framework: Delegation, Description, Discernment, Diligence
+- AI-First Software Development Lifecycle (Inception, Construction, Operations)
+- Building blocks and architectural foundations
+- ChatDev research paper: Chat chains + communicative de-hallucination
+- MetaGPT research paper: SOPs + specialized agent roles
+- Role transformation: From test execution → system governance
+- Governance principles and accountability
 
-🔗 *Summary to be added*
+**Learning Outcome:** Understand why multi-agent systems are essential, how to coordinate them, and your evolving role in system governance
 
----
+📄 **[Read Full Summary](Session-VIII_Multi-Agents-Orchestration.md)**
+
+* * *
 
 ### **Session IX: Practical Multi-Agents Orchestration**
 📅 **November 17, 2026 at 18:30**  
@@ -192,7 +200,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 🔗 *Summary to be added*
 
----
+* * *
 
 ### **Session X: Capstone Project - Building Autonomous Micro Products**
 📅 **TBD (Week 4-5)**  
@@ -209,7 +217,7 @@ This index provides quick navigation to all session summaries, including date, t
 
 🔗 *Summary to be added*
 
----
+* * *
 
 ## 📊 Program Structure at a Glance
 
@@ -217,16 +225,16 @@ This index provides quick navigation to all session summaries, including date, t
 |---------|-------|------|--------|
 | I | Introduction to Vibe Coding | Theory | ✅ Complete |
 | II | Vibe Coding Practical | Hands-On | ✅ Complete |
-| III | AI Workspace Architecture | Theory | 🔄 In Progress |
-| IV | AI Workspace Configuration | Hands-On | 🔄 In Progress |
+| III | AI Workspace Architecture | Theory | 🔄 Pending |
+| IV | AI Workspace Configuration | Hands-On | 🔄 Pending |
 | V | Development Paradigms | Theory + Lab | ✅ Complete |
 | VI | Agents Mechanisms | Theory | ✅ Complete |
 | VII | Agents Practical Lab | Hands-On | ✅ Complete |
-| VIII | Multi-Agents Orchestration | Theory | 🔄 In Progress |
-| IX | Multi-Agents Practical | Hands-On | 🔄 In Progress |
+| VIII | Multi-Agents Orchestration | Theory | ✅ Complete |
+| IX | Multi-Agents Practical | Hands-On | 🔄 Scheduled |
 | X | Capstone Project | Capstone | 🔄 Scheduled |
 
----
+* * *
 
 ## 🎯 Learning Progression
 
@@ -252,7 +260,7 @@ Skill Development Arc
 └─ Level 6: Deploy production systems (Capstone)
 ```
 
----
+* * *
 
 ## 🔑 Key Concepts Across Sessions
 
@@ -289,7 +297,7 @@ Skill Development Arc
 - **Synk:** Dependency vulnerability scanning
 - **Semgrep:** Language-agnostic security patterns
 
----
+* * *
 
 ## 📖 How to Use This Index
 
@@ -306,7 +314,7 @@ Skill Development Arc
 **For Specific Topics:**
 - Use the cross-session index below to find topics across sessions
 
----
+* * *
 
 ## 🔗 Cross-Session Topic Index
 
@@ -340,7 +348,7 @@ Skill Development Arc
 - Session II: Specific tools (Bandit, TruffleHog, Synk)
 - Session VII: Tool selection in practice
 
----
+* * *
 
 ## 🎓 Learning Outcomes by Session
 
@@ -380,7 +388,7 @@ Skill Development Arc
 - [ ] Can apply all learned concepts together
 - [ ] Ready to build AI-driven applications professionally
 
----
+* * *
 
 ## 📞 Support & Resources
 
@@ -400,7 +408,7 @@ Skill Development Arc
 - Alan Al Jammoor (Sessions VI-VII): [LinkedIn profile in WhatsApp]
 - Lwin Ravendo (Sessions VIII-IX): [LinkedIn profile in WhatsApp]
 
----
+* * *
 
 ## 🎯 Recommended Study Plan
 
@@ -428,7 +436,7 @@ Skill Development Arc
 - [ ] Security audit
 - [ ] Prepare for showcase (Session X)
 
----
+* * *
 
 ## ✅ Completion Checklist
 
@@ -445,7 +453,7 @@ Track your progress through the program:
 - [ ] Completed capstone project
 - [ ] Ready for professional application
 
----
+* * *
 
 ## 📝 Notes
 
@@ -454,13 +462,13 @@ Track your progress through the program:
 - All materials are free and will be available indefinitely via GitHub repository.
 - Certificate of completion available upon finishing all sessions + capstone project.
 
----
+* * *
 
 **Last Updated:** November 2026  
 **Maintained By:** UNDP Agentic AI Program Team  
 **Next Update:** After each new session completion
 
----
+* * *
 
 **🚀 Ready to Transform Your Development Skills?**
 

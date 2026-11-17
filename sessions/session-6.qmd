@@ -25,6 +25,13 @@ title: "Session VI: Agents Mechanisms"
 
 > An agent is not better than an LLM. It is more complex and more expensive. Use an agent only when the task needs adaptive decisions.
 
+## Slides 
+
+You can check the slides and all the materials here:
+
+[Deck - How agents works](materials/deck-Alan-Al-Jammoor.pdf){.btn .btn-primary .btn-lg target="_blank"}
+[]()
+
 ## Quiz
 
 [Quiz: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true){.btn .btn-primary .btn-lg target="_blank"}

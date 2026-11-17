@@ -4,13 +4,13 @@
 **👨‍🏫 Presenter:** Phyo Ko Ko (Senior Cybersecurity Analyst, Thailand)  
 **🎯 Session Type:** Hands-On Lab + Security Demonstration
 
----
+* * *
 
 ## Overview
 
 This practical follow-up session demonstrates real-world application of Vibe Coding concepts. Participants see live demonstrations of security scanning tools, then engage in hands-on building of an actual application using Claude Code while implementing security best practices.
 
----
+* * *
 
 ## Key Learning Outcomes
 
@@ -20,7 +20,7 @@ This practical follow-up session demonstrates real-world application of Vibe Cod
 4. **Multi-Agent Security Architecture** - Implement automated security checks in development pipeline
 5. **GitHub & Deployment** - Deploy applications securely to production
 
----
+* * *
 
 ## Main Topics Covered
 
@@ -228,7 +228,7 @@ Developer  →  Claude AI (Build)  →  Security Scanners  →  Second AI Agent 
 - **File Organization:** Keep security rules, prompts, and code in separate `.md` files for multi-agent setups
 - **Permission Control:** Always use "Allow Once" rather than "Allow Always" for AI-performed actions
 
----
+* * *
 
 ## Real Application Example: Job Search App
 
@@ -246,7 +246,7 @@ Developer  →  Claude AI (Build)  →  Security Scanners  →  Second AI Agent 
 
 **Resolution:** AI automatically fixed each issue when prompted with security tool reports
 
----
+* * *
 
 ## Program Evolution
 
@@ -255,7 +255,7 @@ Developer  →  Claude AI (Build)  →  Security Scanners  →  Second AI Agent 
 - **Speed is democratized** - but quality and security become your competitive advantage
 - **Your role evolves** from "code writer" to "code reviewer and system architect"
 
----
+* * *
 
 ## Action Items for Participants
 
@@ -266,13 +266,13 @@ Developer  →  Claude AI (Build)  →  Security Scanners  →  Second AI Agent 
 5. **Deploy:** Push to GitHub and deploy using Render/Netlify
 6. **Document:** Create markdown specs for your own projects
 
----
+* * *
 
 ## Key Takeaway
 
 > **Vibe Coding is not about replacing developers—it's about enhancing them. Your job is to become the quality gate, the security auditor, and the architect. AI handles the mechanical coding; you handle judgment, oversight, and verification.**
 
----
+* * *
 
 ## Resources
 
@@ -283,6 +283,6 @@ Developer  →  Claude AI (Build)  →  Security Scanners  →  Second AI Agent 
 - **Netlify:** https://netlify.com/
 - **Claude Code Documentation:** Available via trainer
 
----
+* * *
 
 **📞 Follow-up:** Share your project attempts; trainer and cohort available for support via WhatsApp/Signal

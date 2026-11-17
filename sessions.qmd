@@ -1,9 +1,11 @@
 ---
 title: "Session summaries"
-subtitle: "What each session covered"
+subtitle: "Summary of each session"
 ---
 
-Choose a session to read its short summary. Each page ends with a link to the recording of that session.
+Hello! Here you can find a brief summary of what each session has covered so far. If you are lost and does not know where to start, we reccomend to go session by session in order to grasp the core concepts of Vibe Coding, how Agents works and how to manage multi-agents. 
+
+Choose a session to read its short summary. 
 
 **All times are GMT+3.**
 
@@ -19,9 +21,6 @@ November 3, 2026 at 18:30 GMT+3 · Phyo Ko Ko
 
 November 4, 2026 at 18:30 GMT+3 · Ruiya Zhou · *Summary coming soon*
 
-### Session IV: Practical Session, Architecting and Configuring the AI Workspace
-
-November 6, 2026 at 18:30 GMT+3 · Ruiya Zhou · *Session Canceled
 
 ### [Session V: Development Paradigms](sessions/session-5.qmd)
 
@@ -35,9 +34,9 @@ November 14, 2026 at 17:00 GMT+3 · Alan Al Jammoor
 
 November 15, 2026 at 17:00 GMT+3 · Alan Al Jammoor
 
-### Session VIII: Multi-Agents Orchestration
+### [Session VIII: Multi-Agents Orchestration](sessions/session-8.qmd)
 
-November 16, 2026 at 18:30 GMT+3 · Lwin Ravendo · *Summary coming soon*
+November 16, 2026 at 18:30 GMT+3 · Lwin Ravendo
 
 ### Session IX: Practical Multi-Agents Orchestration
 

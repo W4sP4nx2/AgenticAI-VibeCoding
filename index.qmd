@@ -78,6 +78,14 @@ These and more answers in our class. You can watch the Theorical Session in our 
 
 Forms given in Class: [Session 1 feedback: How AI agents think and act](https://docs.google.com/forms/d/11OjxCXNignMPoYWbO-q4OwjWOzmvJbCAkEXRaffv5w8/viewform?ts=6af86790&edit_requested=true)
 
+[First Session Slides](materials/deck-Alan-Al-Jammoor.pdf)
+
+[Reading list](materials/reading-list-Alan-Al-Jammoor.html)
+
+[How Agent Works](materials/agent-step-by-step.html)
+
+[How an AI Agent Works](materials/agent-step-by-step-Alan-Al-Jamoor.html)
+
 
 ### Session VIII and IX: Managing Multi-Agent Teams
 
@@ -89,18 +97,16 @@ Supervise an agent team through typed handoffs, scoped tools, independent checks
 
 [Slides](materials/s5-slides.html){.btn .btn-primary}
 [Flashcards Study](materials/s5-flashcards.html){.btn .btn-primary}
+[Reading List]()
 
-### Class 6: The "Safety Net": Automated Validation & Evals
 
-**Presenter:** Almegdad Elfaki, **Status:** Confirmed **Roadmap session:** S6
+### Class X and XI: Debugging in the Agentic Age
 
-Description coming soon. The presenter's GitHub link will be added here once the class is confirmed.
-
-### Class 7: Debugging in the Agentic Age
-
-**Presenter:** Shakila Alam, **Status:** Confirmed **Roadmap session:** S6
+**Presenter:** Shakila Alam, 
 
 Description coming soon. The presenter's GitHub link will be added here once the class is confirmed.
+
+[Github Repository](https://github.com/shakila-alam-aishy/Debugging-in-the-Agentic-Age_UNDP){.btn .btn-primary}
 
 ### Class 8: Context Engineering & Large Codebases
 

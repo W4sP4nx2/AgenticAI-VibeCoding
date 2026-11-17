@@ -2,7 +2,7 @@
 title: "Session VII: Practical Lab, Agents Mechanisms"
 ---
 
-[← All session summaries](../sessions.qmd) · [← Previous: Session VI](session-6.qmd)
+[← All session summaries](../sessions.qmd) · [← Previous: Session VI](session-6.qmd) · [Next: Session VIII →](session-8.qmd)
 
 **Date:** November 15, 2026 at 17:00 GMT+3 · **Presenter:** Alan Al Jammoor · **Type:** Live demo and exercises (about 1 hour)
 

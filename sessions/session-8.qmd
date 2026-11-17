@@ -1,0 +1,33 @@
+---
+title: "Session VIII: Multi-Agents Orchestration"
+---
+
+[← All session summaries](../sessions.qmd) · [← Previous: Session VII](session-7.qmd)
+
+**Date:** November 16, 2026 at 18:30 GMT+3 · **Presenter:** Lwin Ravendo · **Type:** Theory and research paper analysis (about 1 hour 40 minutes with breaks)
+
+## What we covered
+
+- **Why now:** The presenter cited figures for 2025: about 80% of the code companies ship is AI-generated, and about 27% of AI-generated code contains security vulnerabilities.
+- **From Software 1.0 to natural language:** Coding moved from hand-written programs, to trained models, to describing what you want in plain English.
+- **AI-first development:** Agents can take part in each stage of the lifecycle, from requirements to operations. People stay in charge of direction and governance.
+- **The Four D Framework:**
+    1. **Delegation:** Decide what to hand to AI, and how much control it gets (automation, augmentation or agency).
+    2. **Description:** Describe the goal and the constraints precisely.
+    3. **Discernment:** Check the output for accuracy, alignment, sound reasoning and whether it solves your real problem.
+    4. **Diligence:** Use AI ethically and transparently, and take responsibility for the results.
+- **Building blocks:** Models, then agents (a model with tools, memory and a loop), then teams (agents that send messages and share artifacts).
+- **A coordinated team:** A coordinator hands work to specialist agents, which run in parallel. A validator checks the results, a writer produces the output, and a human reviews and decides.
+- **ChatDev:** A team of agents with different roles builds software through a chat chain. Agents ask clarifying questions before answering, which reduces hallucinations.
+- **MetaGPT:** Agents follow human-style procedures and play familiar roles: product manager, architect, engineer, QA engineer and project manager.
+- **Limits today:** Agents handle simple logic and prototypes well, but production systems need more. They can use unsafe defaults such as static credentials, and they use more tokens than a single agent. Use multiple agents when the task needs several kinds of expertise or quality checks.
+- **Your role:** The presenter's analogy is a head chef, who designs the kitchen, coordinates the staff and owns every dish.
+- **Homework:** Read the ChatDev and MetaGPT papers, and think about a task that could use a team of agents.
+
+## Key takeaway
+
+> Vibe coding alone is not engineering. Vibe coding with supervision is. Multi-agent orchestration is how we build safely and sustainably, and you are the architect, quality gate and governance authority.
+
+::: {.recording-cta}
+[You lost this session? You can watch the records here: Link to recording folder](https://drive.google.com/drive/folders/1V61sL0zoUn0w0_hpfqACW8BueSjfsFl_?usp=sharing){.btn .btn-primary .btn-lg target="_blank"}
+:::

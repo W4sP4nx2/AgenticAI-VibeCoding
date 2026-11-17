@@ -4,13 +4,13 @@
 **👨‍🏫 Presenter:** Alan Al Jammoor  
 **🎯 Session Type:** Live Demonstration + Interactive Problem Solving (1 hour 4 minutes)
 
----
+* * *
 
 ## Overview
 
 This practical session brings yesterday's theoretical foundations to life. Participants watch real applications built by agents, observe the loop in action with actual tools, and participate in interactive exercises. The focus is on seeing tools execute, understanding cost implications, and recognizing when agents are truly valuable. Alan demonstrates multiple real-world examples from simple to complex.
 
----
+* * *
 
 ## Key Learning Outcomes
 
@@ -20,7 +20,7 @@ This practical session brings yesterday's theoretical foundations to life. Parti
 4. **Manage Risk** - Know where to put human oversight ("Keep a human in charge")
 5. **Apply to Real Work** - Leave with templates you can use immediately
 
----
+* * *
 
 ## Main Topics Covered
 
@@ -114,7 +114,7 @@ Notice the prompt also includes **tool permissions**:
 
 **Key Insight:** Your prompt implicitly tells agents which tools to use and how to verify their work.
 
----
+* * *
 
 ### 2. **Example 1: Data Cleaning (Simple Agent Loop)**
 
@@ -168,7 +168,7 @@ Output: Clean sales file, ready for analysis
 
 **Key Learning:** Agent chose Python because it was the right tool for bulk data processing
 
----
+* * *
 
 ### 3. **Example 2: Create Presentation (Complex Multi-Step)**
 
@@ -239,7 +239,7 @@ Complete presentation deck with verified accuracy
 - Verify: "Does this look right?" (seeing the rendered slides)
 - Approve: "Yes, deploy this"
 
----
+* * *
 
 ### 4. **Example 3: Create Video (AI Creativity + Tools)**
 
@@ -296,7 +296,7 @@ Result: 30-second MP4 file ready for social media
 - Many attempts if requirements unclear
 - Clear requirements = fewer iterations = lower cost
 
----
+* * *
 
 ### 5. **Example 4: Meal Planner Web App (End-to-End)**
 
@@ -376,7 +376,7 @@ User can:
 
 **Key Insight:** No backend, no database, no deployment—just a single HTML file. Perfect for MVP.
 
----
+* * *
 
 ### 6. **Interactive Exercise: What Tools Will the Agent Use?**
 
@@ -400,7 +400,7 @@ Alan engages audience by asking them to predict:
 
 **Key Teaching:** Agent considers which tool to use in what order. Humans can guide this.
 
----
+* * *
 
 ### 7. **The Human-in-the-Loop Principle: "Keep a Human in Charge"**
 
@@ -443,7 +443,7 @@ Reason: Each situation might be different
 
 **Key Rule:** "Allow Once" > "Allow Always" (maintains human judgment)
 
----
+* * *
 
 ### 8. **Cost Management in Action**
 
@@ -464,7 +464,7 @@ Reason: Each situation might be different
 
 **BUT:** Only if requirements are clear, tools are chosen wisely, and human oversight is maintained
 
----
+* * *
 
 ### 9. **Practical Workflow for Using Agents**
 
@@ -514,7 +514,7 @@ Watch as agent:
 - Ready to deploy? ✓
 ```
 
----
+* * *
 
 ### 10. **Common Mistakes Demonstrated**
 
@@ -542,7 +542,7 @@ Watch as agent:
 **Result:** Expensive, slow, unnecessary complexity
 **Solution:** Use simplest tool that works
 
----
+* * *
 
 ### 11. **Deciding: When IS Agent Right Choice?**
 
@@ -571,7 +571,7 @@ Task Type?
    → Use simpler level, upgrade if needed
 ```
 
----
+* * *
 
 ### 12. **The Three Most Important Lessons**
 
@@ -584,7 +584,7 @@ Task Type?
 #### **Lesson 3: Understand Your Tools**
 > "An agent is only as good as the tools it has access to. Know what your AI can do (and cannot do). Design your workflows around those capabilities."
 
----
+* * *
 
 ## Practical Session Output
 
@@ -596,7 +596,7 @@ Task Type?
 
 **All Verifiable:** Participants saw rendered outputs, verified correctness
 
----
+* * *
 
 ## Homework: Apply Today's Learning
 
@@ -610,7 +610,7 @@ Task Type?
 6. **Verify thoroughly** (security scans, manual checks, testing)
 7. **Deploy carefully** (staging first, then production)
 
----
+* * *
 
 ## Questions Addressed (From Participants)
 
@@ -647,13 +647,13 @@ A: Yes, but different:
 - **Catch:** Requires human judgment to verify
 - **Trade:** You become the architect/reviewer, not code writer
 
----
+* * *
 
 ## Key Takeaway
 
 > **"The age of human programmers is not ending. It's evolving. You're becoming architects, reviewers, and decision-makers. AI handles the mechanical coding. You handle judgment, oversight, verification, and strategic decisions."**
 
----
+* * *
 
 ## Next Steps
 
@@ -669,7 +669,7 @@ A: Yes, but different:
 - MCP (connecting AI to external systems)
 - Deployment & operations at scale
 
----
+* * *
 
 ## Resources
 
@@ -678,12 +678,12 @@ A: Yes, but different:
 - **Example Projects:** Available in GitHub repository
 - **Template Prompts:** Share in course channel
 
----
+* * *
 
 **📞 Support:** Questions or stuck? Reach out to trainer or cohort.
 
 **🎯 Goal for Next Week:** Build 1 complete application using agents, verify it thoroughly, deploy it.
 
----
+* * *
 
 **Session Complete!** Next session focuses on putting multiple agents together as a coordinated team.

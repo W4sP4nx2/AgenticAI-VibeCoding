@@ -13,3 +13,9 @@ scratch/
 
 /.quarto/
 **/*.quarto_ipynb
+
+transcripts/
+
+transcripts/*
+
+*.docx

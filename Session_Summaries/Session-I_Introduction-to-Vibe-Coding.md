@@ -4,13 +4,13 @@
 **👨‍🏫 Presenter:** Phyo Ko Ko (Senior Cybersecurity Analyst, Thailand)  
 **🎯 Session Type:** Introduction & Theoretical Foundation
 
----
+* * *
 
 ## Overview
 
 This is the opening session of the Agentic AI & Vibe Coding program delivered by UNDP in partnership with UN Volunteers. The session introduces fundamental concepts of Vibe Coding and sets the stage for the comprehensive 10-session program covering AI-driven development, security practices, and agentic systems.
 
----
+* * *
 
 ## Key Learning Outcomes
 
@@ -20,7 +20,7 @@ This is the opening session of the Agentic AI & Vibe Coding program delivered by
 4. **Token Cost Optimization** - Practical tips for cost-effective AI usage
 5. **Overview of the Complete Program** - Understanding the 10-session roadmap
 
----
+* * *
 
 ## Main Topics Covered
 
@@ -116,7 +116,7 @@ Each topic receives expert-led instruction:
 - Your job shifts to **deciding what good code looks like and verifying it**
 - Embrace the responsibility of quality assurance over code creation
 
----
+* * *
 
 ## Important Practical Notes
 
@@ -126,13 +126,13 @@ Each topic receives expert-led instruction:
 - **Community:** WhatsApp group created for discussion and knowledge sharing
 - **Flexibility:** Some dates may be adjusted based on volunteer availability
 
----
+* * *
 
 ## Key Takeaway
 
 Vibe Coding is not about blindly trusting AI to write code—it's about **leveraging AI efficiency while maintaining human oversight and responsibility for security, quality, and professional standards**. The goal is to democratize software development for talented people in developing countries who previously lacked access to expensive developers and extended timelines.
 
----
+* * *
 
 **🔗 Resources:** All presentations, videos, slides, and GitHub repository will be made available to participants within 24-48 hours of each session.
 

@@ -1,16 +1,34 @@
 # Agents Mechanisms - Understanding Agentic AI
 
 **📅 Date & Time:** November 14, 2026 at 17:00 (5:00 PM)  
-**👨‍🏫 Presenter:** Alan Al Jammoor (PMP Certified, 10+ years AI Implementation, MENA Region)  
-**🎯 Session Type:** Theoretical Foundation + Quiz-Based Learning
+**👨‍🏫 Presenter:** Alan Al Jammoor 
+**🎯 Session Type:** Live Demonstration + Interactive Problem Solving 
 
----
+* * *
 
 ## Overview
 
 This foundational session explores the core mechanics of AI agents: how they differ from traditional LLMs, the anatomy of an agentic loop, the concept of tools, and planning strategies. Alan emphasizes that understanding these mechanisms is critical before attempting to build with agents. This is a deep conceptual session laying groundwork for the practical session tomorrow.
 
----
+* * *
+## Slides and Presentation
+
+The first session, Alan presented a well-informative manner of how Agents works. All the slides presented in class can be access at:
+
+[Deck](../materials/deck-Alan-Al-Jammoor.pdf){.btn .btn-primary target="_blank"}
+
+
+[How Agent Works](../materials/agent-step-by-step.html){.btn .btn-primary target="_blank"}
+
+[Agents at Work](../materials/agent-at-work-Alan-Al-Jammoor.html){.btn .btn-primary target="_blank"}
+
+
+## Reading List
+
+Alan gave us a very informative reading list! Keep your reading list full and slowly digest these contents.
+
+[Reading List](../materials/reading-list-Alan-Al-Jammoor.html){.btn .btn-primary target="_blank"}
+
 
 ## Key Learning Outcomes
 
@@ -20,7 +38,7 @@ This foundational session explores the core mechanics of AI agents: how they dif
 4. **Grasp Planning Patterns** - Learn how agents break down complex problems
 5. **Apply Cost-Benefit Analysis** - Know when agents are overkill
 
----
+* * *
 
 ## Main Topics Covered
 
@@ -30,7 +48,7 @@ Alan introduces a framework for understanding different AI capabilities:
 
 #### **Level 1: Naked LLM** (2022-2023)
 - **Example:** ChatGPT interface on web
-- **Capability:** Text input → Text output
+- **Capability:** Text input for Text output
 - **Limitation:** No external tools, often gives outdated information
 - **Use Case:** Creative writing, brainstorming, explanations
 - **Cost:** Cheapest
@@ -40,9 +58,10 @@ Alan introduces a framework for understanding different AI capabilities:
 **Example in Work:**
 - "Polish this email draft" → LLM rewrites it → Done
 
----
+* * *
 
 #### **Level 2: Augmented LLM** (2023-2024)
+
 - **Definition:** LLM with access to 1-3 tools (search, files, memory)
 - **Capability:** Can access external information or perform limited actions
 - **Limitation:** Still requires human orchestration of steps
@@ -53,7 +72,7 @@ Alan introduces a framework for understanding different AI capabilities:
 - LLM: "I don't know, let me check the bus schedule [tool] → 8:45 PM"
 - You still coordinate what comes next
 
----
+* * *
 
 #### **Level 3: Workflow** (Multi-step, pre-planned)
 - **Definition:** Multiple AI steps connected in sequence; steps are pre-defined
@@ -66,7 +85,7 @@ Alan introduces a framework for understanding different AI capabilities:
 - Monday morning → AI runs same process → Report auto-generated
 - BUT: If feedback format changes, process breaks
 
----
+* * *
 
 #### **Level 4: Agent** (Adaptive decision-making loop)
 - **Definition:** LLM + Tools + Memory + Loop that decides its own next steps
@@ -79,7 +98,7 @@ Alan introduces a framework for understanding different AI capabilities:
 **Example in Work:**
 - "Book a room" → AI plans steps → Checks availability → Finds usual room full → Automatically books alternative → Success
 
----
+* * *
 
 #### **Level 5: Multi-Agent** (Team of specialized agents)
 - **Definition:** Multiple agents with different roles working toward same goal
@@ -96,7 +115,7 @@ Alan introduces a framework for understanding different AI capabilities:
 - Writer Agent: Formats into professional document
 - Fact-Checker Agent: Verifies 3 random statistics against original sources
 
----
+* * *
 
 ### 2. **The Critical Decision: Which Level Do You Need?**
 
@@ -119,7 +138,7 @@ Many people jump to agents when simpler solutions suffice:
 
 **Rule:** Use simplest tool that solves the problem. Beyond that = diminishing returns.
 
----
+* * *
 
 ### 3. **What Makes an Agent Different: The Agentic Loop**
 
@@ -145,7 +164,7 @@ Many people jump to agents when simpler solutions suffice:
 - **Error Correction:** "Result doesn't look right → try different approach → loop again"
 - **Goal Achievement:** Keeps looping until success or max attempts
 
----
+* * *
 
 ### 4. **The Components of an Agent System**
 
@@ -189,7 +208,7 @@ An agent consists of multiple interacting parts:
 - Adjust plan based on result
 - Repeat
 
----
+* * *
 
 ### 5. **Tools: How Agents Take Action**
 
@@ -222,7 +241,7 @@ An agent consists of multiple interacting parts:
 | Browser | Auto-browse web for info | Autonomous research |
 | Email | Send notification | Autonomous communication |
 
----
+* * *
 
 ### 6. **Practical Loop Example: School Trip Bus Calculation**
 
@@ -281,7 +300,7 @@ LLM: "Need 17 buses. 855 students. 17 buses × 52 seats = 884 seats total."
 
 **Key Insight:** Each tool use loops back to LLM for interpretation, not just mechanical computation.
 
----
+* * *
 
 ### 7. **Memory in Agents**
 
@@ -324,7 +343,7 @@ LLM: "Need 17 buses. 855 students. 17 buses × 52 seats = 884 seats total."
 - [ ] Scale database to multi-region
 ```
 
----
+* * *
 
 ### 8. **Four Planning Patterns Agents Use**
 
@@ -350,7 +369,7 @@ Answer: 25th"
 
 **When Used:** Logical reasoning, math, multi-step decision
 
----
+* * *
 
 #### **Pattern 2: React (Reason → Act)**
 
@@ -369,7 +388,7 @@ Answer: 25th"
 
 **Key:** Intervene when outcome has human implications
 
----
+* * *
 
 #### **Pattern 3: Plan-Execute (To-Do List)**
 
@@ -392,7 +411,7 @@ To-Do:
 
 **Key:** Ensures nothing is forgotten; accountability trail
 
----
+* * *
 
 #### **Pattern 4: Check & Fix (Iterative Refinement)**
 
@@ -411,7 +430,7 @@ To-Do:
 
 **Key:** Catches errors before output; quality gate
 
----
+* * *
 
 ### 9. **Who Decides Which Pattern?**
 
@@ -431,7 +450,7 @@ If you want specific pattern, tell AI:
 - "Think step by step" → Chain of Thought
 - "Look up the answer before deciding" → React
 
----
+* * *
 
 ### 10. **Tools in Claude Code (Real Example)**
 
@@ -467,7 +486,7 @@ Claude Code:
 9. Outputs: Clean data + chart
 ```
 
----
+* * *
 
 ### 11. **Interactive Quiz: Which Level Do You Need?**
 
@@ -498,7 +517,7 @@ Alan engages audience with real-world scenarios:
 - ✅ **Multi-Agent** (need separated specialist roles)
 - ❌ Not single Agent (bias if same agent researches AND verifies)
 
----
+* * *
 
 ### 12. **Preventing Hallucination**
 
@@ -521,7 +540,7 @@ Alan engages audience with real-world scenarios:
 
 **Key Rule:** Never trust AI for exact information without verification.
 
----
+* * *
 
 ### 13. **Cost-Benefit Analysis**
 
@@ -540,7 +559,7 @@ Conclusion: Use Agent = Company bankrupt in days
 
 **Rule:** Avoid agents for high-volume, deterministic tasks.
 
----
+* * *
 
 ## Key Concepts Summary
 
@@ -566,7 +585,7 @@ Enable exact computation, real-time data, autonomous action
 ### **Memory**
 Short-term (context window) + Long-term (project files)
 
----
+* * *
 
 ## Action Items
 
@@ -576,7 +595,7 @@ Short-term (context window) + Long-term (project files)
 4. **Cost Justify Agents:** Confirm benefits outweigh tokens
 5. **Test Patterns:** See different approaches in action tomorrow
 
----
+* * *
 
 ## Homework (Before Tomorrow's Practical Session)
 
@@ -585,13 +604,13 @@ Short-term (context window) + Long-term (project files)
 - Understand what tools it would need
 - Consider what memories/context it needs
 
----
+* * *
 
 ## Key Takeaway
 
 > **"An agent is not better than an LLM. It's just more complex and expensive. Use agents only when the task truly requires adaptive decision-making. Otherwise, you're wasting tokens and time."**
 
----
+* * *
 
 ## Connection to Tomorrow
 
@@ -601,7 +620,7 @@ Tomorrow's practical session (Session VII) will show these mechanisms in action:
 - Understanding cost implications
 - Creating practical prompts that leverage these patterns
 
----
+* * *
 
 **📞 Questions:** Reach out to trainer or cohort; clarify concepts before tomorrow's practical session.
 

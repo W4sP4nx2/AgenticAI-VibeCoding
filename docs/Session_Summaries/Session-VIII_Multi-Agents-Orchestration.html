@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>session-viii_multi-agents-orchestration – Agentic AI Lessons</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a6a6f33836b8e69c33045518c714b347.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Agentic AI Lessons</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../sessions.html"> 
+<span class="menu-text">Session summaries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../roadmap.html"> 
+<span class="menu-text">Roadmap</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../free-providers.html"> 
+<span class="menu-text">Free providers</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#multi-agents-orchestration---understanding-collaborative-ai-systems" id="toc-multi-agents-orchestration---understanding-collaborative-ai-systems" class="nav-link active" data-scroll-target="#multi-agents-orchestration---understanding-collaborative-ai-systems">Multi-Agents Orchestration - Understanding Collaborative AI Systems</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#key-learning-outcomes" id="toc-key-learning-outcomes" class="nav-link" data-scroll-target="#key-learning-outcomes">Key Learning Outcomes</a></li>
+  <li><a href="#main-topics-covered" id="toc-main-topics-covered" class="nav-link" data-scroll-target="#main-topics-covered">Main Topics Covered</a></li>
+  <li><a href="#key-concepts-summary" id="toc-key-concepts-summary" class="nav-link" data-scroll-target="#key-concepts-summary">Key Concepts Summary</a></li>
+  <li><a href="#resources-for-further-learning" id="toc-resources-for-further-learning" class="nav-link" data-scroll-target="#resources-for-further-learning">Resources for Further Learning</a></li>
+  <li><a href="#homework-prepare-for-practical-session" id="toc-homework-prepare-for-practical-session" class="nav-link" data-scroll-target="#homework-prepare-for-practical-session">Homework: Prepare for Practical Session</a></li>
+  <li><a href="#action-items-for-participants" id="toc-action-items-for-participants" class="nav-link" data-scroll-target="#action-items-for-participants">Action Items for Participants</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">Key Takeaway</a></li>
+  <li><a href="#session-end-note" id="toc-session-end-note" class="nav-link" data-scroll-target="#session-end-note">Session End Note</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="multi-agents-orchestration---understanding-collaborative-ai-systems" class="level1">
+<h1>Multi-Agents Orchestration - Understanding Collaborative AI Systems</h1>
+<p><strong>📅 Date &amp; Time:</strong> November 16, 2026 at 18:30 (6:30 PM)<br>
+<strong>👨‍🏫 Presenter:</strong> Lwin Ravendo (Frontier Tech Leader, UN Volunteer, Agentic AI &amp; Vibe Coding Trainer)<br>
+<strong>🎯 Session Type:</strong> Theoretical Framework + Research Paper Analysis<br>
+<strong>⏱️ Duration:</strong> 1 hour 42 minutes (with breaks)</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This session fundamentally shifts perspective from individual agents to coordinated <strong>multi-agent systems</strong>. Lwin introduces why multi-agent orchestration is not a future concept but an urgent present-day necessity. The session covers the Four D Framework (Delegation, Description, Discernment, Diligence), architectural foundations, and analysis of two seminal research papers (ChatDev and MetaGPT) that demonstrate multi-agent collaboration in action.</p>
+<hr>
+</section>
+<section id="key-learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="key-learning-outcomes">Key Learning Outcomes</h2>
+<ol type="1">
+<li><strong>Understand Multi-Agent Necessity</strong> - Know why single agents are insufficient for complex tasks</li>
+<li><strong>Master the Four D Framework</strong> - Apply the framework to design multi-agent systems</li>
+<li><strong>Grasp AI-First SDLC</strong> - Understand how software development lifecycle transforms with agents</li>
+<li><strong>Analyze Real Research</strong> - Learn from ChatDev and MetaGPT approaches</li>
+<li><strong>Design Orchestration Patterns</strong> - Know how to coordinate multiple specialized agents</li>
+<li><strong>Recognize Governance Shift</strong> - Understand your new role in human-in-the-loop orchestration</li>
+</ol>
+<hr>
+</section>
+<section id="main-topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="main-topics-covered">Main Topics Covered</h2>
+<section id="why-this-training-matters-the-urgency-of-now" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-training-matters-the-urgency-of-now">1. <strong>Why This Training Matters: The Urgency of Now</strong></h3>
+<section id="three-critical-reasons" class="level4">
+<h4 class="anchored" data-anchor-id="three-critical-reasons"><strong>Three Critical Reasons</strong></h4>
+<p><strong>Reason 1: The Shift is Already Here</strong> - As of December 2025: <strong>80% of code</strong> that companies ship is AI-generated - This is not theoretical; this is production reality today - The window to learn how to do this safely is NOW</p>
+<p><strong>Reason 2: Security Vulnerabilities in AI Code</strong> - As of 2025: <strong>27.4% of AI-generated code contains security vulnerabilities</strong> - Example vulnerabilities: - Hardcoded credentials and API keys - SQL injection vulnerabilities - Weak cryptography implementations - Missing authentication/authorization - This is not a future risk; it’s a current incident rate</p>
+<p><strong>Reason 3: The Competitive Imperative</strong> - Companies shipping flawed AI code will compound problems - This training equips you to use AI safely and effectively - <strong>Without this knowledge:</strong> You’ll ship bugs and vulnerabilities - <strong>With this knowledge:</strong> You’ll build robust, secure systems</p>
+<p><strong>Key Insight:</strong> Every developer must learn this NOW, regardless of technical background</p>
+<hr>
+</section>
+</section>
+<section id="the-paradigm-shift-from-software-1.0-to-vibe-2.0" class="level3">
+<h3 class="anchored" data-anchor-id="the-paradigm-shift-from-software-1.0-to-vibe-2.0">2. <strong>The Paradigm Shift: From Software 1.0 to Vibe 2.0</strong></h3>
+<section id="software-1.0-1950s-2010s-traditional-coding" class="level4">
+<h4 class="anchored" data-anchor-id="software-1.0-1950s-2010s-traditional-coding"><strong>Software 1.0 (1950s-2010s): Traditional Coding</strong></h4>
+<ul>
+<li><strong>Who:</strong> Professional developers only (rare, expensive skill)</li>
+<li><strong>How:</strong> Write explicit instructions in programming languages (Python, Java, C++, PHP)</li>
+<li><strong>Knowledge Required:</strong> Deep programming paradigm expertise</li>
+<li><strong>Language Used:</strong> Formal programming languages</li>
+<li><strong>Access:</strong> Limited to specialists</li>
+</ul>
+</section>
+<section id="software-1.5-2010s-2023-the-ml-era" class="level4">
+<h4 class="anchored" data-anchor-id="software-1.5-2010s-2023-the-ml-era"><strong>Software 1.5 (2010s-2023): The ML Era</strong></h4>
+<ul>
+<li><strong>Who:</strong> Data scientists and ML engineers (niche expertise)</li>
+<li><strong>How:</strong> Train models on millions of examples to learn behavior and code</li>
+<li><strong>Knowledge Required:</strong> Mathematics, statistics, ML paradigms</li>
+<li><strong>Language Used:</strong> Mix of code and mathematical formulas</li>
+<li><strong>Access:</strong> Still limited; required special training</li>
+</ul>
+</section>
+<section id="software-2.0-2023-the-natural-language-era-vibe-coding" class="level4">
+<h4 class="anchored" data-anchor-id="software-2.0-2023-the-natural-language-era-vibe-coding"><strong>Software 2.0 (2023+): The Natural Language Era (Vibe Coding)</strong></h4>
+<ul>
+<li><strong>Who:</strong> Anyone who can describe what they want (democratized)</li>
+<li><strong>How:</strong> Tell AI what you want; it builds it</li>
+<li><strong>Knowledge Required:</strong> Ability to articulate requirements clearly</li>
+<li><strong>Language Used:</strong> Natural language (English, etc.)</li>
+<li><strong>Access:</strong> Universal; no coding experience required</li>
+</ul>
+<p><strong>The Fundamental Shift:</strong> &gt; “The hottest new programming language is English” — Andrej Karpathy, Founder of OpenAI</p>
+<p><strong>Key Insight from Research:</strong> - Andrej Karpathy coined this in February 2025 - Named “Coding” as World of the Year 2025 - This validates that natural language IS the new programming interface</p>
+<p><strong>New Skills That Matter:</strong> 1. <strong>Knowing what to build</strong> (requirements) 2. <strong>Knowing why</strong> (business context) 3. <strong>Knowing how to verify</strong> (quality assurance) 4. <strong>Knowing how to coordinate</strong> (multi-agent orchestration)</p>
+<hr>
+</section>
+</section>
+<section id="ai-first-sdlc-integrating-agents-at-every-stage" class="level3">
+<h3 class="anchored" data-anchor-id="ai-first-sdlc-integrating-agents-at-every-stage">3. <strong>AI-First SDLC: Integrating Agents at Every Stage</strong></h3>
+<section id="traditional-software-development-lifecycle" class="level4">
+<h4 class="anchored" data-anchor-id="traditional-software-development-lifecycle"><strong>Traditional Software Development Lifecycle</strong></h4>
+<pre><code>Requirements → Design → Development → Testing → Deployment → Operations
+                ↓         ↓              ↓           ↓             ↓
+Roles:    Business    Software      Developer    QA          SRE/Ops
+          Analyst     Architect                  Engineer    Engineer</code></pre>
+</section>
+<section id="ai-first-software-development-lifecycle-sdlc" class="level4">
+<h4 class="anchored" data-anchor-id="ai-first-software-development-lifecycle-sdlc"><strong>AI-First Software Development Lifecycle (SDLC)</strong></h4>
+<pre><code>Requirements Agent → Design Agent → Development Agent → Test Agent → Deploy Agent → Ops Agent
+       ↓                 ↓                 ↓                ↓            ↓             ↓
+Human Governance &amp; Control (Steering Wheel, Not Manual Execution)</code></pre>
+</section>
+<section id="what-changed-in-each-phase" class="level4">
+<h4 class="anchored" data-anchor-id="what-changed-in-each-phase"><strong>What Changed in Each Phase</strong></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 41%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Traditional</th>
+<th>AI-First</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Requirements</strong></td>
+<td>Business analyst writes docs</td>
+<td>Requirement agent parses requirements using NLP</td>
+</tr>
+<tr class="even">
+<td><strong>Design</strong></td>
+<td>Architects design manually</td>
+<td>Architecture agent proposes designs</td>
+</tr>
+<tr class="odd">
+<td><strong>Development</strong></td>
+<td>Developers code line-by-line</td>
+<td>Development agent writes code</td>
+</tr>
+<tr class="even">
+<td><strong>Testing</strong></td>
+<td>QA engineers test manually</td>
+<td>Test agent identifies issues</td>
+</tr>
+<tr class="odd">
+<td><strong>Deployment</strong></td>
+<td>Manual deployment processes</td>
+<td>Deployment agent handles releases</td>
+</tr>
+<tr class="even">
+<td><strong>Operations</strong></td>
+<td>Manual monitoring &amp; fixes</td>
+<td>Operations agent monitors &amp; self-heals</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-three-phases-of-ai-first-sdlc" class="level4">
+<h4 class="anchored" data-anchor-id="the-three-phases-of-ai-first-sdlc"><strong>The Three Phases of AI-First SDLC</strong></h4>
+<p><strong>Phase 1: Inception</strong> - You describe what you want in business language - AI turns it into machine-readable specifications - Team validates requirements in real-time - Output: Machine-readable specs + non-coder-friendly artifacts</p>
+<p><strong>Phase 2: Construction</strong> - You specify constraints and architecture - AI proposes architecture goals and task plans - Output: Documented test software (can be LLM-generated specs)</p>
+<p><strong>Phase 3: Operations</strong> - AI monitors production data issues continuously - AI pings you back about problems - Output: Live product that self-monitors and reports</p>
+<p><strong>Key Principle:</strong> Human in the loop provides governance, strategy, and direction—not manual execution</p>
+<hr>
+</section>
+</section>
+<section id="the-four-d-framework-essential-skills-for-ai-first-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-d-framework-essential-skills-for-ai-first-engineering">4. <strong>The Four D Framework: Essential Skills for AI-First Engineering</strong></h3>
+<p>Lwin introduces a comprehensive framework for working with AI systems. These are the <strong>four essential skills</strong> everyone needs:</p>
+<section id="d1-delegation---setting-goals-and-deciding-whenhow-to-engage" class="level4">
+<h4 class="anchored" data-anchor-id="d1-delegation---setting-goals-and-deciding-whenhow-to-engage"><strong>D1: Delegation - Setting Goals and Deciding When/How to Engage</strong></h4>
+<p><strong>Question:</strong> When and how should I engage with AI?</p>
+<p><strong>Three Engagement Modes:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>AI Behavior</th>
+<th>Use Case</th>
+<th>Control Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Automation</strong></td>
+<td>AI acts alone, no real-time collaboration</td>
+<td>Routine, well-defined tasks</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>Augmentation</strong></td>
+<td>You and AI work together in real-time</td>
+<td>Complex decisions needing human input</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>Agency</strong></td>
+<td>AI acts independently on your behalf</td>
+<td>Monitoring, ticket generation, delegation</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> - Automation: “Summarize this report” - Augmentation: “Design this system; I’ll review and refine” - Agency: “Monitor production logs and alert me to issues”</p>
+</section>
+<section id="d2-description---communicating-intent-constraints-precisely" class="level4">
+<h4 class="anchored" data-anchor-id="d2-description---communicating-intent-constraints-precisely"><strong>D2: Description - Communicating Intent &amp; Constraints Precisely</strong></h4>
+<p><strong>Question:</strong> How do I clearly tell AI what I want?</p>
+<p><strong>Anti-Pattern (Bad):</strong></p>
+<pre><code>❌ "Build a chatbot"
+❌ "Create an e-commerce platform"</code></pre>
+<p><strong>Pattern (Good):</strong></p>
+<pre><code>✅ "Build a chatbot for a handmade financial shop that:
+   - Handles order status queries
+   - Manages return policies
+   - Processes shipping inquiries
+   - Suggests financial products based on purchase history
+   
+   Technical Requirements:
+   - Uses Claude API
+   - Stores data in PostgreSQL
+   - Responds in &lt; 2 seconds
+   - Complies with PCI DSS for payments"</code></pre>
+<p><strong>Key Practice:</strong> The more precise your description, the better the AI output</p>
+</section>
+<section id="d3-discernment---accurately-assessing-quality-fitness" class="level4">
+<h4 class="anchored" data-anchor-id="d3-discernment---accurately-assessing-quality-fitness"><strong>D3: Discernment - Accurately Assessing Quality &amp; Fitness</strong></h4>
+<p><strong>Question:</strong> How do I know the AI output is correct?</p>
+<p><strong>Four Quality Checks:</strong></p>
+<ol type="1">
+<li><strong>Accuracy:</strong> Is the output correct and error-free?</li>
+<li><strong>Alignment:</strong> Did the AI follow my instructions?</li>
+<li><strong>Reasoning:</strong> Did the AI use sound logic?</li>
+<li><strong>Goal Alignment:</strong> Does this solve my actual problem?</li>
+</ol>
+<p><strong>Golden Rule:</strong> &gt; “Never publish what you haven’t personally read and verified. You are accountable.”</p>
+<p><strong>Cost of Poor Discernment:</strong> - 27.4% of AI code has vulnerabilities - Security breaches from shipped bugs - Reputational damage - Legal liability</p>
+</section>
+<section id="d4-diligence---using-ai-ethically-transparently-accountably" class="level4">
+<h4 class="anchored" data-anchor-id="d4-diligence---using-ai-ethically-transparently-accountably"><strong>D4: Diligence - Using AI Ethically, Transparently, Accountably</strong></h4>
+<p><strong>Question:</strong> Am I using AI responsibly?</p>
+<p><strong>Three Key Questions:</strong></p>
+<ol type="1">
+<li><strong>Is this AI appropriate for this context?</strong>
+<ul>
+<li>Don’t use consumer AI on sensitive/regulated data</li>
+<li>Don’t use outdated models on current tasks</li>
+<li>Validate data handling carefully</li>
+</ul></li>
+<li><strong>Am I transparent about AI’s role?</strong>
+<ul>
+<li>Disclose when AI is used in decisions</li>
+<li>Explain limitations to stakeholders</li>
+<li>Document decision-making processes</li>
+</ul></li>
+<li><strong>Am I accountable for the output?</strong>
+<ul>
+<li>You own the results, even if AI created them</li>
+<li>You must verify correctness</li>
+<li>You bear responsibility for failures</li>
+</ul></li>
+</ol>
+<p><strong>Ethical Framework:</strong> - Transparency: Disclose AI use - Accountability: Take responsibility - Appropriateness: Use right tool for context</p>
+<hr>
+</section>
+</section>
+<section id="high-level-workflow-by-michael-cassidy-principal-engineer" class="level3">
+<h3 class="anchored" data-anchor-id="high-level-workflow-by-michael-cassidy-principal-engineer">5. <strong>High-Level Workflow by Michael Cassidy (Principal Engineer)</strong></h3>
+<p>At Engineering Conference 2024, Michael Cassidy presented an essential framework:</p>
+<blockquote class="blockquote">
+<p><strong>“Vibe Coding ≠ Engineering. Vibe Coding + Supervision = Rigorous Engineering”</strong></p>
+</blockquote>
+<p><strong>Key Distinction:</strong> - Just asking AI for code = Risky - Asking AI + Human oversight = Professional engineering</p>
+<p><strong>Four Core Skills in Production Workflow:</strong></p>
+<ol type="1">
+<li><strong>Grimy Skills</strong> (Get Requirements)
+<ul>
+<li>AI interrogates you: “What do you really want?”</li>
+<li>Forces you to clarify requirements</li>
+<li>Tools: ChatGPT, Claude, Gemini (all good)</li>
+</ul></li>
+<li><strong>Write PRD</strong> (Product Requirements Document)
+<ul>
+<li>Synthesize conversation into broader requirement spec</li>
+<li>Prevents scope creep</li>
+<li>Creates accountability baseline</li>
+</ul></li>
+<li><strong>Verticals</strong> (Specialized Review)
+<ul>
+<li>Design review by design experts</li>
+<li>Code review by security experts</li>
+<li>Testing review by QA experts</li>
+<li>Different specialized agents review different aspects</li>
+</ul></li>
+<li><strong>QA &amp; Review Loop</strong>
+<ul>
+<li>Quality assurance checks</li>
+<li>Security scans</li>
+<li>Performance validation</li>
+<li>Return for fixes if needed</li>
+</ul></li>
+</ol>
+<p><strong>The Result:</strong> Code that’s both fast (AI-generated) and safe (human-verified)</p>
+<hr>
+</section>
+<section id="building-blocks-architecture-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="building-blocks-architecture-foundation">6. <strong>Building Blocks: Architecture Foundation</strong></h3>
+<p>Lwin introduces a systematic approach to building multi-agent systems by understanding their foundations:</p>
+<section id="three-level-architecture-model" class="level4">
+<h4 class="anchored" data-anchor-id="three-level-architecture-model"><strong>Three-Level Architecture Model</strong></h4>
+<pre><code>Level 1: Models
+         └─ Embeddings, Attention, Decoder Layers
+
+Level 2: Agents  
+         └─ Model + Policy + State + Tools + Execution Loop
+
+Level 3: Teams
+         └─ Agents + Messages + Dependencies + Shared Artifacts</code></pre>
+</section>
+<section id="data-science-pipeline-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="data-science-pipeline-architecture"><strong>Data Science Pipeline Architecture</strong></h4>
+<p><strong>Components:</strong> 1. <strong>Definition:</strong> Define what you’re doing 2. <strong>Preparation:</strong> Process data, handle missing values 3. <strong>Splitting:</strong> Separate training/validation/test sets 4. <strong>Evaluation:</strong> Measure model performance 5. <strong>Monitoring:</strong> Track system health over time</p>
+</section>
+<section id="decoder-model-workflow-how-llms-process-text" class="level4">
+<h4 class="anchored" data-anchor-id="decoder-model-workflow-how-llms-process-text"><strong>Decoder Model Workflow</strong> (How LLMs Process Text)</h4>
+<pre><code>Tokenization → Embedding → Transformation → Attention → Decoding
+     ↓              ↓            ↓              ↓           ↓
+Convert words  Look up vectors  Add position  Apply casual    Generate
+to tokens      &amp; position info  information   mask &amp; scores   output</code></pre>
+</section>
+<section id="retrieval-augmented-generation-rag" class="level4">
+<h4 class="anchored" data-anchor-id="retrieval-augmented-generation-rag"><strong>Retrieval-Augmented Generation (RAG)</strong></h4>
+<p>Also called ReAct (Reason + Act), sometimes called “USB C for AI agents”</p>
+<p><strong>Components:</strong> 1. <strong>Query:</strong> Capture question and authorization scope 2. <strong>Retrieval:</strong> Fetch relevant information from sources 3. <strong>Augmentation:</strong> Combine evidence with query 4. <strong>Generation:</strong> Draft answer with evidence support 5. <strong>Check:</strong> Inspect whether claims are supported</p>
+<p><strong>Output:</strong> Supported answer with explicit evidence gaps identified</p>
+</section>
+<section id="one-agent-runtime-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="one-agent-runtime-pattern"><strong>One-Agent Runtime Pattern</strong></h4>
+<pre><code>Receive → Choose → Validate → Execute → Assess → Handoff
+  ↓         ↓        ↓          ↓        ↓        ↓
+Input   Decision   Verify   Execute   Check    Output</code></pre>
+</section>
+<section id="coordinated-multi-agent-team-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="coordinated-multi-agent-team-pattern"><strong>Coordinated Multi-Agent Team Pattern</strong></h4>
+<pre><code>Coordinator Agent
+     ↓
+  ┌─────────────────┐
+  │                 │
+Analyst Agent    Research Agent    (working in parallel)
+  │                 │
+  └─────────────────┘
+     ↓
+Validator Agent
+     ↓
+Writer Agent
+     ↓
+Human Reviewer → Decision &amp; Accountability</code></pre>
+<hr>
+</section>
+</section>
+<section id="key-definitions-shared-vocabulary" class="level3">
+<h3 class="anchored" data-anchor-id="key-definitions-shared-vocabulary">7. <strong>Key Definitions: Shared Vocabulary</strong></h3>
+<p>Lwin provides precise definitions for essential concepts:</p>
+<section id="ai-ml-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="ai-ml-foundations"><strong>AI &amp; ML Foundations</strong></h4>
+<p><strong>Artificial Intelligence:</strong> Systems that perform tasks associated with human intelligence - Examples: Speech recognition, image interpretation, language translation, recommendations</p>
+<p><strong>Machine Learning:</strong> Algorithms learn patterns from data to make predictions - Example: Spam filter learns to identify junk email</p>
+<p><strong>Deep Learning:</strong> Uses neural networks with multiple layers to recognize complex patterns - Example: Image classification, natural language processing</p>
+<p><strong>Generative AI:</strong> Produces new content (text, images, code, audio, video) based on learned patterns - Examples: ChatGPT, Dall-E, GitHub Copilot</p>
+<p><strong>Retrieval-Augmented Generation (RAG):</strong> Retrieves relevant information from external sources and provides it as context - Example: Question answering with cited sources</p>
+</section>
+<section id="ai-ethics" class="level4">
+<h4 class="anchored" data-anchor-id="ai-ethics"><strong>AI Ethics</strong></h4>
+<blockquote class="blockquote">
+<p>“AI ethics means how AI design and use affect people. Apply principles: fairness, accountability, transparency, privacy, safety.”</p>
+</blockquote>
+</section>
+<section id="critical-thinking-skills" class="level4">
+<h4 class="anchored" data-anchor-id="critical-thinking-skills"><strong>Critical Thinking Skills</strong></h4>
+<p><strong>Critical Thinking:</strong> Examine claims, check evidence, question assumptions, weigh alternatives</p>
+<p><strong>Decision Making:</strong> Choose among alternatives using evidence, constraints, and understanding who has authority</p>
+<p><strong>Problem Solving:</strong> Find gap between current and desired state, break into steps, try solutions, verify results</p>
+<p><strong>System Thinking:</strong> Understand how connected parts, feedback loops, and delays shape system behavior</p>
+</section>
+<section id="multi-agent-concepts" class="level4">
+<h4 class="anchored" data-anchor-id="multi-agent-concepts"><strong>Multi-Agent Concepts</strong></h4>
+<p><strong>AI Agent:</strong> Uses AI model to interpret context, choose actions, use available tools to pursue goals, adjust based on results</p>
+<p><strong>Multi-Agent System:</strong> Multiple agents interact and coordinate work. Coordination can be supervised or distributed.</p>
+<p><strong>Flocking</strong> (Emergent behavior): Coordinated group movement from local rules - Separation: Avoid crowding - Alignment: Follow neighbors’ heading - Cohesion: Steer toward average position</p>
+<p><strong>Swarming:</strong> Agents follow local rules; interactions produce coordinated patterns (can describe robots or software agents)</p>
+<hr>
+</section>
+</section>
+<section id="chatdev-chat-powered-software-development-framework" class="level3">
+<h3 class="anchored" data-anchor-id="chatdev-chat-powered-software-development-framework">8. <strong>ChatDev: Chat-Powered Software Development Framework</strong></h3>
+<p>Lwin analyzes the first seminal research paper: ChatDev</p>
+<section id="what-is-chatdev" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-chatdev"><strong>What is ChatDev?</strong></h4>
+<p>A <strong>chat-powered software development framework</strong> that uses multiple LLM-driven agents with different roles to build software through multi-agent collaboration.</p>
+<p><strong>Key Innovation:</strong> Uses <strong>chat chain</strong> (structured communication) + <strong>communicative de-hallucination</strong> (asking for clarification before responding)</p>
+</section>
+<section id="the-three-phases-of-chatdev" class="level4">
+<h4 class="anchored" data-anchor-id="the-three-phases-of-chatdev"><strong>The Three Phases of ChatDev</strong></h4>
+<pre><code>Design Phase → Coding Phase → Testing Phase
+    ↓              ↓              ↓
+Requirements  Code Writing   Code Review
+   Review     + Completion     + Testing</code></pre>
+<p><strong>Within Each Phase:</strong> - Agents break down into sub-tasks - Instructor agent initiates instruction - Assistant agent responds with solution - Multi-round dialogue until consensus</p>
+</section>
+<section id="key-mechanism-communicative-de-hallucination" class="level4">
+<h4 class="anchored" data-anchor-id="key-mechanism-communicative-de-hallucination"><strong>Key Mechanism: Communicative De-Hallucination</strong></h4>
+<p><strong>Problem:</strong> LLMs hallucinate (confidently provide wrong answers)</p>
+<p><strong>Solution:</strong> Before responding, agents ask clarifying questions: - “What exactly do you need?” - “Can you provide more detail?” - “Should I interpret this as X or Y?”</p>
+<p><strong>Result:</strong> Significantly reduces hallucinations</p>
+</section>
+<section id="memory-management-in-chatdev" class="level4">
+<h4 class="anchored" data-anchor-id="memory-management-in-chatdev"><strong>Memory Management in ChatDev</strong></h4>
+<p><strong>Two Types of Memory:</strong></p>
+<ol type="1">
+<li><strong>Short-term Memory:</strong> Maintains dialogue continuity within a single phase</li>
+<li><strong>Long-term Memory:</strong> Preserves context across different phases</li>
+</ol>
+<p><strong>Problem Addressed:</strong> LLM context windows are limited (can’t remember everything) <strong>Solution:</strong> Segment memory based on phase</p>
+</section>
+<section id="chatdev-evaluation-results" class="level4">
+<h4 class="anchored" data-anchor-id="chatdev-evaluation-results"><strong>ChatDev Evaluation Results</strong></h4>
+<p><strong>Key Findings:</strong> - Multi-agent collaboration produces more coherent solutions - Role assignment significantly impacts quality - Without role specification: Output is generic - With role specification: Output is targeted - De-hallucination mechanism reduces errors across all metrics - Communication patterns are critical to quality</p>
+<p><strong>Research Dataset:</strong> - 1000-1200 software test prompts - Categories: Education, Work, Life, Games, Creation - 40 subcategories with 30 test prompts each</p>
+<hr>
+</section>
+</section>
+<section id="metagpt-meta-programming-for-collaborative-framework" class="level3">
+<h3 class="anchored" data-anchor-id="metagpt-meta-programming-for-collaborative-framework">9. <strong>MetaGPT: Meta-Programming for Collaborative Framework</strong></h3>
+<p>Lwin analyzes the second seminal research paper: MetaGPT</p>
+<section id="what-is-metagpt" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-metagpt"><strong>What is MetaGPT?</strong></h4>
+<p>A <strong>meta-programming framework</strong> that incorporates standard operation procedures (SOPs) into agent coordination for more streamlined workflows.</p>
+<p><strong>Key Innovation:</strong> Agents don’t just chat; they follow <strong>human-proven workflows</strong> as structured procedures</p>
+</section>
+<section id="metagpts-insight-learning-from-human-teams" class="level4">
+<h4 class="anchored" data-anchor-id="metagpts-insight-learning-from-human-teams"><strong>MetaGPT’s Insight: Learning from Human Teams</strong></h4>
+<p><strong>Traditional Team in Software Company:</strong> - Project Manager: Drives business requirements - Architect: Designs system architecture - Engineer: Implements code - QA Engineer: Tests software</p>
+<p><strong>MetaGPT Principle:</strong> Give agents the same roles, workflows, and procedures that humans use</p>
+</section>
+<section id="five-specialized-roles-in-metagpt" class="level4">
+<h4 class="anchored" data-anchor-id="five-specialized-roles-in-metagpt"><strong>Five Specialized Roles in MetaGPT</strong></h4>
+<ol type="1">
+<li><strong>Product Manager</strong> - Analysis &amp; planning</li>
+<li><strong>Architect</strong> - System design</li>
+<li><strong>Engineer</strong> - Code implementation</li>
+<li><strong>QA Engineer</strong> - Testing</li>
+<li><strong>Project Manager</strong> - Overall coordination</li>
+</ol>
+<p>Each agent has: - Specific role name and goals - Constraints and limitations - Specialized tools they can access - Communication protocol</p>
+</section>
+<section id="metagpts-multi-agent-economics" class="level4">
+<h4 class="anchored" data-anchor-id="metagpts-multi-agent-economics"><strong>MetaGPT’s Multi-Agent Economics</strong></h4>
+<p><strong>Key Concept:</strong> Agents operate like a service marketplace - Each agent provides services - Each service has associated cost - Agents negotiate workload based on expertise/capacity</p>
+<p><strong>Result:</strong> More efficient resource allocation (similar to how real teams work)</p>
+</section>
+<section id="metagpt-workflow-example-drawing-app" class="level4">
+<h4 class="anchored" data-anchor-id="metagpt-workflow-example-drawing-app"><strong>MetaGPT Workflow Example: Drawing App</strong></h4>
+<p><strong>User Request:</strong> “Create a drawing application”</p>
+<p><strong>Phase 1: Product Manager</strong> - Creates Product Requirements Document (PRD) - Identifies user stories - Defines feature requirements - Output: Structured requirements</p>
+<p><strong>Phase 2: Architect</strong> - Proposes file structure - Defines data structures - Creates interface specifications - Output: Architecture blueprint</p>
+<p><strong>Phase 3: Engineer</strong> - Receives architecture specs - Writes actual code - Implements all required functions - Output: Working application code</p>
+<p><strong>Phase 4: QA Engineer</strong> - Reviews code - Tests functionality - Identifies bugs - Output: Test results &amp; fix requests</p>
+<p><strong>Phase 5: Improvement Loop</strong> - Engineers fix identified issues - QA re-tests - Iterate until quality gates pass</p>
+</section>
+<section id="metagpt-evaluation-results" class="level4">
+<h4 class="anchored" data-anchor-id="metagpt-evaluation-results"><strong>MetaGPT Evaluation Results</strong></h4>
+<ul>
+<li>Generates more coherent solutions than single-agent approaches</li>
+<li>Quality increases with each specialization</li>
+<li>Clear role assignment significantly impacts output quality</li>
+<li>More complex tasks show greater benefits</li>
+</ul>
+</section>
+<section id="metagpt-test-cases" class="level4">
+<h4 class="anchored" data-anchor-id="metagpt-test-cases"><strong>MetaGPT Test Cases</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Type</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Snake Game</td>
+<td>Simple game</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td>Bridge Breaker</td>
+<td>Medium game</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Flappy Bird</td>
+<td>Physics-based game</td>
+<td>Medium-High</td>
+</tr>
+<tr class="even">
+<td>Data Processor</td>
+<td>Utility</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Music Transcriber</td>
+<td>ML task</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Dashboard</td>
+<td>Full-stack app</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="critical-limitations-realistic-expectations" class="level3">
+<h3 class="anchored" data-anchor-id="critical-limitations-realistic-expectations">10. <strong>Critical Limitations &amp; Realistic Expectations</strong></h3>
+<p>Lwin emphasizes both what multi-agent systems CAN and CANNOT do currently:</p>
+<section id="limitations-of-current-systems" class="level4">
+<h4 class="anchored" data-anchor-id="limitations-of-current-systems"><strong>Limitations of Current Systems</strong></h4>
+<p><strong>Limitation 1: Overestimated Capabilities</strong> - Agents work well for simple logic (not deep algorithms) - Prototypes &gt; complex production systems - Low information density in generated code - Example: Snake game ≠ Enterprise system</p>
+<p><strong>Limitation 2: Unsafe Defaults</strong> - Agents might use static credentials instead of secure config - Security vulnerabilities still present even with scanning - Detailed requirements are essential - Current tech: Better for MVP than production</p>
+<p><strong>Limitation 3: Evaluation Challenges</strong> - Automating evaluation of general software is hard - Manual verification impractical at scale - Future work: Include robustness, safety, user-friendliness - Current focus: Functionality + executability</p>
+<p><strong>Limitation 4: Computational Cost</strong> - Multi-agents require MORE tokens than single agents - More time, more computation, higher environmental impact - Optimization needed to reduce interactions</p>
+</section>
+<section id="when-to-use-multi-agent-vs.-single-agent" class="level4">
+<h4 class="anchored" data-anchor-id="when-to-use-multi-agent-vs.-single-agent"><strong>When to Use Multi-Agent vs.&nbsp;Single Agent</strong></h4>
+<p><strong>Use Single Agent When:</strong> - Task is simple and well-defined - Cost is a critical factor - Speed is paramount - One specialized role sufficient</p>
+<p><strong>Use Multi-Agent When:</strong> - Complex task requiring diverse expertise - Need for verification/quality gates - Benefit of specialization outweighs cost - Quality &gt; speed</p>
+<hr>
+</section>
+</section>
+<section id="the-governance-shift-your-evolving-role" class="level3">
+<h3 class="anchored" data-anchor-id="the-governance-shift-your-evolving-role">11. <strong>The Governance Shift: Your Evolving Role</strong></h3>
+<p>Lwin emphasizes that this training transforms your professional role:</p>
+<section id="from-test-execution-to-system-governance" class="level4">
+<h4 class="anchored" data-anchor-id="from-test-execution-to-system-governance"><strong>From Test Execution to System Governance</strong></h4>
+<p><strong>Before (Test Execution):</strong> - Run tests - Record results - Report bugs - Wait for developers to fix</p>
+<p><strong>After (System Governance):</strong> - Define specifications - Set harnesses (constraints) - Review agent-generated output - Govern based on evolution - Maintain accountability</p>
+</section>
+<section id="the-new-analogy-head-chef" class="level4">
+<h4 class="anchored" data-anchor-id="the-new-analogy-head-chef"><strong>The New Analogy: Head Chef</strong></h4>
+<blockquote class="blockquote">
+<p>“The best analogy for Agentic engineer is the head chef who drives the kitchen staff and owns every dish. You’ll be ordering these chef some teachers, and they’ll be making dishes back to you.”</p>
+</blockquote>
+<p><strong>Your New Role:</strong> - Architect the system (what should be built) - Coordinate the agents (who does what) - Verify the output (is it correct) - Iterate and improve (continuous governance) - Own accountability (responsible for results)</p>
+</section>
+<section id="four-d-framework-applied-to-governance" class="level4">
+<h4 class="anchored" data-anchor-id="four-d-framework-applied-to-governance"><strong>Four D Framework Applied to Governance</strong></h4>
+<ol type="1">
+<li><strong>Delegation:</strong> Which agents do what? When do they act?</li>
+<li><strong>Description:</strong> Clear specifications for each agent</li>
+<li><strong>Discernment:</strong> Review each output carefully</li>
+<li><strong>Diligence:</strong> Ensure ethical, transparent, accountable use</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="practical-application-what-you-can-build" class="level3">
+<h3 class="anchored" data-anchor-id="practical-application-what-you-can-build">12. <strong>Practical Application: What You Can Build</strong></h3>
+<section id="simple-automation-examples" class="level4">
+<h4 class="anchored" data-anchor-id="simple-automation-examples"><strong>Simple Automation Examples</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Product</th>
+<th>Agents</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Personal Assistant</strong></td>
+<td>Automation</td>
+<td>Automate routine tasks</td>
+</tr>
+<tr class="even">
+<td><strong>Social Media Manager</strong></td>
+<td>Automation</td>
+<td>Auto-post &amp; monitor</td>
+</tr>
+<tr class="odd">
+<td><strong>Travel Planner</strong></td>
+<td>Augmentation</td>
+<td>Plan trips with human input</td>
+</tr>
+<tr class="even">
+<td><strong>Customer Service Bot</strong></td>
+<td>Agency</td>
+<td>Monitor &amp; respond to inquiries</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="complex-orchestration-examples" class="level4">
+<h4 class="anchored" data-anchor-id="complex-orchestration-examples"><strong>Complex Orchestration Examples</strong></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 30%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Product</th>
+<th>Agents</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Processor</strong></td>
+<td>Multiple</td>
+<td>Process &amp; analyze data</td>
+</tr>
+<tr class="even">
+<td><strong>Code Generator</strong></td>
+<td>Multiple</td>
+<td>Design + write + test code</td>
+</tr>
+<tr class="odd">
+<td><strong>Document Analyst</strong></td>
+<td>Multiple</td>
+<td>Analyze &amp; summarize documents</td>
+</tr>
+<tr class="even">
+<td><strong>Research System</strong></td>
+<td>Multiple</td>
+<td>Gather + synthesize + verify information</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+</section>
+<section id="key-concepts-summary" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-summary">Key Concepts Summary</h2>
+<section id="the-paradigm-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="the-paradigm-transformation"><strong>The Paradigm Transformation</strong></h3>
+<ul>
+<li>From manual coding → Natural language interface</li>
+<li>From individual developers → Coordinated teams</li>
+<li>From test execution → System governance</li>
+<li>From shipping untested AI → Governed AI-first systems</li>
+</ul>
+</section>
+<section id="four-d-framework" class="level3">
+<h3 class="anchored" data-anchor-id="four-d-framework"><strong>Four D Framework</strong></h3>
+<ol type="1">
+<li><strong>Delegation</strong> - When/how to engage AI</li>
+<li><strong>Description</strong> - Communicating intent clearly</li>
+<li><strong>Discernment</strong> - Verifying quality</li>
+<li><strong>Diligence</strong> - Using AI responsibly</li>
+</ol>
+</section>
+<section id="multi-agent-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="multi-agent-architecture"><strong>Multi-Agent Architecture</strong></h3>
+<ul>
+<li><strong>ChatDev:</strong> Chat-chain + de-hallucination</li>
+<li><strong>MetaGPT:</strong> Standard operating procedures + specialized roles</li>
+<li>Both proven frameworks for orchestrated AI development</li>
+</ul>
+</section>
+<section id="your-accountability" class="level3">
+<h3 class="anchored" data-anchor-id="your-accountability"><strong>Your Accountability</strong></h3>
+<ul>
+<li>You own the AI output</li>
+<li>You verify correctness</li>
+<li>You ensure ethical use</li>
+<li>You bear responsibility for failures</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="resources-for-further-learning" class="level2">
+<h2 class="anchored" data-anchor-id="resources-for-further-learning">Resources for Further Learning</h2>
+<p><strong>Research Papers Discussed:</strong> - <strong>ChatDev:</strong> “Communicative Agents for Software Development” - Authors: Chen et al. - Published: ACL 2024 (August 3, 2024, Bangkok) - Key: Chat chains + de-hallucination</p>
+<ul>
+<li><strong>MetaGPT:</strong> “Meta Programming for Multi-Agent Collaboration”
+<ul>
+<li>Authors: Hong et al.</li>
+<li>Published: ICLR 2024</li>
+<li>Affiliations: DeepWisdom, AI Initiative, Shenzhen University, etc.</li>
+<li>Key: SOPs + specialized roles</li>
+</ul></li>
+</ul>
+<p><strong>Next Session (Session IX):</strong> - Practical Lab: Orchestrating Multi-Agents - Building actual multi-agent systems - Hands-on implementation - Real code examples</p>
+<hr>
+</section>
+<section id="homework-prepare-for-practical-session" class="level2">
+<h2 class="anchored" data-anchor-id="homework-prepare-for-practical-session">Homework: Prepare for Practical Session</h2>
+<p>Before tomorrow’s practical lab, consider:</p>
+<ol type="1">
+<li><strong>Read the Papers</strong> (Optional but recommended)
+<ul>
+<li>ChatDev abstract + conclusion</li>
+<li>MetaGPT abstract + examples</li>
+<li>Understand the frameworks</li>
+</ul></li>
+<li><strong>Think About Your Domain</strong>
+<ul>
+<li>What complex task could benefit from multi-agents?</li>
+<li>What specialized roles would help?</li>
+<li>How would they communicate?</li>
+</ul></li>
+<li><strong>Define the Workflow</strong>
+<ul>
+<li>What are the sequential phases?</li>
+<li>What information flows between agents?</li>
+<li>What are the quality gates?</li>
+</ul></li>
+<li><strong>Prepare Questions</strong>
+<ul>
+<li>Specific challenges in your domain</li>
+<li>How to handle failures</li>
+<li>Cost/benefit tradeoffs</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="action-items-for-participants" class="level2">
+<h2 class="anchored" data-anchor-id="action-items-for-participants">Action Items for Participants</h2>
+<p>✅ Understand the Four D Framework (Delegation, Description, Discernment, Diligence)<br>
+✅ Recognize the AI-First SDLC transformation<br>
+✅ Appreciate why multi-agent systems matter<br>
+✅ See two real research approaches (ChatDev &amp; MetaGPT)<br>
+✅ Accept your new role in system governance<br>
+✅ Prepare for practical implementation tomorrow</p>
+<hr>
+</section>
+<section id="key-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaway">Key Takeaway</h2>
+<blockquote class="blockquote">
+<p><strong>“Vibe Coding shifted from ‘Can we build this?’ to ‘How do we build this safely and sustainably?’ Multi-agent orchestration is the answer. You’re no longer a code writer—you’re a system architect, quality gate, and governance authority.”</strong></p>
+</blockquote>
+<p><strong>The Reality:</strong> - 80% of code is AI-generated now - 27.4% has security issues - Learning this is urgent, not optional - Your role is transforming right now</p>
+<p><strong>The Opportunity:</strong> - Democratized software development - Accelerated productivity - Increased reliability through verification - Professional engineering with AI as amplifier</p>
+<hr>
+</section>
+<section id="session-end-note" class="level2">
+<h2 class="anchored" data-anchor-id="session-end-note">Session End Note</h2>
+<p><strong>Lwin’s Message:</strong> “I want to go deeper into the Tranatic Coordination research, which is a breakthrough in orchestrating LLM agents. However, since we’re running out of time and this content is advanced, I recommend you read the paper before tomorrow’s practical session. We can start with this tomorrow to ensure everyone has context.”</p>
+<p><strong>Emanuel’s Closing:</strong> “This is the state-of-the-art of Agentic AI—not just throwing prompts at LLMs, but orchestrating sophisticated systems. Thank you for bringing these papers, Lwin. This is exactly what everyone needs to know.”</p>
+<hr>
+<p><strong>📞 Continue Tomorrow:</strong> Session IX - Practical Lab: Multi-Agents Orchestration</p>
+<p><strong>🎯 Goal:</strong> Build your own multi-agent system following ChatDev or MetaGPT patterns.</p>
+<p><strong>📚 Reference:</strong> Links to papers will be shared in WhatsApp group and course materials.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
