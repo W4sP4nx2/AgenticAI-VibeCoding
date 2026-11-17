@@ -136,7 +136,7 @@ Good first models to try are the ones marked `:free` on the model page. Some age
 
 ### Local models (Ollama): know the boundary
 
-Ollama can keep model weights and prompt inference on a localhost endpoint when the agent is configured to use only that endpoint. It does not make the whole agent workflow offline. MCP servers, web-search tools, editor extensions, package managers, framework telemetry and cloud fallback routing can still send workspace content over the network.
+Ollama keeps model weights and prompt inference on your machine only when the agent points at the localhost endpoint and you run a local model. Ollama cloud models, whose names end in `-cloud`, run on ollama.com even when called through the localhost API; run `ollama signout` to keep them unavailable. A local model still does not make the whole agent workflow offline. MCP servers, web-search tools, editor extensions, package managers, framework telemetry and cloud fallback routing can still send workspace content over the network.
 
 Use only synthetic sample data in course labs. For an offline lab, start from the committed `.env.example` profile:
 

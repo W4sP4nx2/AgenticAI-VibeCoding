@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Immutable action pins and Dependabot</td>
 <td style="text-align: left;"><a href="https://attack.mitre.org/mitigations/M1051/">M1051 Update Software</a>, <a href="https://attack.mitre.org/mitigations/M1045/">M1045 Code Signing</a></td>
 <td style="text-align: left;"><a href="https://attack.mitre.org/mitigations/M0817/">M0817 Supply Chain Management</a>, <a href="https://attack.mitre.org/mitigations/M0945/">M0945 Code Signing</a></td>
-<td style="text-align: left;">Full upstream commit SHAs remove mutable tag resolution. Weekly dependency PRs expose updates for review. Pinning supports provenance checks but does not replace signature verification.</td>
+<td style="text-align: left;">Full upstream commit SHAs remove mutable tag resolution for direct action references; nested references inside composite actions need their own pins. Weekly dependency PRs expose updates for review. Pinning supports provenance checks but does not replace signature verification.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Calendar URL allowlist</td>
