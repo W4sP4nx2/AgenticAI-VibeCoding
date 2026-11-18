@@ -25,7 +25,7 @@ Answer these questions first. The rows point to the options that usually fit.
 | You have no card and only a Google login | **Gemini CLI** with your Google account |
 | Your data is sensitive and must stay on your machine | Use local inference through **Ollama**, disable cloud fallback and telemetry, restrict tools, and enforce a network allowlist |
 | You want an open-source agent you can read and change | **OpenCode** or **Aider** |
-| Your work laptop blocks installs | The browser-only path in [Standard setup](setup.html#8-browser-only-path-no-installation) |
+| Your work laptop blocks installs | The browser-only path in [Standard setup](setup.html#browser-only-path-no-installation) |
 
 You can change your choice later. Your project files and `AGENTS.md` do not depend on the agent you used to write them.
 
@@ -116,7 +116,7 @@ An open-source terminal agent that connects to many providers, including local m
 Two ways to get free Gemini access:
 
 1. **Google login through Gemini CLI.** No key needed. This is the simplest route and what the course default uses.
-2. **An API key from Google AI Studio.** Free, no card required for the basic tier. Use it with Aider, Cline, OpenCode or any agent that accepts a Google key. Store it in `.env` as shown in [Standard setup](setup.html#5-store-your-keys-safely).
+2. **An API key from Google AI Studio.** Free, no card required for the basic tier. Use it with Aider, Cline, OpenCode or any agent that accepts a Google key. Store it in `.env` as shown in [Standard setup](setup.html#store-your-keys-safely).
 
 Free limits are per day and per minute, and they change. The unpaid API key allows far fewer requests than the Google login route.
 
@@ -168,7 +168,7 @@ Local models are usually weaker and slower than hosted models. Install Ollama fr
 | OpenCode | Free (built-in models) | Optional | Terminal | Medium | Medium |
 | Local model via Ollama | Free | No | Either | Local inference only; control tools and egress | High |
 
-Privacy depends on the provider, model, agent, enabled tools and network controls, so the table is a guide rather than a guarantee. A localhost model protects only the inference path. Follow the checklist in [Standard setup](setup.html#9-pick-a-tool-path-and-check-what-you-may-share) before you send any data.
+Privacy depends on the provider, model, agent, enabled tools and network controls, so the table is a guide rather than a guarantee. A localhost model protects only the inference path. Follow the checklist in [Standard setup](setup.html#pick-a-tool-path-and-check-what-you-may-share) before you send any data.
 
 ## 6. Record your choice
 
