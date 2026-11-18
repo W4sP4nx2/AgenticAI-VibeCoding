@@ -27,6 +27,8 @@ The agent labs are educational and must use synthetic data.
 5. **Short retention.** Local JSONL audit files are ignored by Git and should be deleted after the exercise. CI retains synthetic audit artifacts for seven days.
 6. **Layered isolation.** Local Python enforces request, tool, approval and path policy. Only the CI container enforces operating-system network and read-only-filesystem boundaries. Environment variables such as `LAB_OFFLINE` are advisory unless the launcher or named software enforces them.
 
+For prompting practices that keep lab work inside these rules, see [Secure vibe coding for learners](governance/SECURE-VIBE-CODING.md).
+
 ## Repository security controls
 
 When present on `main`, source-controlled controls include job-scoped GitHub Actions permissions, immutable direct action references, calendar URL validation, deterministic guardrail tests and short artifact retention. Check the default branch and passing workflows before relying on a control. Repository settings such as branch rulesets, private vulnerability reporting, CodeQL, Dependabot alerts, secret scanning and push protection require maintainer configuration and cannot be inferred from source files.
