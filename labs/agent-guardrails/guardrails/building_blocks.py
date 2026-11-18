@@ -9,7 +9,18 @@ from .errors import RequestValidationError
 from .models import ToolRequest
 
 SYNTHETIC_RECORD_ID = re.compile(r"^SYN-[A-Z0-9-]{1,64}$")
+SAFE_FIXTURE_PATH = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{0,255}$")
 STATE_CHANGING_TOOLS = frozenset({"delete_records"})
+
+
+def is_safe_fixture_path(path: str) -> bool:
+    """Allow only plain relative paths: no dot segments, escapes or odd bytes."""
+    if not SAFE_FIXTURE_PATH.fullmatch(path):
+        return False
+    return not any(
+        part in {"", ".", ".."} or part.startswith(".")
+        for part in path.split("/")
+    )
 
 
 @dataclass(frozen=True)
@@ -45,9 +56,11 @@ def validate_request_schema(request: ToolRequest) -> None:
             )
 
     if request.tool == "read_fixture":
-        path = Path(parameters["path"])
-        if path.is_absolute() or not parameters["path"].strip():
-            raise RequestValidationError("Fixture path must be non-empty and relative")
+        path_value: str = parameters["path"]
+        if Path(path_value).is_absolute() or not is_safe_fixture_path(path_value):
+            raise RequestValidationError(
+                "Fixture path must be a safe relative path without dot segments"
+            )
     elif request.tool == "delete_records":
         record_ids: list[Any] = parameters["record_ids"]
         if not record_ids or len(record_ids) > 100:

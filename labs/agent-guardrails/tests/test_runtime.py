@@ -177,12 +177,10 @@ class GuardrailRuntimeTests(unittest.TestCase):
         self.assertEqual(self.audit_events()[-1]["event_type"], "verification")
         self.assertEqual(self.audit_events()[-1]["status"], "failed")
 
-    def test_path_traversal_is_blocked_at_execution(self):
+    def test_path_traversal_is_rejected_by_schema(self):
         runtime, _ = self.runtime({"read_fixture"})
-        request = runtime.prepare(payload("read_fixture", {"path": "../outside.txt"}))
-        capability = runtime.authorize(request)
-        with self.assertRaisesRegex(ExecutionError, "escapes"):
-            runtime.execute(capability)
+        with self.assertRaisesRegex(RequestValidationError, "safe relative path"):
+            runtime.run(payload("read_fixture", {"path": "../outside.txt"}))
 
     @unittest.skipUnless(hasattr(os, "symlink"), "symlinks are unavailable")
     def test_symlink_escape_is_blocked(self):
