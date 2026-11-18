@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Fail when rendered HTML contains an empty or missing local file reference.
+"""Fail when rendered HTML contains an empty or missing local reference.
 
-Fragments are not validated because some course materials implement virtual anchors
-in JavaScript rather than as static HTML IDs.
+Checks local file targets and static HTML fragments. A line containing the
+comment ``<!-- link-check-ignore-fragment -->`` skips fragment validation for
+references on that line; ``<!-- link-check-ignore -->`` skips them entirely.
+Use the fragment marker only for anchors implemented in JavaScript.
 """
 
 import sys
@@ -36,11 +38,17 @@ class Reference:
     value: str | None
 
 
+IGNORE_REFERENCE = "link-check-ignore"
+IGNORE_FRAGMENT = "link-check-ignore-fragment"
+
+
 class PageParser(HTMLParser):
     def __init__(self, source: Path):
         super().__init__(convert_charrefs=True)
         self.source = source
         self.references: list[Reference] = []
+        self.anchors: set[str] = set()
+        self.lines: list[str] = []
 
     def handle_starttag(self, tag, attrs):
         self._record(tag, attrs)
@@ -52,15 +60,30 @@ class PageParser(HTMLParser):
         line, _ = self.getpos()
         wanted = REFERENCE_ATTRIBUTES.get(tag, set())
         for attribute, value in attrs:
+            if attribute in {"id", "name"} and value:
+                self.anchors.add(value)
             if attribute in wanted:
                 self.references.append(
                     Reference(self.source, line, tag, attribute, value)
                 )
 
+    def suppression_on(self, line: int) -> str | None:
+        """Return the suppression marker found on a 1-based line, if any."""
+        if not 1 <= line <= len(self.lines):
+            return None
+        text = self.lines[line - 1]
+        if IGNORE_FRAGMENT in text:
+            return IGNORE_FRAGMENT
+        if IGNORE_REFERENCE in text:
+            return IGNORE_REFERENCE
+        return None
+
 
 def parse_page(path: Path) -> PageParser:
     parser = PageParser(path)
-    parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+    text = path.read_text(encoding="utf-8", errors="replace")
+    parser.lines = text.splitlines()
+    parser.feed(text)
     return parser
 
 
@@ -84,6 +107,8 @@ def check_site(output_dir: Path) -> list[str]:
         for reference in parser.references:
             location = f"{display_path(page)}:{reference.line}"
             value = reference.value
+            if parser.suppression_on(reference.line) == IGNORE_REFERENCE:
+                continue
             if value is None or not value.strip():
                 errors.append(
                     f'{location}: empty {reference.attribute} on <{reference.tag}>'
@@ -117,6 +142,25 @@ def check_site(output_dir: Path) -> list[str]:
             if not target.is_file():
                 errors.append(
                     f'{location}: {reference.attribute}="{value}" has no local target'
+                )
+                continue
+
+            fragment = unquote(parts.fragment)
+            if (
+                not fragment
+                or fragment.startswith(":~:text=")
+                or target.suffix.lower() not in {".htm", ".html"}
+                or parser.suppression_on(reference.line) == IGNORE_FRAGMENT
+            ):
+                continue
+
+            target_parser = parsed_pages.get(target)
+            if target_parser is None:
+                target_parser = parse_page(target)
+                parsed_pages[target] = target_parser
+            if fragment not in target_parser.anchors:
+                errors.append(
+                    f'{location}: {reference.attribute}="{value}" has no matching anchor'
                 )
 
     if not errors:
